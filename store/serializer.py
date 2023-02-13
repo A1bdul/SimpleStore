@@ -31,9 +31,11 @@ class ProductInfoSerializer(serializers.ModelSerializer):
         ]
 
     def get_image(self, obj):
-       if not obj.image:
+        if not obj.image:
            return [images_list[(obj.id%21)]]*2
-    
+        return [x.cdn_url for x in obj.image]
+       
+
     def get_discount_price(self, obj):
         if obj.discount:
             return obj.price - ((obj.discount/100) * obj.price)
@@ -83,4 +85,38 @@ class ConsumerInfoSerializer(serializers.ModelSerializer):
             serializer['quantity'] = product.quantity
             data.append(serializer)
         return data
-            
+        
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
+    
+    class Meta:
+        model = User
+        fields = [
+            'email', 'password2', 'password'
+        ]    
+        extra_kwargs = {
+            'password' : {'write_only': True}
+        }
+        
+        
+    def save(self):
+        user = User(email=self.validated_data['email'])
+        password = self.validated_data['password']
+        password2 = self.validated_data['password2']
+        
+        if password != password2:
+            raise serializers.ValidationError({'password': 'Passwords must match.'})
+        
+        user.set_password(password)
+        user.save()
+        return user
+    
+class PasswordChangeSerializer(serializers.Serializer):
+    current_password = serializers.CharField(style={"input_type": "password"}, required=True)
+    new_password = serializers.CharField(style={"input_type": "password"}, required=True)
+
+    def validate_current_password(self, value):
+        if not self.context['request'].user.check_password(value):
+            raise serializers.ValidationError({'current_password': 'Does not match'})
+        return value

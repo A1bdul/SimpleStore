@@ -178,7 +178,7 @@ class OrderedItem(models.Model):
         return self.item.name + '->' + str(self.quantity)
     
 class Cart(models.Model):
-    consumer = models.ForeignKey(Consumer, on_delete=models.SET_NULL, null=True)
+    consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE, null=True)
     
     items = models.ManyToManyField(OrderedItem, blank=True)
     transaction_id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)

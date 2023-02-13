@@ -1,20 +1,21 @@
 from django.shortcuts import render
 from .models import Product, Category, Consumer, Cart, OrderedItem
-from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer
+from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer
 from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .pagination import CustomPagination
 from django.db.models import Q
 from rest_framework.decorators import api_view
-
-
+from .utils import get_tokens_for_user
+from admins.models import User
+from rest_framework import status
 from collections import namedtuple
 # Create your views here.
 @api_view(['GET', 'POST'])
 def api_user(request):
     if request.user.is_authenticated:
-        consumer = Consumer.objects.get(user=request.user)
+        consumer = Consumer.objects.get_or_create(user=request.user)
         instance = ConsumerInfoSerializer(consumer).data
         if request.method == 'POST':
            
@@ -24,14 +25,14 @@ def api_user(request):
 class UserAPIView(APIView):
 
     def get(self, reuqest):
-        queryset = Consumer.objects.get(user=self.request.user)
+        queryset,created = Consumer.objects.get_or_create(user=self.request.user)
         serializer = ConsumerInfoSerializer(queryset).data
         return Response(serializer)
     
     def post(self, request):
         action = request.data.get('action')
         id = request.data.get('product')
-        consumer = Consumer.objects.get(user=self.request.user)
+        consumer, created = Consumer.objects.get_or_create(user=self.request.user)
         cart,created = Cart.objects.get_or_create(consumer = consumer, processing=False, completed=False)
         if action== 'cart':
             product = Product.objects.get(id=id)
@@ -106,4 +107,16 @@ class ProductDetailAPIView(RetrieveAPIView):
 class ConsumserInfoAPIView(RetrieveAPIView):
     queryset = Consumer.objects.all()
     serializer_class = ConsumerInfoSerializer    
-            
+        
+
+class RegistrationView(APIView):
+    def post(self, request):
+        serializer = RegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            user = User.objects.get(email = serializer.data['email'])
+            auth_data = get_tokens_for_user(user)
+            return Response({**auth_data})
+            # return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # return Response('true')
