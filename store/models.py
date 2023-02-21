@@ -12,6 +12,10 @@ from django.utils.html import format_html
 from admins.models import Vendor, User
 
 
+images_dir = "C:\\Users\\Laptop\\Desktop\\Abdul's projects\\Wolmart\\static\\web\\images\\shop"
+images_list = os.listdir(images_dir)
+
+
 def validate_price(value):
     if value <= 0:
         raise  ValidationError(
@@ -71,12 +75,16 @@ class Product(PolymorphicModel):
     
     @admin.display(description="")
     def image_display(self):
+        v_image = images_list[(self.id%21)]
         if not self.image:
-            display_image = '/static/thumbnail.jpg'
+            v_image = f'/static/web/images/shop/{v_image}'
         else:
-            display_image = self.image[0].cdn_url
+            try:
+                v_image = self.image[0].cdn_url
+            except httpx.ConnectError:
+                v_image = f'/static/web/images/shop/{v_image}'
         return format_html(
-            '<img src="{}" width="30">', display_image
+            '<img src="{}" width="30">', v_image
             )
     
     @admin.display(description="Price")

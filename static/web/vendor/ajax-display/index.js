@@ -14,15 +14,15 @@ async function renderData(data, site) {
         if (item.discount_price) item.discount_price = OSREC.CurrencyFormatter.format(item.discount_price, currency);
         if (site == 'shop') {
             // Shop list & grid Display
-            shoplist += ` <div class="product product-list" id="${item.id}"> <figure class="product-media"> <a href="product-default.html"> <img src="${item.image[0]}" alt="Product" width="330" height="338" /> <img src="${item.image[1]}" alt="Product" width="330" height="338" /> </a> <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> ${productCountDown(item)}</figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h4 class="product-name"> <a href="product-default.html">${item.name}</a> </h4> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="product-default.html" class="rating-reviews">(3 Reviews)</a> </div>`
+            shoplist += ` <div class="product product-list" id="${item.id}"> <figure class="product-media"> <a href="/product/${item.id}"> <img src="${item.image[0]}" alt="Product" width="330" height="338" /> <img src="${item.image[1]}" alt="Product" width="330" height="338" /> </a> <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> ${productCountDown(item)}</figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h4 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h4> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(3 Reviews)</a> </div>`
             shoplist += item.discount_price ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
             shoplist += `<div class="product-desc">
             Ultrices eros in cursus turpis massa cursus mattis. Volutpat ac tincidunt
             vitae semper quis lectus. Aliquam id diam maecenas ultricies…
         </div> <div class="product-action">${Icon(item, 'cart', true)}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>${Icon(item, 'compare')}</div> </div> </div>`
-            shopgrid += `<div class="product-wrap" ><div class="product text-center" id="${item.id}"><figure class="product-media"><a href="product-default.html"> 
+            shopgrid += `<div class="product-wrap" ><div class="product text-center" id="${item.id}"><figure class="product-media"><a href="/product/${item.id}"> 
         <img src="${item.image[0]}" alt="Product" width="300" height="338" /> </a> ${productCountDown(item)}<div class="product-action-horizontal"> 
-        ${Icon(item, 'cart')}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a> ${Icon(item, 'compare')}<a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> </figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h3 class="product-name"> <a href="product-default.html">${item.name}</a> </h3> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="product-default.html" class="rating-reviews">(3 reviews)</a> </div> <div class="product-pa-wrapper">`
+        ${Icon(item, 'cart')}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a> ${Icon(item, 'compare')}<a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> </figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h3 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h3> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(3 reviews)</a> </div> <div class="product-pa-wrapper">`
             shopgrid += item.discount_price ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
             shopgrid += `</div> </div> </div> </div>`;
         }
@@ -31,7 +31,7 @@ async function renderData(data, site) {
             <tr>
                 <td class="product-thumbnail" id="${item.id}">
                     <div class="p-relative">
-                        <a href="product-default.html">
+                        <a href="/product/${item.id}">
                             <figure>
                                 <img src="${item.image[0]}" alt="product" width="300"
                                     height="338">
@@ -42,7 +42,7 @@ async function renderData(data, site) {
                     </div>
                 </td>
                 <td class="product-name">
-                    <a href="product-default.html">
+                    <a href="/product/${item.id}">
                        ${item.name}
                     </a>
                 </td>
@@ -168,7 +168,7 @@ async function renderData(data, site) {
 
     })
     if (site == 'shop') {
-        if (document.getElementById('shop-grid') ) document.getElementById('shop-grid').innerHTML = shopgrid
+        $('#shop-grid').append(shopgrid)
         
         if (document.getElementById('shop-list') ) document.getElementById('shop-list').innerHTML = shoplist
         // $('#shop-list').append(shoplist);
@@ -243,7 +243,7 @@ function Icon(product, type, shop) {
         let p = value['image'][0]
         if (product.image[0] == p) {
             x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-minus added" title="remove frm cart"></a>` : `<a href="compare" class="btn-product-icon btn-compare w-icon-check-solid added" title="Compare"></a>`
-            if (shop) x = '<a href="/product" class="btn-product" title="Add to Cart"><i class="w-icon-cart"></i>Select Options</a>';
+            if (shop) x = '<a href="/product/${item.id}" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Select Options</a>';
         }
     })
     return x
@@ -363,7 +363,7 @@ function renderProducts(n){
         z += `<div class="swiper-slide product-col">`
         z += `<div class="product-wrap product text-center" id="${item1.id}">
         <figure class="product-media">
-            <a href="product-default.html">
+            <a href="/product/${item1.id}">
                 <img src="${item1.image[0]}" alt="Product"
                     width="216" height="243" />
             </a>
@@ -381,14 +381,14 @@ function renderProducts(n){
                     </div>
         </figure>
         <div class="product-details">
-            <h4 class="product-name"><a href="product-default.html">${item1.name}</a>
+            <h4 class="product-name"><a href="/product/${item1.id}">${item1.name}</a>
             </h4>
             <div class="ratings-container">
                 <div class="ratings-full">
                     <span class="ratings" style="width: 100%;"></span>
                     <span class="tooltiptext tooltip-top"></span>
                 </div>
-                <a href="product-default.html" class="rating-reviews">(5
+                <a href="/product/${item1.id}" class="rating-reviews">(5
                     reviews)</a>
             </div>
             <div class="product-price">
@@ -400,7 +400,7 @@ function renderProducts(n){
     z += item2 ? `
     <div class="product-wrap product text-center" id="${item2.id}">
         <figure class="product-media">
-            <a href="product-default.html">
+            <a href="/product/${item1.id}">
                 <img src="${item2.image[0]}" alt="Product"
                     width="216" height="243" />
             </a>
@@ -414,13 +414,13 @@ function renderProducts(n){
             </div>
         </figure>
         <div class="product-details">
-            <h4 class="product-name"><a href="product-default.html">${item2.name}</a></h4>
+            <h4 class="product-name"><a href="/product/${item.id}">${item2.name}</a></h4>
             <div class="ratings-container">
                 <div class="ratings-full">
                     <span class="ratings" style="width: 60%;"></span>
                     <span class="tooltiptext tooltip-top"></span>
                 </div>
-                <a href="product-default.html" class="rating-reviews">(3
+                <a href="/product/${item.id}" class="rating-reviews">(3
                     reviews)</a>
             </div>
             <div class="product-price">
@@ -432,4 +432,5 @@ function renderProducts(n){
     }
     return z
 }
+
 

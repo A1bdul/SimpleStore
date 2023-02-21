@@ -1,7 +1,8 @@
 import os
 import json
 import random
-from admins.models import User
+import httpx
+from admins.models import User, Vendor
 from rest_framework import serializers
 from .models import Product, Category, Consumer, Cart
 from django.conf import settings
@@ -31,10 +32,15 @@ class ProductInfoSerializer(serializers.ModelSerializer):
         ]
 
     def get_image(self, obj):
+        v_image = images_list[(obj.id%21)]
         if not obj.image:
-           return [images_list[(obj.id%21)]]*2
-        return [x.cdn_url for x in obj.image]
-       
+            return [f'/static/web/images/shop/{v_image}']*2
+        else:
+            try:
+                return [x.cdn_url for x in obj.image]
+            except httpx.ConnectError:
+                return [f'/static/web/images/shop/{v_image}']*2
+              
 
     def get_discount_price(self, obj):
         if obj.discount:
@@ -85,7 +91,12 @@ class ConsumerInfoSerializer(serializers.ModelSerializer):
             serializer['quantity'] = product.quantity
             data.append(serializer)
         return data
-        
+
+class VendorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendor
+        fields = '__all__'
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)

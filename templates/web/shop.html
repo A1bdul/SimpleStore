@@ -85,14 +85,15 @@
                             </div>
                         </div>
                         <!-- End of Dropdown Menu -->
+                        
                         <span class="divider d-lg-show"></span>
                         <a href="contact-us.html" class="d-lg-show">Contact Us</a>
-                        <a href="/account" class="user-in">My Account</a>
-                        <a href="/static/web/ajax/login.html" class=" login sign-in user-out"><i
-                                class="w-icon-account"></i>Sign In</a>
-                        <span class="delimiter user-out">/</span>
-                        <a href="/static/web/ajax/login.html" class="ml-0 user-out login register">Register</a>
-                    </div>
+                        <a href="/account" class="user-in d-lg-show">My Account</a>
+                        <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in user-out"><i
+                                class="w-icon-account "></i>Sign In</a>
+                        <span class="delimiter d-lg-show user-out">/</span>
+                        <a href="/static/web/ajax/login.html" class="user-out ml-0 d-lg-show login register">Register</a>
+                     </div>
                 </div>
             </div>
             <!-- End of Header Top -->
@@ -231,7 +232,7 @@
             <div class="page-content mb-10">
                 <!-- Start of Shop Banner -->
                 <div class="shop-default-banner shop-boxed-banner banner d-flex align-items-center mb-6"
-                    style="background-image: url(assets/images/shop/banner2.jpg); background-color: #FFC74E;">
+                    style="background-image: url(/static/web/images/shop/banner2.jpg); background-color: #FFC74E;">
                     <div class="container banner-content">
                         <h4 class="banner-subtitle font-weight-bold">Accessories Collection</h4>
                         <h3 class="banner-title text-white text-uppercase font-weight-bolder ls-10">Smart Watches</h3>
@@ -359,20 +360,20 @@
                                         </select>
                                     </div>
                                     <div class="toolbox-item toolbox-layout">
-                                        <a href="" class="icon-mode-grid btn-layout">
+                                        <a href="" class="icon-mode-grid btn-layout active">
                                             <i class="w-icon-grid"></i>
                                         </a>
-                                        <a href="" class="icon-mode-list btn-layout active">
+                                        <a href="" class="icon-mode-list btn-layout">
                                             <i class="w-icon-list"></i>
                                         </a>
                                     </div>
                                 </div>
                             </nav>
-                            <div class="product-wrapper row cols-xl-2 cols-sm-1 cols-xs-2 cols-1" id="shop-list">
+                            <div class="product-wrapper row cols-xl-2 cols-sm-1 cols-xs-2 cols-1" style="display: none;" id="shop-list">
                                 <div class="product product-list product-select">
                                     <figure class="product-media">
                                         <a href="product-default.html">
-                                            <img src="assets/images/shop/1.jpg" alt="Product" width="330"
+                                            <img src="/static/web/images/shop/1.jpg" alt="Product" width="330"
                                                 height="338" />
                                         </a>
                                         <div class="product-action-vertical">
@@ -411,7 +412,7 @@
                                 </div>
                               </div>
                             
-                              <div class="product-wrapper row cols-md-4 cols-sm-3 cols-2" style="display: none;" id="shop-grid">
+                              <div class="product-wrapper row cols-md-4 cols-sm-3 cols-2"  id="shop-grid">
                               </div>
                             <div class="toolbox toolbox-pagination justify-content-between">
                                 <p class="showing-info mb-2 mb-sm-0">
@@ -651,23 +652,25 @@
             <i class="w-icon-home"></i>
             <p>Home</p>
         </a>
-        <a href="{% url 'shop' %}" class="sticky-link">
+        <a href="#" class="sticky-link">
             <i class="w-icon-category"></i>
             <p>Shop</p>
         </a>
-        <a href="my-account.html" class="sticky-link">
+        <a href="/static/web/ajax/login.html" class="user-ino sign-in sticky-link">
             <i class="w-icon-account"></i>
             <p>Account</p>
         </a>
         <div class="cart-dropdown dir-up">
-            <a href="{% url 'shop' %}" class="sticky-link">
+            <a href="{% url 'cart' %}" class="sticky-link">
                 <i class="w-icon-cart"></i>
                 <p>Cart</p>
             </a>
-            <div class="dropdown-box" style="overflow: scroll;">
+            <div class="dropdown-box" style="overflow-y: scroll;">
                 <div class="products cart-view-mobile">
+                    
                 </div>
 
+                
             </div>
             <!-- End of Dropdown Box -->
         </div>

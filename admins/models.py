@@ -5,6 +5,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
+from django.contrib import admin
+from django.utils.html import format_html
 # Create your models here.
 
 from django.contrib.auth.base_user import BaseUserManager
@@ -84,3 +86,14 @@ class Vendor(models.Model):
     owner = models.OneToOneField(User,on_delete=models.CASCADE, related_name='vendor')
     logo = models.ImageField(blank=True, null=True)
     about = models.TextField(null=True, blank=True)
+    name = models.CharField(max_length=500)
+    
+    @admin.display(description="")
+    def logo_display(self):
+        return format_html(
+            '<img src="/media/{}" width="50">', self.logo
+            )
+   
+    
+    def __str__(self):
+        return self.name

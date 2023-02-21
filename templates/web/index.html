@@ -90,12 +90,12 @@
                         <!-- End of Dropdown Menu -->
                         <span class="divider d-lg-show"></span>
                         <a href="contact-us.html" class="d-lg-show">Contact Us</a>
-                        <a href="/account" class="d-lg-none user-in">My Account</a>
+                        <a href="/account" class="user-in d-lg-show">My Account</a>
                         <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in user-out"><i
-                                class="w-icon-account"></i>Sign In</a>
+                                class="w-icon-account "></i>Sign In</a>
                         <span class="delimiter d-lg-show user-out">/</span>
-                        <a href="/static/web/ajax/login.html" class="ml-0 d-lg-show user-out login register">Register</a>
-                    </div>
+                        <a href="/static/web/ajax/login.html" class="user-out ml-0 d-lg-show login register">Register</a>
+                                      </div>
                 </div>
             </div>
             <!-- End of Header Top -->
@@ -138,7 +138,7 @@
                                 <a href="tel:#" class="phone-number font-weight-bolder ls-50">+234 810 638 2637</a>
                             </div>
                         </div>
-                        <a class="wishlist label-down link d-lg-none user-in" href="/account/wishlist">
+                        <a class="user-in wishlist label-down link" href="/account/wishlist">
                             <i class="w-icon-heart"></i>
                             <span class="wishlist-label">Wishlist</span>
                         </a>
@@ -190,13 +190,11 @@
                             </div>
                             <nav class="main-nav">
                                 <ul class="menu active-underline">
-                                    <li>
-                                        <a href="{% url 'home' %}">Home</a>
-                                    </li>
                                     <li class="active">
+                                        <a href="">Home</a>
+                                    </li>
+                                    <li>
                                         <a href="{% url 'shop' %}">Shop</a>
-
-                                       
                                     </li>
                                     <li>
                                         <a href="vendor-store.html">Vendor</a>
@@ -2886,7 +2884,7 @@
             <i class="w-icon-category"></i>
             <p>Shop</p>
         </a>
-        <a href="my-account.html" class="sticky-link">
+        <a href="/static/web/ajax/login.html" class="user-ino sign-in sticky-link">
             <i class="w-icon-account"></i>
             <p>Account</p>
         </a>

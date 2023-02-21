@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Product, Category, Consumer, Cart, OrderedItem
-from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer
+from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer,VendorSerializer
 from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -120,3 +120,14 @@ class RegistrationView(APIView):
             # return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         # return Response('true')
+        
+
+class ProductClassAPIView(APIView):
+    def get(self,request, pk):
+        data = {}
+        item = Product.objects.get(id=pk)
+        product = ProductInfoSerializer(item).data
+        owner = VendorSerializer(item.owner).data
+        data['product'] = product
+        data['owner'] = owner
+        return Response(data)

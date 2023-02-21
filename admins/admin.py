@@ -3,4 +3,8 @@ from .models import  Vendor
 from django.contrib.auth import get_user_model
 
 admin.site.register(get_user_model())
-admin.site.register(Vendor)
+
+class VendorAdmin(admin.ModelAdmin):
+    list_display = ['logo_display', 'name']
+
+admin.site.register(Vendor, VendorAdmin)

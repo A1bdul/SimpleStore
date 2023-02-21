@@ -6,7 +6,7 @@ admin.site.register(Category)
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['image_display', 'name', 'price_display']
-    list_filter = ['category',]
+    list_filter = ['category','owner']
     
 
 admin.site.register(Product, ProductAdmin)

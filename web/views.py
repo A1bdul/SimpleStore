@@ -41,3 +41,9 @@ class AccountView(View):
     template_name = 'web/my-account.html'
     def get(self, request):
         return render(request, self.template_name)
+
+
+class ProductDetail(View):
+    template_name = 'web/product-swatch.html'
+    def get(self, request, id):
+        return render(request, self.template_name)
