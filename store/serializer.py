@@ -1,13 +1,12 @@
 import os
 import json
-import random
 import httpx
 from admins.models import User, Vendor
 from rest_framework import serializers
 from .models import Product, Category, Consumer, Cart
 from django.conf import settings
 
-images_dir = "C:\\Users\\Laptop\\Desktop\\Abdul's projects\\Wolmart\\static\\web\\images\\shop"
+images_dir = os.path.join(settings.BASE_DIR, 'static/web/images/shop')
 images_list = os.listdir(images_dir)
 f = open(os.path.join(settings.BASE_DIR, 'category-icon.json'))
 icons = json.load(f)

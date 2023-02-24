@@ -11,12 +11,14 @@ from django.utils.html import format_html
 
 from django.contrib.auth.base_user import BaseUserManager
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
     """
     Custom user model manager where email is the unique identifiers
     for authentication instead of usernames.
     """
+
     def create_user(self, email, password, **extra_fields):
         """
         Create and save a user with the given email and password.
@@ -43,6 +45,7 @@ class UserManager(BaseUserManager):
             raise ValueError(_("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields)
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -62,38 +65,36 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
 
     def get_full_name(self):
-        '''
+        """
         Returns the first_name plus the last_name, with a space in between.
-        '''
+        """
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
     def get_short_name(self):
-        '''
+        """
         Returns the short name for the user.
-        '''
+        """
         return self.first_name
 
     def email_user(self, subject, message, from_email=None, **kwargs):
-        '''
+        """
         Sends an email to this User.
-        '''
+        """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
-
 class Vendor(models.Model):
-    owner = models.OneToOneField(User,on_delete=models.CASCADE, related_name='vendor')
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendor')
     logo = models.ImageField(blank=True, null=True)
     about = models.TextField(null=True, blank=True)
     name = models.CharField(max_length=500)
-    
+
     @admin.display(description="")
     def logo_display(self):
         return format_html(
             '<img src="/media/{}" width="50">', self.logo
-            )
-   
-    
+        )
+
     def __str__(self):
         return self.name
