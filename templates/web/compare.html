@@ -151,16 +151,17 @@
                                         </i>
                                         <span class="cart-label">Cart</span>
                                     </a>
-                                    <div class="dropdown-box" style="overflow: scroll;">
-                                        <div class="cart-header">
-                                            <span>Shopping Cart</span>
-                                            <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
-                                        </div>
-        
-                                        <div class="products cart-view">
-                                           
-                                        </div>
-                                    </div>
+                                    <div class="dropdown-box mini-basket-dropdown" style="overflow: scroll;">
+                            <div class="cart-header">
+                                <span>Shopping Cart</span>
+                                <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
+                            </div>
+                            <p class="woocommerce-mini-cart__empty-message empty-msg">No products in the cart.</p>
+
+                            <div class=" cart-view">
+
+                            </div>
+                        </div>
                                     <!-- End of Dropdown Box -->
                                 </div>
                             </div>
@@ -211,7 +212,6 @@
                     </div>
                 </header> <!-- End of Header -->
 
-
         <!-- Start of Main -->
         <main class="main">
             <!-- Start of Page Header -->
@@ -236,7 +236,7 @@
             <!-- Start of Page Content -->
             <div class="page-content mb-10 pb-2">
                 <div class="container">
-                    <div class="compare-table">
+                    <div style="display: none" class="compare-table">
                         <div class="compare-row cols-xl-5 cols-lg-4 cols-md-3 cols-2 compare-products">
                             <div class="compare-col compare-field">Product</div>
                             
@@ -387,6 +387,15 @@
                         </div>
                         <!-- End of Compare Brand -->
                     </div>
+                     <div class="cart-empty-page text-center" id="empty-compare">
+		<div class="woocommerce-notices-wrapper"></div>
+                         <i class="w-icon-compare empty-icon"></i>
+                         <p class="cart-empty woocommerce-info">No products added to the compare</p>
+		<p class="return-to-shop">
+			<a class="button" href="/shop">
+                                GO SHOP </a>
+		</p>
+	</div>
                 </div>
                 <!-- End of Compare Table -->
             </div>
@@ -958,7 +967,7 @@
     <script src="/static/web/vendor/photoswipe/photoswipe-ui-default.min.js"></script>
     <script src="/static/web/vendor/currency/currencyFormatter.js"></script>
     <script src="/static/web/js/main.min.js"></script>
-    <script src="/static/web/vendor/ajax-display/index.js"></script>
+    <script src="/static/web/vendor/display/index.js"></script>
 </body>
 
 </html>

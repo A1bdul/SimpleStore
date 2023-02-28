@@ -1,10 +1,12 @@
-import os
 import json
+import os
+
 import httpx
-from admins.models import User, Vendor
-from rest_framework import serializers
-from .models import Product, Category, Consumer, Cart
 from django.conf import settings
+from rest_framework import serializers
+
+from admins.models import User, Vendor
+from .models import Product, Category, Consumer, Cart, Review
 
 images_dir = os.path.join(settings.BASE_DIR, 'static/web/images/shop')
 images_list = os.listdir(images_dir)
@@ -17,69 +19,80 @@ class CategoryInfoSerializer(serializers.RelatedField):
         return value.head()
 
 
+class ReviewDetailSerializer(serializers.ModelSerializer):
+    timestamp = serializers.DateTimeField(format='%H:%m:%d')
+
+    class Meta:
+        model = Review
+        fields = [
+            'user', 'content', 'timestamp', 'reply'
+        ]
+
+
 class ProductInfoSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     image = serializers.SerializerMethodField()
     discount_price = serializers.SerializerMethodField()
     category = CategoryInfoSerializer(read_only=True)
     discount_duration = serializers.DateTimeField(format='%Y, %m, %d')
-    
+
     class Meta:
         model = Product
         fields = [
-            'id','name','price', 'image', 'discount', 'description', 'category', 'available', 'discount_price', 'discount_duration'
+            'id', 'name', 'price', 'image', 'description', 'discount', 'category', 'available', 'discount_price',
+            'discount_duration'
         ]
 
     def get_image(self, obj):
-        v_image = images_list[(obj.id%21)]
+        v_image = images_list[(obj.id % 21)]
         if not obj.image:
-            return [f'/static/web/images/shop/{v_image}']*2
+            return [f'/static/web/images/shop/{v_image}'] * 2
         else:
             try:
                 return [x.cdn_url for x in obj.image]
             except httpx.ConnectError:
-                return [f'/static/web/images/shop/{v_image}']*2
-              
+                return [f'/static/web/images/shop/{v_image}'] * 2
 
     def get_discount_price(self, obj):
         if obj.discount:
-            return obj.price - ((obj.discount/100) * obj.price)
-        
+            return obj.price - ((obj.discount / 100) * obj.price)
+
 
 class CategorySerializer(serializers.ModelSerializer):
     icon = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = Category
         fields = [
             'title', 'category_list', 'head', 'icon'
         ]
-        
+
     def get_icon(self, obj):
         return icons.get(obj.title)
-    
-    
+
+
 class UserInfoSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = User
-        fields =[
+        fields = [
             'first_name', 'last_name', 'full_name'
         ]
-        
+
     def get_full_name(self, obj):
         return obj.get_full_name()
+
 
 class ConsumerInfoSerializer(serializers.ModelSerializer):
     user = UserInfoSerializer()
     wish_list = ProductInfoSerializer(many=True)
     cart = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = Consumer
         fields = [
-            'user','wish_list', 'cart'
+            'user', 'wish_list', 'cart'
         ]
 
     def get_cart(self, obj):
@@ -91,6 +104,7 @@ class ConsumerInfoSerializer(serializers.ModelSerializer):
             data.append(serializer)
         return data
 
+
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
@@ -98,30 +112,30 @@ class VendorSerializer(serializers.ModelSerializer):
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
-    
+    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+
     class Meta:
         model = User
         fields = [
             'email', 'password2', 'password'
-        ]    
+        ]
         extra_kwargs = {
-            'password' : {'write_only': True}
+            'password': {'write_only': True}
         }
-        
-        
+
     def save(self):
         user = User(email=self.validated_data['email'])
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
-        
+
         if password != password2:
             raise serializers.ValidationError({'password': 'Passwords must match.'})
-        
+
         user.set_password(password)
         user.save()
         return user
-    
+
+
 class PasswordChangeSerializer(serializers.Serializer):
     current_password = serializers.CharField(style={"input_type": "password"}, required=True)
     new_password = serializers.CharField(style={"input_type": "password"}, required=True)

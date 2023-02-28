@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Dashboard | Wolmart - Admin & Dashboard </title>
+        <title>{{ store.name }} | Wolmart - Admin & Dashboard </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
@@ -35,7 +35,7 @@
                         <div class="navbar-brand-box">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="/static/admin/images/logo.svg" alt="" height="22">
+                                    <img src="{{ store.logo }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="/static/admin/images/logo-dark.png" alt="" height="17">
@@ -44,10 +44,10 @@
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="/static/admin/images/logo-light.svg" alt="" height="22">
+                                    <img src="/media/{{ store.logo }}" alt="" height="50">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="/static/admin/images/logo-light.png" alt="" height="19">
+                                    <img src="/media/{{ store.logo }}" alt="" height="50">
                                 </span>
                             </a>
                         </div>
@@ -201,7 +201,7 @@
                                                     <img src="/static/admin/images/users/avatar-1.jpg" alt="" class="img-thumbnail rounded-circle">
                                                 </div>
                                                 <h5 class="font-size-15 text-truncate">{{ request.user }}</h5>
-                                                <p class="text-muted mb-0 text-truncate">Vendor 1</p>
+                                                <p class="text-muted mb-0 text-truncate">{{ store.name }}</p>
                                             </div>
 
                                             <div class="col-sm-8">

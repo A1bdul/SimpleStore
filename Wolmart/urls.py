@@ -22,8 +22,10 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
 urlpatterns = [
     path('', include('web.urls')),
+    path('tinymce/', include('tinymce.urls')),
     path('dashboard/', admin.site.urls),
     path('admin/', include('admins.urls')),
     path('api/', include('store.urls')),
@@ -31,3 +33,4 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+handler404 = 'web.views.error_404_view'

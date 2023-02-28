@@ -13,6 +13,7 @@ import os
 import datetime
 from pathlib import Path
 from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
@@ -26,8 +27,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'tinymce',
+    'anymail',
     'rest_framework_simplejwt',
     'store.apps.StoreConfig',
     'admins.apps.AdminsConfig',
@@ -62,7 +64,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates')    
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -78,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Wolmart.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -88,7 +89,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -117,7 +117,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication'
     ]
 }
-
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ['Bearer'],
@@ -165,6 +164,38 @@ UPLOADCARE = {
     'secret': str(os.getenv('secret')),
 }
 
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'silver',
+    # 'skin':'dark',
+    'height': 550,
+    'width': 950,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'plugins': ''' 
+    toc textcolor save link image media preview codesample contextmenu
+    table code lists fullscreen insertdatetime nonbreaking quickbars
+    contextmenu directionality searchreplace wordcount visualblocks tabfocus 
+    visualchars code fullscreen autolink lists charmap print hr legacyoutput
+    anchor pagebreak imagetools template save searchreplace help directionality 
+    ''',
+    'toolbar1': '''
+   fullscreen preview bold italic underline | fontselect,
+   fontsizeselect | forecolor backcolor | alignleft alignright |
+   aligncenter alignjustify | indent outdent | bullist numlist table |
+   | link image media | codesample | template| quickbars| tabfocus | fullpage | toc
+   ''',
+    'toolbar2': '''
+   visualblocks visualchars | save| help|
+   charmap hr pagebreak nonbreaking anchor | code |
+   ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+}
+
+TINYMCE_SPELLCHECKER = True
+
 EMAIL_BACKEND = 'anymail.backends.mailjet.EmailBackend'
 
 ANYMAIL = {
@@ -173,3 +204,5 @@ ANYMAIL = {
 }
 
 DEFAULT_TO_EMAIL = str(os.getenv('TO_EMAIL'))
+
+LOGIN_URL = 'login'

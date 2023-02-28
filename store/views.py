@@ -1,34 +1,35 @@
-from django.shortcuts import render
-from .models import Product, Category, Consumer, Cart, OrderedItem
-from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer, \
-    VendorSerializer
-from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from .pagination import CustomPagination
+import rest_framework_simplejwt.authentication
 from django.db.models import Q
-from rest_framework.decorators import api_view
-from .utils import get_tokens_for_user
-from admins.models import User
 from rest_framework import status
-from collections import namedtuple
+from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from admins.models import User
+from .models import Product, Category, Consumer, Cart, OrderedItem, Review
+from .pagination import CustomPagination
+from .permissions import CustomPermission
+from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer, \
+    VendorSerializer, ReviewDetailSerializer
+from .utils import get_tokens_for_user
 
 
 # Create your views here.
 class UserAPIView(APIView):
 
-    def get(self, reuqest):
+    def get(self, request):
         queryset, created = Consumer.objects.get_or_create(user=self.request.user)
         serializer = ConsumerInfoSerializer(queryset).data
         return Response(serializer)
 
     def post(self, request):
+        instance = None
         action = request.data.get('action')
-        id = request.data.get('product')
+        pk = request.data.get('product')
         consumer, created = Consumer.objects.get_or_create(user=self.request.user)
         cart, created = Cart.objects.get_or_create(consumer=consumer, processing=False, completed=False)
         if action == 'cart':
-            product = Product.objects.get(id=id)
+            product = Product.objects.get(pk=pk)
             updated, created = OrderedItem.objects.get_or_create(item=product, processing=False, consumer=consumer)
             if updated in cart.items.filter(item=updated.item):
                 cart.items.remove(updated)
@@ -40,7 +41,7 @@ class UserAPIView(APIView):
                 instance['quantity'] = 1
         if action == 'loggin':
             for item in request.data.get('cart'):
-                product = Product.objects.get(id=item['id'])
+                product = Product.objects.get(pk=item['id'])
                 updated, created = OrderedItem.objects.get_or_create(item=product, processing=False, consumer=consumer)
                 updated.quantity = item['quantity']
                 updated.save()
@@ -70,13 +71,12 @@ class ProductAPIView(ListAPIView):
         # get search input from request
         category = request.data.get('category', "")
         name = request.data.get('name', "")
-        range = request.data.get('range', (0, float('inf')))
-        print(range)
+        price = request.data.get('range', (0, float('inf')))
         paginator = CustomPagination()
 
         # filter queryset for matching products to search
         queryset = Product.objects.filter(
-            Q(name__icontains=name) & Q(category__title__icontains=category) & Q(price__range=range))
+            Q(name__icontains=name) & Q(category__title__icontains=category) & Q(price__range=price))
         result_page = paginator.paginate_queryset(queryset, request)
         serializer = ProductInfoSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
@@ -94,12 +94,24 @@ class ProductCategoryAPIView(APIView):
         return Response(products)
 
 
+class ReviewAPIView(ListCreateAPIView):
+    authentication_classes = [rest_framework_simplejwt.authentication.JWTAuthentication]
+    permission_classes = [CustomPermission]
+    lookup_url_kwarg = 'pk'
+    serializer_class = ReviewDetailSerializer
+
+    def get_queryset(self):
+        uid = self.kwargs.get(self.lookup_url_kwarg)
+        query_set = Review.objects.filter(post=Product.objects.get(id=uid))
+        return query_set
+
+
 class ProductDetailAPIView(RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductInfoSerializer
 
 
-class ConsumserInfoAPIView(RetrieveAPIView):
+class ConsumerInfoAPIView(RetrieveAPIView):
     queryset = Consumer.objects.all()
     serializer_class = ConsumerInfoSerializer
 
@@ -118,11 +130,20 @@ class RegistrationView(APIView):
 
 
 class ProductClassAPIView(APIView):
+    authentication_classes = [rest_framework_simplejwt.authentication.JWTAuthentication]
+
     def get(self, request, pk):
         data = {}
-        item = Product.objects.get(id=pk)
+        item = Product.objects.get(pk=pk)
         product = ProductInfoSerializer(item).data
         owner = VendorSerializer(item.owner).data
-        data['product'] = product
+        owner_items = Product.objects.filter(owner=item.owner).exclude(id=pk)[:5]
+        owner_products = ProductInfoSerializer(owner_items, many=True).data
+        related_items = Product.objects.filter(category=item.category).exclude(owner=item.owner)[:5]
+        related_products = ProductInfoSerializer(related_items, many=True).data
+
         data['owner'] = owner
+        data['product'] = product
+        data['vendor_products'] = owner_products
+        data['related_products'] = related_products
         return Response(data)

@@ -1,16 +1,14 @@
-
-let category ='', price = [0, 1000000000000000000],
-    comapre = Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : [],
-    cart1 = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+let category = '', price = [0, 1000000000000000000],
+    compare = Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : [];
 
 async function renderData(data, site) {
     let shopgrid = ""
-      , shoplist = ""
-      , categoriesmenu = ''
-      , categorymobile = ''
-      , categoried = "", n = 0, x = '', wishlist = '';
-    $.each(data, function(index, item) {
-        if (item.price)  item.price = OSREC.CurrencyFormatter.format(item.price, currency);
+        , shoplist = ""
+        , categoriesmenu = ''
+        , categorymobile = ''
+        , categoried = "", n = 0, x = '', wishlist = '';
+    $.each(data, function (index, item) {
+        if (item.price) item.price = OSREC.CurrencyFormatter.format(item.price, currency);
         if (item.discount_price) item.discount_price = OSREC.CurrencyFormatter.format(item.discount_price, currency);
         if (site == 'shop') {
             // Shop list & grid Display
@@ -26,7 +24,7 @@ async function renderData(data, site) {
             shopgrid += item.discount_price ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
             shopgrid += `</div> </div> </div> </div>`;
         }
-        if (site == 'wishlist'){
+        if (site == 'wishlist') {
             wishlist += `
             <tr>
                 <td class="product-thumbnail" id="${item.id}">
@@ -63,7 +61,7 @@ async function renderData(data, site) {
         }
         // Browse Categories Tree Display
         if (site == 'category') {
-            categoried +=` <li><a href="#" class="category-filter">${item.title}</a></li>` ;
+            categoried += ` <li><a href="#" class="category-filter">${item.title}</a></li>`;
             categorymobile += item.category_list ? `<li>
                 <a href="{% url 'shop' %}">
                     <i class="${item.icon}"></i>${item.title}
@@ -112,11 +110,11 @@ async function renderData(data, site) {
         </li>`
             categoriesmenu += item.category_list ? `<li><a href="{% url 'shop' %}"><i class="${item.icon}"></i>${item.title}</a>
                     <ul class="megamenu">${categroytree(item.category_list)}</ul></li>` :
-                     `<li><a href="{% url 'shop' %}"><i class="${item.icon}"></i>${item.title}</a></li>`
+                `<li><a href="{% url 'shop' %}"><i class="${item.icon}"></i>${item.title}</a></li>`
         }
 
-        if (site == 'index'){
-            if (n==3) return false
+        if (site == 'index') {
+            if (n == 3) return false
             x += ` <div class="product-wrapper-1 scroll-product mb-7">
             <div class="title-link-wrapper pb-1 mb-4">
                 <h2 class="title ls-normal mb-0">${index}</h2>
@@ -163,22 +161,22 @@ async function renderData(data, site) {
             </div>
         </div>
         `
-        n++
+            n++
         }
 
     })
     if (site == 'shop') {
-        $('#shop-grid').append(shopgrid)
-        
-        if (document.getElementById('shop-list') ) document.getElementById('shop-list').innerHTML = shoplist
+        $('#shop-grid').html(shopgrid)
+
+        if (document.getElementById('shop-list')) document.getElementById('shop-list').innerHTML = shoplist
         // $('#shop-list').append(shoplist);
         Wolmart.countDown($('.product').find('.product-countdown'))
-    } 
+    }
     if (site == 'category') {
         $('.filter-category').prepend(categoried)
         $('.category-menu').html(categoriesmenu)
         $('#categorymobile').prepend(categorymobile)
-    } else{
+    } else {
         $('#category-index').append(x);
         $('#wish-list').append(wishlist);
         Wolmart.slider(".swiper-container");
@@ -187,61 +185,74 @@ async function renderData(data, site) {
 
 $(document).on('click', '.category-filter', function (params) {
     params.preventDefault();
+    $('.main-content').append('<div class="w-loading"><i></i></div>')
     let i = params.currentTarget;
+    $(i).addClass('current-cat')
+    console.log($(i))
     category = i.innerText;
-    fetch(`/api/product/list`,{
+    fetch(`/api/product/list`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             "X-CSRFToken": Wolmart.getCookie('csrftoken')
-        
+
         },
         body: JSON.stringify({
-            category : category,
+            category: category,
             range: price
         })
     })
-    .then (r => r.json())
-    .then(data => {
-        renderData(data.result, 'shop')
-        scrollTo(document.getElementById(`shop-grid`),params)
-        paginate(data)
-    })
+        .then(r => r.json())
+        .then(data => {
+            setTimeout(function () {
+                $('.w-loading').remove();
+            renderData(data.result, 'shop')
+            paginate(data)
+            }, 5000)
+        })
 
 })
 $('.go').click(function (params) {
     params.preventDefault();
-    max =  Number($(this).closest('.price-range').find('.max_price').val()) != 0 ? Number($(this).closest('.price-range').find('.max_price').val()): 10000000000000000000000000000000000000000000;
+    document.querySelector('.main-content').innerHTML += (`
+                            <div class="w-loading"><i></i></div>
+    `)
+    max = Number($(this).closest('.price-range').find('.max_price').val()) != 0 ? Number($(this).closest('.price-range').find('.max_price').val()) : 10000000000000000000000000000000000000000000;
     min = Number($(this).closest('.price-range').find('.min_price').val());
     price = [min, max]
-    
+
     $(this).addClass("load-more-overlay loading")
-    fetch(`/api/product/list`,{
+    fetch(`/api/product/list`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             "X-CSRFToken": Wolmart.getCookie('csrftoken')
         },
         body: JSON.stringify({
-            category : category,
+            category: category,
             range: price
         })
     })
-    .then (r => r.json())
-    .then(data => {
-        renderData(data.result, 'shop')
-        paginate(data)
-        $(this).removeClass('load-more-overlay loading')
-    })
+        .then(r => r.json())
+        .then(data => {
+            setTimeout(function () {
+                $(this).removeClass("load-more-overlay loading")
+                document.querySelector('.w-loading').remove();
+                renderData(data.result, 'shop')
+            paginate(data)
+            }, 5000)
+
+        })
 })
 
 function Icon(product, type, shop) {
-    let thorugh = type == 'cart' ?  JSON.parse(localStorage.getItem('cart')) : comapre
-    , x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>` : `<a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>`;
+    let thorugh = type == 'cart' ? JSON.parse(localStorage.getItem('cart')) : compare
+        ,
+        x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>` : `<a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>`;
     if (shop) x = ' <a href="#" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Add To Cart</a>'
-    $.each(thorugh, function(index, value) {
-        let p = value['image'][0]
-        if (product.image[0] == p) {
+    $.each(thorugh, function (index, value) {
+        let p = value['id']
+        if (product.id === p) {
             x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-minus added" title="remove frm cart"></a>` : `<a href="compare" class="btn-product-icon btn-compare w-icon-check-solid added" title="Compare"></a>`
             if (shop) x = '<a href="/product/${item.id}" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Select Options</a>';
         }
@@ -258,7 +269,7 @@ function categroytree(n) {
                 n.splice(j, 1)
             } else {
                 let y = n[j][i]
-                  , z = n[j + 1] ? n[j + 1][i] : ""
+                    , z = n[j + 1] ? n[j + 1][i] : ""
                 x += `<li>
                 <h4 class="menu-title">${y}</h4>
                 <hr class="divider">
@@ -288,27 +299,32 @@ function categroytree(n) {
                 j += 2
             }
 
-        }}
+        }
+    }
 
     return x
 }
 
-fetch(`/api/product/list`, ).then(res=>res.json()).then(data => {
-    renderData(data.result, 'shop')
-    paginate(data)
+fetch(`/api/product/list`,).then(res => {
+    return res.json()
+}).then(data => {
+        renderData(data.result, 'shop')
+        paginate(data)
 })
 
 
-fetch('/api/category').then(res=>res.json()).then(data => {
+fetch('/api/category').then(res => res.json()).then(data => {
     renderData(data, 'category')
 })
 
 $(document).on('click', '.pagination-link', function (e) {
+    document.querySelector('.main-content').innerHTML += (`
+                            <div class="w-loading"><i></i></div>
+    `)
     e.preventDefault();
     let i = $(e.currentTarget),
-        url =$(i)[0].getAttribute('ttr')
-    
-    i.addClass("load-more-overlay loading")
+        url = $(i)[0].getAttribute('ttr')
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -316,50 +332,56 @@ $(document).on('click', '.pagination-link', function (e) {
             "X-CSRFToken": Wolmart.getCookie('csrftoken')
         },
         body: JSON.stringify({
-            category : category,
+            category: category,
             range: price
         })
     })
-    .then(r => r.json())
-    .then(data => {
-        i.removeClass("load-more-overlay loading")
-        renderData(data.result, 'shop')
-        paginate(data)
-    })
+        .then(r => r.json())
+        .then(data => {
+            setTimeout(function () {
+                $('.w-loading').remove()
+
+            renderData(data.result, 'shop')
+            paginate(data)
+            }, 5000)
+
+        })
 }).on('selected', '.pagination-link', function (e) {
     console.log(e)
 })
 
 fetch(`/api/catgory/products`)
-.then(r => r.json())
-.then( data => {
-    renderData(data, 'index')
-})
+    .then(r => r.json())
+    .then(data => {
+        renderData(data, 'index')
+    })
 
 function paginate(data) {
-    function active(n){
+    function active(n) {
         if (n == data.current_page) return 'active'
     }
-    $('.showing').text(`${((Number(data.size)*Number(data.current_page)) - (Number(data.current_page) + 1))} - ${data.size} of ${data.count}`)
+
+    $('.showing').text(`${((Number(data.size) * Number(data.current_page)) - (Number(data.current_page) + 1))} - ${data.size} of ${data.count}`)
     let x = ''
-    x += data.previous ?  `<li class="prev"><a ttr="${data.previous}" href='#' class="pagination-link" aria-label="Previous" tabindex="-1" aria-disabled="true"> <i class="w-icon-long-arrow-left"></i> </a></li>`: ''
-    for (let i =1; i<= data.pages; i++){
-        x += (data.current_page - 2) <= i  && i <= (data.current_page + 2) ? `<li class="page-item ${active(i)}"><a ttr="/api/product/list?p=${i}" class="page-link pagination-link" href="#">${i}</a></li>` : ''
+    x += data.previous ? `<li class="prev"><a ttr="${data.previous}" href='#' class="pagination-link" aria-label="Previous" tabindex="-1" aria-disabled="true"> <i class="w-icon-long-arrow-left"></i> </a></li>` : ''
+    for (let i = 1; i <= data.pages; i++) {
+        x += (data.current_page - 2) <= i && i <= (data.current_page + 2) ? `<li class="page-item ${active(i)}"><a ttr="/api/product/list?p=${i}" class="page-link pagination-link" href="#">${i}</a></li>` : ''
     }
-    x += data.next ? `<li class="next"><a ttr="${data.next}" href='#' class="pagination-link" aria-label="Next"> <i class="w-icon-long-arrow-right"></i></a></li>`: ''
+    x += data.next ? `<li class="next"><a ttr="${data.next}" href='#' class="pagination-link" aria-label="Next"> <i class="w-icon-long-arrow-right"></i></a></li>` : ''
     $('.pagination').html(x)
 }
 
-function productCountDown(product){
-    if (product.discount_duration) return `<div class="product-countdown-container"> <div class="product-countdown countdown-compact" data-until="${product.discount_duration} "data-format="DHMS" data-compact="false" data-labels-short="Days, Hours, Mins, Secs"> 00:00:00:00</div> </div> `
+function productCountDown(product) {
+    let date = new Date(product.discount_duration)
+    if (product.discount_duration && date > new Date()) return `<div class="product-countdown-container"> <div class="product-countdown countdown-compact" data-until="${product.discount_duration} "data-format="DHMS" data-compact="false" data-labels-short="Days, Hours, Mins, Secs"> 00:00:00:00</div> </div> `
     return ``
 }
 
-function renderProducts(n){
-    let z ='';
-    for (let i=0; i <n.length; i+=2){
-        let item1 = n[i], item2 = n[i+1];
-   
+function renderProducts(n) {
+    let z = '';
+    for (let i = 0; i < n.length; i += 2) {
+        let item1 = n[i], item2 = n[i + 1];
+
         z += `<div class="swiper-slide product-col">`
         z += `<div class="product-wrap product text-center" id="${item1.id}">
         <figure class="product-media">
@@ -397,10 +419,10 @@ function renderProducts(n){
         </div>
     </div>
     `
-    z += item2 ? `
+        z += item2 ? `
     <div class="product-wrap product text-center" id="${item2.id}">
         <figure class="product-media">
-            <a href="/product/${item1.id}">
+            <a href="/product/${item2.id}">
                 <img src="${item2.image[0]}" alt="Product"
                     width="216" height="243" />
             </a>
@@ -414,21 +436,21 @@ function renderProducts(n){
             </div>
         </figure>
         <div class="product-details">
-            <h4 class="product-name"><a href="/product/${item.id}">${item2.name}</a></h4>
+            <h4 class="product-name"><a href="/product/${item2.id}">${item2.name}</a></h4>
             <div class="ratings-container">
                 <div class="ratings-full">
                     <span class="ratings" style="width: 60%;"></span>
                     <span class="tooltiptext tooltip-top"></span>
                 </div>
-                <a href="/product/${item.id}" class="rating-reviews">(3
+                <a href="/product/${item2.id}" class="rating-reviews">(3
                     reviews)</a>
             </div>
             <div class="product-price">
-                <ins class="new-price">215.00</ins>
+                <ins class="new-price">${OSREC.CurrencyFormatter.format(item2.price, currency)}</ins>
             </div>
         </div>
-    </div>`: ''
-    z+= `</div>`
+    </div>` : ''
+        z += `</div>`
     }
     return z
 }

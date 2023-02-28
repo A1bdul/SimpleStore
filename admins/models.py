@@ -1,15 +1,17 @@
 from __future__ import unicode_literals
-from django.utils import timezone
-from django.db import models
-from django.core.mail import send_mail
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.utils.translation import gettext_lazy as _
-from django.contrib import admin
-from django.utils.html import format_html
-# Create your models here.
 
+from django.contrib import admin
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.core.mail import send_mail
+from django.db import models
+from django.utils import timezone
+from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
+
+
+# Create your models here.
 
 
 class UserManager(BaseUserManager):

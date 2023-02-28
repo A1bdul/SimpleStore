@@ -708,13 +708,11 @@
                                             <li><a href="become-a-vendor.html">Become A Vendor</a></li>
                                             <li><a href="contact-us.html">Contact Us</a></li>
                                             <li><a href="faq.html">FAQs</a></li>
-                                            <li><a href="error-404.html">Error 404</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon</a></li>
                                             <li><a href="/account/wishlist">Wishlist</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
-                                            <li><a href="compare.html">Compare</a></li>
+                                            <li><a href="/cart">Cart</a></li>
+                                            <li><a href="/checkout">Checkout</a></li>
+                                            <li><a href="/account">My Account</a></li>
+                                            <li><a href="/compare">Compare</a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -1107,8 +1105,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="lastname">Last name *</label>
-                                                <input type="text" id="lastname" name="lastname" placeholder="Doe"
-                                                    class="form-control form-control-md">
+                                                <input type="text" name="lastname" placeholder="Doe"
+                                                    class="form-control form-control-md lastname">
                                             </div>
                                         </div>
                                     </div>
@@ -1224,7 +1222,7 @@
                                 <h4 class="widget-title">My Account</h4>
                                 <ul class="widget-body">
                                     <li><a href="#">Track My Order</a></li>
-                                    <li><a href="cart.html">View Cart</a></li>
+                                    <li><a href="{% url 'cart' %}">View Cart</a></li>
                                     <li><a href="login.html">Sign In</a></li>
                                     <li><a href="#">Help</a></li>
                                     <li><a href="/account/wishlist">My Wishlist</a></li>
@@ -1545,32 +1543,10 @@
                                 <li><a href="contact-us.html">Contact Us</a></li>
                                 <li><a href="login.html">Login</a></li>
                                 <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="error-404.html">Error 404</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li>
                                 <li><a href="/account/wishlist">Wishlist</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="elements.html">Elements</a>
-                            <ul>
-                                <li><a href="element-products.html">Products</a></li>
-                                <li><a href="element-titles.html">Titles</a></li>
-                                <li><a href="element-typography.html">Typography</a></li>
-                                <li><a href="element-categories.html">Product Category</a></li>
-                                <li><a href="element-buttons.html">Buttons</a></li>
-                                <li><a href="element-accordions.html">Accordions</a></li>
-                                <li><a href="element-alerts.html">Alert &amp; Notification</a></li>
-                                <li><a href="element-tabs.html">Tabs</a></li>
-                                <li><a href="element-testimonials.html">Testimonials</a></li>
-                                <li><a href="element-blog-posts.html">Blog Posts</a></li>
-                                <li><a href="element-instagrams.html">Instagrams</a></li>
-                                <li><a href="element-cta.html">Call to Action</a></li>
-                                <li><a href="element-vendors.html">Vendors</a></li>
-                                <li><a href="element-icon-boxes.html">Icon Boxes</a></li>
-                                <li><a href="element-icons.html">Icons</a></li>
+                                <li><a href="/cart">Cart</a></li>
+                                <li><a href="/checkout">Checkout</a></li>
+                                <li><a href="/account">My Account</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -1855,7 +1831,7 @@
     <script src="/static/web/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="/static/web/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="/static/web/js/main.min.js"></script>
-    <script src="/static/web/vendor/ajax-display/index.js"></script>
+    <script src="/static/web/vendor/display/index.js"></script>
 </body>
 
 </html>

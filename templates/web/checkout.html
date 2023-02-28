@@ -49,562 +49,167 @@
     <div class="page-wrapper">
         <h1 class="d-none">Wolmart - Responsive Marketplace HTML Template</h1>
             <!-- Start of Header -->
-            <header class="header">
-                <div class="header-top">
-                    <div class="container">
-                        <div class="header-left">
-                            <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
-                        </div>
-                        <div class="header-right">
-                            <div class="dropdown">
-                                <a href="#currency">USD</a>
-                                <div class="dropdown-box">
-                                    <a href="#USD">USD</a>
-                                    <a href="#EUR">EUR</a>
-                                </div>
-                            </div>
-                            <!-- End of DropDown Menu -->
-    
-                            <div class="dropdown">
-                                <a href="#language"><img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14"
-                                        height="8" class="dropdown-image" /> ENG</a>
-                                <div class="dropdown-box">
-                                    <a href="#ENG">
-                                        <img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
-                                            class="dropdown-image" />
-                                        ENG
-                                    </a>
-                                    <a href="#FRA">
-                                        <img src="/static/web/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
-                                            class="dropdown-image" />
-                                        FRA
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End of Dropdown Menu -->
-                            <span class="divider d-lg-show"></span>
-                            <a href="contact-us.html" class="d-lg-show">Contact Us</a>
-                            <a href="my-account.html" class="d-lg-show">My Account</a>
-                            <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in"><i
-                                    class="w-icon-account"></i>Sign In</a>
-                            <span class="delimiter d-lg-show">/</span>
-                            <a href="/static/web/ajax/login.html" class="ml-0 d-lg-show login register">Register</a>
+            <header class="header header-border">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                </div>
+                <div class="header-right">
+                    <div class="dropdown">
+                        <a href="#currency">USD</a>
+                        <div class="dropdown-box">
+                            <a href="#USD">USD</a>
+                            <a href="#EUR">EUR</a>
                         </div>
                     </div>
-                </div>
-                <!-- End of Header Top -->
-    
-                <div class="header-middle">
-                    <div class="container">
-                        <div class="header-left mr-md-4">
-                            <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
+                    <!-- End of DropDown Menu -->
+
+                    <div class="dropdown">
+                        <a href="#language"><img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14"
+                                                 height="8" class="dropdown-image"/> ENG</a>
+                        <div class="dropdown-box">
+                            <a href="#ENG">
+                                <img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
+                                     class="dropdown-image"/>
+                                ENG
                             </a>
-                            <a href="index.html" class="logo ml-lg-0">
-                                <img src="/static/web/images/logo.png" alt="logo" width="144" height="45" />
+                            <a href="#FRA">
+                                <img src="/static/web/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
+                                     class="dropdown-image"/>
+                                FRA
                             </a>
-                            <form method="get" action="#"
-                                class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
-                                <div class="select-box">
-                                    <select id="category" name="category">
-                                        <option value="">All Categories</option>
-                                        <option value="4">Fashion</option>
-                                        <option value="5">Furniture</option>
-                                        <option value="6">Shoes</option>
-                                        <option value="7">Sports</option>
-                                        <option value="8">Games</option>
-                                        <option value="9">Computers</option>
-                                        <option value="10">Electronics</option>
-                                        <option value="11">Kitchen</option>
-                                        <option value="12">Clothing</option>
-                                    </select>
-                                </div>
-                                <input type="text" class="form-control" name="search" id="search" placeholder="Search in..."
-                                    required />
-                                <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
-                                </button>
-                            </form>
-                        </div>
-                        <div class="header-right ml-4">
-                            <div class="header-call d-xs-show d-lg-flex align-items-center">
-                                <a href="tel:#" class="w-icon-call"></a>
-                                <div class="call-info d-lg-show">
-                                    <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
-                                        <a href="mailto:#" class="text-capitalize">Live Chat</a> or :</h4>
-                                    <a href="tel:#" class="phone-number font-weight-bolder ls-50">+234 810 638 2637</a>
-                                </div>
-                            </div>
-                            <a class="wishlist label-down link d-xs-show" href="wishlist.html">
-                                <i class="w-icon-heart"></i>
-                                <span class="wishlist-label d-lg-show">Wishlist</span>
-                            </a>
-                            <a class="compare label-down link d-xs-show" href="compare.html">
-                                <i class="w-icon-compare"></i>
-                                <span class="compare-label d-lg-show">Compare</span>
-                            </a>
-                            <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
-                                <div class="cart-overlay"></div>
-                                <a href="#" class="cart-toggle label-down link">
-                                    <i class="w-icon-cart">
-                                        <span class="cart-count">2</span>
-                                    </i>
-                                    <span class="cart-label">Cart</span>
-                                </a>
-                                <div class="dropdown-box" style="margin-bottom: auto; overflow: scroll;">
-                                    <div class="cart-header">
-                                        <span>Shopping Cart</span>
-                                        <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
-                                    
-                                    </div>
-    
-                                    <div class="products cart-view" >
-                                        <div class="cart-total">
-                                            <label>Subtotal:</label>
-                                            <span class="price">$58.67</span>
-                                        </div>
-                                        
-                                        <div class="cart-action" style="margin-bottom:5rem;">
-                                            <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
-                                            <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
-                                        </div>
-                                        <div class="cart-total">
-                                        
-                                        </div>
-                                    </div>
-    
-                                    
-                                </div>
-                                <!-- End of Dropdown Box -->
-                            </div>
                         </div>
                     </div>
+                    <!-- End of Dropdown Menu -->
+                    <span class="divider d-lg-show"></span>
+                        <a href="contact-us.html" class="d-lg-show">Contact Us</a>
+                        <a href="/account" class="user-in d-lg-show">My Account</a>
+                        <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in user-out"><i
+                                class="w-icon-account "></i>Sign In</a>
+                        <span class="delimiter d-lg-show user-out">/</span>
+                        <a href="/static/web/ajax/login.html" class="user-out ml-0 d-lg-show login register">Register</a>
                 </div>
-                <!-- End of Header Middle -->
-    
-                <div class="header-bottom sticky-content fix-top sticky-header has-dropdown">
-                    <div class="container">
-                        <div class="inner-wrap">
-                            <div class="header-left">
-                                <div class="dropdown category-dropdown has-border" data-visible="true">
-                                    <a href="#" class="category-toggle text-dark" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="true" data-display="static"
-                                        title="Browse Categories">
-                                        <i class="w-icon-category"></i>
-                                        <span>Browse Categories</span>
-                                    </a>
-    
-                                    <div class="dropdown-box">
-                                        <ul class="menu vertical-menu category-menu">
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-tshirt2"></i>Fashion
-                                                </a>
-                                                <ul class="megamenu">
-                                                    <li>
-                                                        <h4 class="menu-title">Women</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">New Arrivals</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Best Sellers</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Trending</a></li>
-                                                            <li><a href="shop.html">Clothing</a></li>
-                                                            <li><a href="shop.html">Shoes</a></li>
-                                                            <li><a href="shop.html">Bags</a></li>
-                                                            <li><a href="shop.html">Accessories</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Jewlery &
-                                                                    Watches</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <h4 class="menu-title">Men</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">New Arrivals</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Best Sellers</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Trending</a></li>
-                                                            <li><a href="shop.html">Clothing</a></li>
-                                                            <li><a href="shop.html">Shoes</a></li>
-                                                            <li><a href="shop.html">Bags</a></li>
-                                                            <li><a href="shop.html">Accessories</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Jewlery &
-                                                                    Watches</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-fixed menu-banner menu-banner2">
-                                                            <figure>
-                                                                <img src="/static/web/images/menu/banner-2.jpg" alt="Menu Banner"
-                                                                    width="235" height="347" />
-                                                            </figure>
-                                                            <div class="banner-content">
-                                                                <div class="banner-price-info mb-1 ls-normal">Get up to
-                                                                    <strong
-                                                                        class="text-primary text-uppercase">20%Off</strong>
-                                                                </div>
-                                                                <h3 class="banner-title ls-normal">Hot Sales</h3>
-                                                                <a href="shop.html"
-                                                                    class="btn btn-dark btn-sm btn-link btn-slide-right btn-icon-right">
-                                                                    Shop Now<i class="w-icon-long-arrow-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-home"></i>Home & Garden
-                                                </a>
-                                                <ul class="megamenu">
-                                                    <li>
-                                                        <h4 class="menu-title">Bedroom</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Beds, Frames &
-                                                                    Bases</a></li>
-                                                            <li><a href="shop.html">Dressers</a></li>
-                                                            <li><a href="shop.html">Nightstands</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Kid's Beds &
-                                                                    Headboards</a></li>
-                                                            <li><a href="shop.html">Armoires</a></li>
-                                                        </ul>
-    
-                                                        <h4 class="menu-title mt-1">Living Room</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Coffee Tables</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Chairs</a></li>
-                                                            <li><a href="shop.html">Tables</a></li>
-                                                            <li><a href="shop.html">Futons & Sofa
-                                                                    Beds</a></li>
-                                                            <li><a href="shop.html">Cabinets &
-                                                                    Chests</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <h4 class="menu-title">Office</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Office Chairs</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Desks</a></li>
-                                                            <li><a href="shop.html">Bookcases</a></li>
-                                                            <li><a href="shop.html">File Cabinets</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Breakroom
-                                                                    Tables</a></li>
-                                                        </ul>
-    
-                                                        <h4 class="menu-title mt-1">Kitchen & Dining</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Dining Sets</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Kitchen Storage
-                                                                    Cabinets</a></li>
-                                                            <li><a href="shop.html">Bashers Racks</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Dining Chairs</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Dining Room
-                                                                    Tables</a></li>
-                                                            <li><a href="shop.html">Bar Stools</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="menu-banner banner-fixed menu-banner3">
-                                                            <figure>
-                                                                <img src="/static/web/images/menu/banner-3.jpg" alt="Menu Banner"
-                                                                    width="235" height="461" />
-                                                            </figure>
-                                                            <div class="banner-content">
-                                                                <h4
-                                                                    class="banner-subtitle font-weight-normal text-white mb-1">
-                                                                    Restroom</h4>
-                                                                <h3
-                                                                    class="banner-title font-weight-bolder text-white ls-normal">
-                                                                    Furniture Sale</h3>
-                                                                <div
-                                                                    class="banner-price-info text-white font-weight-normal ls-25">
-                                                                    Up to <span
-                                                                        class="text-secondary text-uppercase font-weight-bold">25%
-                                                                        Off</span></div>
-                                                                <a href="shop.html"
-                                                                    class="btn btn-white btn-link btn-sm btn-slide-right btn-icon-right">
-                                                                    Shop Now<i class="w-icon-long-arrow-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-electronics"></i>Electronics
-                                                </a>
-                                                <ul class="megamenu">
-                                                    <li>
-                                                        <h4 class="menu-title">Laptops &amp; Computers</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Desktop
-                                                                    Computers</a></li>
-                                                            <li><a href="shop.html">Monitors</a></li>
-                                                            <li><a href="shop.html">Laptops</a></li>
-                                                            <li><a href="shop.html">Hard Drives &amp;
-                                                                    Storage</a></li>
-                                                            <li><a href="shop.html">Computer
-                                                                    Accessories</a></li>
-                                                        </ul>
-    
-                                                        <h4 class="menu-title mt-1">TV &amp; Video</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">TVs</a></li>
-                                                            <li><a href="shop.html">Home Audio
-                                                                    Speakers</a></li>
-                                                            <li><a href="shop.html">Projectors</a></li>
-                                                            <li><a href="shop.html">Media Streaming
-                                                                    Devices</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <h4 class="menu-title">Digital Cameras</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Digital SLR
-                                                                    Cameras</a></li>
-                                                            <li><a href="shop.html">Sports & Action
-                                                                    Cameras</a></li>
-                                                            <li><a href="shop.html">Camera Lenses</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Photo Printer</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Digital Memory
-                                                                    Cards</a></li>
-                                                        </ul>
-    
-                                                        <h4 class="menu-title mt-1">Cell Phones</h4>
-                                                        <hr class="divider">
-                                                        <ul>
-                                                            <li><a href="shop.html">Carrier Phones</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Unlocked Phones</a>
-                                                            </li>
-                                                            <li><a href="shop.html">Phone & Cellphone
-                                                                    Cases</a></li>
-                                                            <li><a href="shop.html">Cellphone
-                                                                    Chargers</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="menu-banner banner-fixed menu-banner4">
-                                                            <figure>
-                                                                <img src="/static/web/images/menu/banner-4.jpg" alt="Menu Banner"
-                                                                    width="235" height="433" />
-                                                            </figure>
-                                                            <div class="banner-content">
-                                                                <h4 class="banner-subtitle font-weight-normal">Deals Of The
-                                                                    Week</h4>
-                                                                <h3 class="banner-title text-white">Save On Smart EarPhone
-                                                                </h3>
-                                                                <div
-                                                                    class="banner-price-info text-secondary font-weight-bolder text-uppercase text-secondary">
-                                                                    20% Off</div>
-                                                                <a href="shop.html"
-                                                                    class="btn btn-white btn-outline btn-sm btn-rounded">Shop
-                                                                    Now</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-furniture"></i>Furniture
-                                                </a>
-                                                <ul class="megamenu type2">
-                                                    <li class="row">
-                                                        <div class="col-md-3 col-lg-3 col-6">
-                                                            <h4 class="menu-title">Furniture</h4>
-                                                            <hr class="divider" />
-                                                            <ul>
-                                                                <li><a href="shop.html">Sofas & Couches</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Armchairs</a></li>
-                                                                <li><a href="shop.html">Bed Frames</a></li>
-                                                                <li><a href="shop.html">Beside Tables</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Dressing Tables</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-3 col-lg-3 col-6">
-                                                            <h4 class="menu-title">Lighting</h4>
-                                                            <hr class="divider" />
-                                                            <ul>
-                                                                <li><a href="shop.html">Light Bulbs</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Lamps</a></li>
-                                                                <li><a href="shop.html">Celling Lights</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Wall Lights</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Bathroom
-                                                                        Lighting</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-3 col-lg-3 col-6">
-                                                            <h4 class="menu-title">Home Accessories</h4>
-                                                            <hr class="divider" />
-                                                            <ul>
-                                                                <li><a href="shop.html">Decorative
-                                                                        Accessories</a></li>
-                                                                <li><a href="shop.html">Candals &
-                                                                        Holders</a></li>
-                                                                <li><a href="shop.html">Home Fragrance</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Mirrors</a></li>
-                                                                <li><a href="shop.html">Clocks</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-3 col-lg-3 col-6">
-                                                            <h4 class="menu-title">Garden & Outdoors</h4>
-                                                            <hr class="divider" />
-                                                            <ul>
-                                                                <li><a href="shop.html">Garden
-                                                                        Furniture</a></li>
-                                                                <li><a href="shop.html">Lawn Mowers</a>
-                                                                </li>
-                                                                <li><a href="shop.html">Pressure
-                                                                        Washers</a></li>
-                                                                <li><a href="shop.html">All Garden
-                                                                        Tools</a></li>
-                                                                <li><a href="shop.html">Outdoor Dining</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li class="row">
-                                                        <div class="col-6">
-                                                            <div class="banner banner-fixed menu-banner5 br-xs">
-                                                                <figure>
-                                                                    <img src="/static/web/images/menu/banner-5.jpg" alt="Banner"
-                                                                        width="410" height="123"
-                                                                        style="background-color: #D2D2D2;" />
-                                                                </figure>
-                                                                <div class="banner-content text-right y-50">
-                                                                    <h4
-                                                                        class="banner-subtitle font-weight-normal text-default text-capitalize">
-                                                                        New Arrivals</h4>
-                                                                    <h3
-                                                                        class="banner-title font-weight-bolder text-capitalize ls-normal">
-                                                                        Amazing Sofa</h3>
-                                                                    <div
-                                                                        class="banner-price-info font-weight-normal ls-normal">
-                                                                        Starting at <strong>$125.00</strong></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="banner banner-fixed menu-banner5 br-xs">
-                                                                <figure>
-                                                                    <img src="/static/web/images/menu/banner-6.jpg" alt="Banner"
-                                                                        width="410" height="123"
-                                                                        style="background-color: #9F9888;" />
-                                                                </figure>
-                                                                <div class="banner-content y-50">
-                                                                    <h4
-                                                                        class="banner-subtitle font-weight-normal text-white text-capitalize">
-                                                                        Best Seller</h4>
-                                                                    <h3
-                                                                        class="banner-title font-weight-bolder text-capitalize text-white ls-normal">
-                                                                        Chair &amp; Lamp</h3>
-                                                                    <div
-                                                                        class="banner-price-info font-weight-normal ls-normal text-white">
-                                                                        From <strong>$165.00</strong></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-heartbeat"></i>Healthy & Beauty
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-gift"></i>Gift Ideas
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-gamepad"></i>Toy & Games
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-ice-cream"></i>Cooking
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-ios"></i>Smart Phones
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-camera"></i>Cameras & Photo
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <i class="w-icon-ruby"></i>Accessories
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"
-                                                    class="font-weight-bold text-primary text-uppercase ls-25">
-                                                    View All Categories<i class="w-icon-angle-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <nav class="main-nav">
-                                    <ul class="menu active-underline">
-                                        <li class="active">
-                                            <a href="">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Shop</a>
-                                        </li>
-                                        <li>
-                                            <a href="vendor-list.html">Vendor</a>
-                                            
-                                        </li>
-                                        
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="header-right">
-                                <a href="#" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
-                                <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
-                            </div>
+            </div>
+        </div>
+        <!-- End of Header Top -->
+
+        <div class="header-middle">
+            <div class="container">
+                <div class="header-left mr-md-4">
+                    <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
+                    </a>
+                    <a href="{% url 'home' %}" class="logo ml-lg-0">
+                        <img src="/static/web/images/logo.png" alt="logo" width="144" height="45"/>
+                    </a>
+                    <form method="get" action="#"
+                          class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
+                        <div class="select-box">
+                            <select id="category" name="category">
+                                <option value="">All Categories</option>
+                                <option value="4">Fashion</option>
+                                <option value="5">Furniture</option>
+                                <option value="6">Shoes</option>
+                                <option value="7">Sports</option>
+                                <option value="8">Games</option>
+                                <option value="9">Computers</option>
+                                <option value="10">Electronics</option>
+                                <option value="11">Kitchen</option>
+                                <option value="12">Clothing</option>
+                            </select>
+                        </div>
+                        <input type="text" class="form-control" name="search" id="search"
+                               placeholder="Search in..." required/>
+                        <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="header-right ml-4">
+                    <div class="header-call d-xs-show d-lg-flex align-items-center">
+                        <a href="tel:#" class="w-icon-call"></a>
+                        <div class="call-info d-lg-show">
+                            <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
+                                <a href="mailto:#" class="text-capitalize">Live Chat</a> or :</h4>
+                            <a href="tel:#" class="phone-number font-weight-bolder ls-50">+234 810 638 2637</a>
                         </div>
                     </div>
+                    <a class="wishlist label-down link d-lg-none user-in" href="/account/wishlist">
+                        <i class="w-icon-heart"></i>
+                        <span class="wishlist-label">Wishlist</span>
+                    </a>
+                    <a class="compare label-down link d-xs-show" href="{% url 'compare' %}">
+                        <i class="w-icon-compare"></i>
+                        <span class="compare-label d-lg-show">Compare</span>
+                    </a>
+                    <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
+                        <div class="cart-overlay"></div>
+                        <a href="#" class="cart-toggle label-down link">
+                            <i class="w-icon-cart">
+                                <span class="cart-count"></span>
+                            </i>
+                            <span class="cart-label">Cart</span>
+                        </a>
+                        <div class="dropdown-box mini-basket-dropdown" style="overflow: scroll;">
+                            <div class="cart-header">
+                                <span>Shopping Cart</span>
+                                <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
+                            </div>
+                            <p class="woocommerce-mini-cart__empty-message empty-msg">No products in the cart.</p>
+
+                            <div class=" cart-view">
+
+                            </div>
+                        </div>
+                        <!-- End of Dropdown Box -->
+                    </div>
                 </div>
-            </header>
-            <!-- End of Header -->
+            </div>
+        </div>
+        <!-- End of Header Middle -->
+
+        <div class="header-bottom sticky-content fix-top sticky-header">
+            <div class="container">
+                <div class="inner-wrap">
+                    <div class="header-left">
+                        <div class="dropdown category-dropdown has-border" data-visible="true">
+                            <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="true" data-display="static"
+                               title="Browse Categories">
+                                <i class="w-icon-category"></i>
+                                <span>Browse Categories</span>
+                            </a>
+
+                            <div class="dropdown-box">
+                                <ul class="menu vertical-menu category-menu">
+                                </ul>
+                            </div>
+                        </div>
+                        <nav class="main-nav">
+                            <ul class="menu active-underline">
+                                <li>
+                                    <a href="{% url 'home' %}">Home</a>
+                                </li>
+                                <li class="active">
+                                    <a href="{% url 'shop' %}">Shop</a>
+
+
+                                </li>
+                                <li>
+                                    <a href="vendor-store.html">Vendor</a>
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <a href="#" class="d-lg-none user-in"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
+                        <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <!-- End of Header -->
 
         <!-- Start of Main -->
         <main class="main checkout">
@@ -612,18 +217,24 @@
             <nav class="breadcrumb-nav">
                 <div class="container">
                     <ul class="breadcrumb shop-breadcrumb bb-no">
-                        <li class="passed"><a href="cart.html">Shopping Cart</a></li>
-                        <li class="active"><a href="checkout.html">Checkout</a></li>
+                        <li class="passed"><a href="/cart">Shopping Cart</a></li>
+                        <li class="active"><a href="/checkout">Checkout</a></li>
                         <li><a href="#" aria-disabled="true">Order Complete</a></li>
                     </ul>
                 </div>
             </nav>
             <!-- End of Breadcrumb -->
-
+                        <div class="cart-empty-page text-center" id="empty-cart">
+		<div class="woocommerce-notices-wrapper"></div><p class="cart-empty woocommerce-info">Your cart is currently empty.</p>		<i class="cart-empty w-icon-cart"></i>
+		<p class="return-to-shop">
+			<a class="button wc-backward btn btn-rounded btn-dark" href="/shop">
+				Return to shop			</a>
+		</p>
+	</div>
 
             <!-- Start of PageContent -->
             <div class="page-content">
-                <div class="container">
+                <div id="cart-table" style="display: none" class="container">
                     <div class="login-toggle login-popin" >
                         Returning customer? <a href="#"
                             class="show-login font-weight-bold text-uppercase text-dark">Login</a>
@@ -676,14 +287,14 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label>First name *</label>
-                                            <input type="text" class="form-control form-control-md" name="firstname"
+                                            <input type="text" class="form-control form-control-md firstname" name="firstname"
                                                 required>
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label>Last name *</label>
-                                            <input type="text" class="form-control form-control-md" name="lastname"
+                                            <input type="text"  class="form-control form-control-md lastname" name="lastname"
                                                 required>
                                         </div>
                                     </div>
@@ -745,7 +356,7 @@
                                 </div>
                                 <div class="form-group mb-7">
                                     <label>Email address *</label>
-                                    <input type="email" class="form-control form-control-md" name="email" required>
+                                    <input type="email" class="form-control form-control-md email" name="email" required>
                                 </div>
                                 <div class="form-group checkbox-toggle pb-2">
                                     <input type="checkbox" class="custom-checkbox" id="shipping-toggle"
@@ -764,7 +375,7 @@
                                         <div class="col-xs-6">
                                             <div class="form-group">
                                                 <label>Last name *</label>
-                                                <input type="text" class="form-control form-control-md" name="lastname"
+                                                <input type="text" id="lastname" class="form-control form-control-md" name="lastname"
                                                     required>
                                             </div>
                                         </div>
@@ -946,7 +557,7 @@
                                         </div>
 
                                         <div class="form-group place-order pt-6">
-                                            <button type="submit" class="btn btn-dark btn-block btn-rounded">Place Order</button>
+                                            <button type="submit" id="checkout-submit" class="btn btn-dark btn-block btn-rounded">Place Order</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1030,7 +641,7 @@
                                 <h4 class="widget-title">My Account</h4>
                                 <ul class="widget-body">
                                     <li><a href="#">Track My Order</a></li>
-                                    <li><a href="cart.html">View Cart</a></li>
+                                    <li><a href="/cart">View Cart</a></li>
                                     <li><a href="login.html">Sign In</a></li>
                                     <li><a href="#">Help</a></li>
                                     <li><a href="wishlist.html">My Wishlist</a></li>
@@ -1368,32 +979,10 @@
                                 <li><a href="contact-us.html">Contact Us</a></li>
                                 <li><a href="login.html">Login</a></li>
                                 <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="error-404.html">Error 404</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="elements.html">Elements</a>
-                            <ul>
-                                <li><a href="element-products.html">Products</a></li>
-                                <li><a href="element-titles.html">Titles</a></li>
-                                <li><a href="element-typography.html">Typography</a></li>
-                                <li><a href="element-categories.html">Product Category</a></li>
-                                <li><a href="element-buttons.html">Buttons</a></li>
-                                <li><a href="element-accordions.html">Accordions</a></li>
-                                <li><a href="element-alerts.html">Alert &amp; Notification</a></li>
-                                <li><a href="element-tabs.html">Tabs</a></li>
-                                <li><a href="element-testimonials.html">Testimonials</a></li>
-                                <li><a href="element-blog-posts.html">Blog Posts</a></li>
-                                <li><a href="element-instagrams.html">Instagrams</a></li>
-                                <li><a href="element-cta.html">Call to Action</a></li>
-                                <li><a href="element-vendors.html">Vendors</a></li>
-                                <li><a href="element-icon-boxes.html">Icon Boxes</a></li>
-                                <li><a href="element-icons.html">Icons</a></li>
+                                 <li><a href="wishlist.html">Wishlist</a></li>
+                                <li><a href="/cart">Cart</a></li>
+                                <li><a href="/checkout">Checkout</a></li>
+                                <li><a href="/account">My Account</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -1678,7 +1267,7 @@
     <script src="/static/web/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="/static/web/vendor/currency/currencyFormatter.js"></script>
     <script src="/static/web/js/main.min.js"></script>
-    <script src="/static/web/vendor/ajax-display/index.js"></script>
+    <script src="/static/web/vendor/display/index.js"></script>
 
 </body>
 

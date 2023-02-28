@@ -1,16 +1,19 @@
 import os
 import uuid
+
 import httpx
-from django.db import models
-from polymorphic.models import PolymorphicModel
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-from django.utils.timezone import now
-from django.utils.text import slugify
-from django.contrib import admin
-from django.utils.html import format_html
-from admins.models import Vendor, User
 from django.conf import settings
+from django.contrib import admin
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils.html import format_html
+from django.utils.text import slugify
+from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
+from polymorphic.models import PolymorphicModel
+from tinymce import models as tinymce_models
+
+from admins.models import Vendor, User
 
 images_dir = os.path.join(settings.BASE_DIR, 'static/web/images/shop')
 images_list = os.listdir(images_dir)
@@ -49,7 +52,7 @@ class Consumer(models.Model):
 class Product(PolymorphicModel):
     name = models.CharField(max_length=200)
     from pyuploadcare.dj.models import ImageGroupField
-    description = models.TextField(validators=[validate_description])
+    description = tinymce_models.HTMLField(validators=[validate_description])
     image = ImageGroupField(blank=True)
     available = models.IntegerField(null=True, blank=True)
     price = models.FloatField(validators=[validate_price])
@@ -66,7 +69,8 @@ class Product(PolymorphicModel):
     def save(
             self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
-        self.name = self.name.title()
+        if 'iphone' not in self.name.casefold():
+            self.name = self.name.title()
         super().save()
 
     def __str__(self):
@@ -90,8 +94,6 @@ class Product(PolymorphicModel):
     def price_display(self):
         return '$' + str(self.price)
 
-    def __str__(self):
-        return self.name
 
 
 class Attribute(models.Model):
@@ -129,7 +131,6 @@ class Category(PolymorphicModel):
         return '->'.join(full_path[::-1])
 
     def save(self, *args, **kwargs):
-        index = 0
         if self.thumbnail:
             from django.core.files.images import get_image_dimensions
             import django
@@ -139,7 +140,7 @@ class Category(PolymorphicModel):
                 width, height = get_image_dimensions(self.thumbnail.file, close=True)
         else:
             width, height = None, None
-        if self.parent != None:
+        if self.parent is not None:
             self.order = 0
         self.thumbnail_width = width
         self.thumbnail_height = height
@@ -154,11 +155,11 @@ class Category(PolymorphicModel):
                 category.save()
 
     def head(self):
-        if self.parent == None:
+        if self.parent is None:
             return self.title
         else:
             k = self.parent
-            while k.parent != None:
+            while k.parent is not None:
                 k = k.parent
                 print(k)
 
@@ -205,3 +206,16 @@ class Cart(models.Model):
     def quantity_total(self):
         return self.items.count()
 
+
+def validate_rating(value):
+    if value > 5 or value < 1:
+        raise ValidationError(_('%(value)s is invalid rating'), params={'value': value})
+
+
+class Review(models.Model):
+    post = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE)
+    reply = models.ForeignKey('Review', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    content = models.TextField(max_length=200)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    rating = models.FloatField(validators=[validate_rating], null=True)
