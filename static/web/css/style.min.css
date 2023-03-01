@@ -12716,7 +12716,7 @@ body .product-popup {
     padding: 1rem 0 1rem 0.2rem;
 }
 .current-cat {
-    color: #336699;
+    color: #336699 !important;
 }
 .filter-items a:hover {
     color: #336699;

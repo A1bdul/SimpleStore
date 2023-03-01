@@ -16,7 +16,7 @@ from .utils import get_tokens_for_user
 
 # Create your views here.
 class UserAPIView(APIView):
-
+    # TODO: add quick serializer
     def get(self, request):
         queryset, created = Consumer.objects.get_or_create(user=self.request.user)
         serializer = ConsumerInfoSerializer(queryset).data

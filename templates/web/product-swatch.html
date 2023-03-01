@@ -26,7 +26,6 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
-
     <link rel="preload" href="/static/web/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" as="font"
           type="font/woff2"
           crossorigin="anonymous">
@@ -172,45 +171,45 @@
             </div>
         </div>
         <!-- End of Header Middle -->
-            <div class="header-bottom sticky-content fix-top sticky-header">
-                <div class="container">
-                    <div class="inner-wrap">
-                        <div class="header-left">
-                            <div class="dropdown category-dropdown has-border" data-visible="true">
-                                <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="true" data-display="static"
-                                    title="Browse Categories">
-                                    <i class="w-icon-category"></i>
-                                    <span>Browse Categories</span>
-                                </a>
+        <div class="header-bottom sticky-content fix-top sticky-header">
+            <div class="container">
+                <div class="inner-wrap">
+                    <div class="header-left">
+                        <div class="dropdown category-dropdown has-border" data-visible="true">
+                            <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="true" data-display="static"
+                               title="Browse Categories">
+                                <i class="w-icon-category"></i>
+                                <span>Browse Categories</span>
+                            </a>
 
-                                <div class="dropdown-box">
-                                    <ul class="menu vertical-menu category-menu">
-                                    </ul>
-                                </div>
-                            </div>
-                            <nav class="main-nav">
-                                <ul class="menu active-underline">
-                                    <li class="active">
-                                        <a href="">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'shop' %}">Shop</a>
-                                    </li>
-                                    <li>
-                                        <a href="vendor-store.html">Vendor</a>
-
-                                    </li>
+                            <div class="dropdown-box">
+                                <ul class="menu vertical-menu category-menu">
                                 </ul>
-                            </nav>
+                            </div>
                         </div>
-                        <div class="header-right">
-                            <a href="#" class="d-lg-none user-in"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
-                            <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
-                        </div>
+                        <nav class="main-nav">
+                            <ul class="menu active-underline">
+                                <li class="active">
+                                    <a href="">Home</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'shop' %}">Shop</a>
+                                </li>
+                                <li>
+                                    <a href="vendor-store.html">Vendor</a>
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <a href="#" class="d-lg-none user-in"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
+                        <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
                     </div>
                 </div>
             </div>
+        </div>
 
     </header>
     <!-- End of Header -->
@@ -249,14 +248,15 @@
         <!-- End of Breadcrumb -->
 
         <!-- Start of Page Content -->
-            <div class="page-content">
-                <div class="container">
-                    <div class="row gutter-lg">
-                        <div class="main-content">
-                            <div class="product product-single row">
-                                <div class="col-md-6 mb-4 mb-md-8">
-                                    <div class="product-gallery product-gallery-sticky">
-                                        <div class="swiper-container product-single-swiper swiper-theme nav-inner" data-swiper-options="{
+        <div class="page-content">
+            <div class="container">
+                <div class="row gutter-lg">
+                    <div class="main-content">
+                        <div class="product product-single row">
+                            <div class="col-md-6 mb-4 mb-md-8">
+                                <div class="product-gallery product-gallery-sticky">
+                                    <div class="swiper-container product-single-swiper swiper-theme nav-inner"
+                                         data-swiper-options="{
                                             'navigation': {
                                                 'nextEl': '.swiper-button-next',
                                                 'prevEl': '.swiper-button-prev'
@@ -482,7 +482,8 @@
                                                 <figure class="vendor-logo mr-4">
                                                     <a href="#">
                                                         <img src="/static/web/images/products/vendor-logo.jpg"
-                                                             class="brand-logo" alt="Vendor Logo" width="80" height="80"/>
+                                                             class="brand-logo" alt="Vendor Logo" width="80"
+                                                             height="80"/>
                                                     </a>
                                                 </figure>
                                                 <div>
@@ -2287,16 +2288,15 @@
                     <span class="divider d-xs-show"></span>
                     <div class="product-link-wrapper d-flex">
                         <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"><span></span></a>
-                        <a href="#"
-                           class="btn-product-icon btn-compare btn-icon-left w-icon-compare"><span></span></a>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- End of Quick view -->
 
+<!-- End of Quick view -->
 <!-- Plugin JS File -->
 <script>
     function loadjs(script_filename) {
@@ -2304,7 +2304,8 @@
         document.write(' src="' + script_filename + '">');
         document.write('<' + '/script' + '>');
     }
-    let script={
+
+    let script = {
         0: '/static/web/vendor/jquery/jquery.min.js',
         1: '/static/web/vendor/sticky/sticky.min.js',
         2: '/static/web/vendor/currency/currencyFormatter.js',
@@ -2318,11 +2319,9 @@
         10: '/static/web/js/main.min.js',
         11: '/static/web/vendor/display/main.js'
     };
-    for (let i in script){
+    for (let i in script) {
         loadjs(script[i])
     }
 </script>
-
 </body>
-
 </html>

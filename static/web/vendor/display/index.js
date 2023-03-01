@@ -17,10 +17,10 @@ async function renderData(data, site) {
             shoplist += `<div class="product-desc">
             Ultrices eros in cursus turpis massa cursus mattis. Volutpat ac tincidunt
             vitae semper quis lectus. Aliquam id diam maecenas ultricies…
-        </div> <div class="product-action">${Icon(item, 'cart', true)}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>${Icon(item, 'compare')}</div> </div> </div>`
+        </div> <div class="product-action">${Icon(item.id, 'cart', true)}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>${Icon(item.id, 'compare')}</div> </div> </div>`
             shopgrid += `<div class="product-wrap" ><div class="product text-center" id="${item.id}"><figure class="product-media"><a href="/product/${item.id}"> 
         <img src="${item.image[0]}" alt="Product" width="300" height="338" /> </a> ${productCountDown(item)}<div class="product-action-horizontal"> 
-        ${Icon(item, 'cart')}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a> ${Icon(item, 'compare')}<a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> </figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h3 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h3> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(3 reviews)</a> </div> <div class="product-pa-wrapper">`
+        ${Icon(item.id, 'cart')}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a> ${Icon(item.id, 'compare')}<a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> </figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h3 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h3> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(3 reviews)</a> </div> <div class="product-pa-wrapper">`
             shopgrid += item.discount_price ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
             shopgrid += `</div> </div> </div> </div>`;
         }
@@ -184,11 +184,13 @@ async function renderData(data, site) {
 }
 
 $(document).on('click', '.category-filter', function (params) {
+    $('.cateogry-filter').each(function (e) {
+        console.log($(e))
+    })
     params.preventDefault();
     $('.main-content').append('<div class="w-loading"><i></i></div>')
     let i = params.currentTarget;
     $(i).addClass('current-cat')
-    console.log($(i))
     category = i.innerText;
     fetch(`/api/product/list`, {
         method: 'POST',
@@ -206,17 +208,15 @@ $(document).on('click', '.category-filter', function (params) {
         .then(data => {
             setTimeout(function () {
                 $('.w-loading').remove();
-            renderData(data.result, 'shop')
-            paginate(data)
+                renderData(data.result, 'shop')
+                paginate(data)
             }, 5000)
         })
 
 })
 $('.go').click(function (params) {
     params.preventDefault();
-    document.querySelector('.main-content').innerHTML += (`
-                            <div class="w-loading"><i></i></div>
-    `)
+    $('.main-content').append('<div class="w-loading"><i></i></div>')
     max = Number($(this).closest('.price-range').find('.max_price').val()) != 0 ? Number($(this).closest('.price-range').find('.max_price').val()) : 10000000000000000000000000000000000000000000;
     min = Number($(this).closest('.price-range').find('.min_price').val());
     price = [min, max]
@@ -239,20 +239,21 @@ $('.go').click(function (params) {
                 $(this).removeClass("load-more-overlay loading")
                 document.querySelector('.w-loading').remove();
                 renderData(data.result, 'shop')
-            paginate(data)
+                paginate(data)
             }, 5000)
 
         })
 })
 
 function Icon(product, type, shop) {
-    let thorugh = type == 'cart' ? JSON.parse(localStorage.getItem('cart')) : compare
+    let thorugh = type == 'cart' ? JSON.parse(localStorage.getItem('cart')) : Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : []
         ,
         x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>` : `<a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>`;
     if (shop) x = ' <a href="#" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Add To Cart</a>'
     $.each(thorugh, function (index, value) {
         let p = value['id']
-        if (product.id === p) {
+        console.log(p, product, typeof p, typeof product)
+        if (product === p) {
             x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-minus added" title="remove frm cart"></a>` : `<a href="compare" class="btn-product-icon btn-compare w-icon-check-solid added" title="Compare"></a>`
             if (shop) x = '<a href="/product/${item.id}" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Select Options</a>';
         }
@@ -308,8 +309,8 @@ function categroytree(n) {
 fetch(`/api/product/list`,).then(res => {
     return res.json()
 }).then(data => {
-        renderData(data.result, 'shop')
-        paginate(data)
+    renderData(data.result, 'shop')
+    paginate(data)
 })
 
 
@@ -341,8 +342,8 @@ $(document).on('click', '.pagination-link', function (e) {
             setTimeout(function () {
                 $('.w-loading').remove()
 
-            renderData(data.result, 'shop')
-            paginate(data)
+                renderData(data.result, 'shop')
+                paginate(data)
             }, 5000)
 
         })
@@ -390,12 +391,12 @@ function renderProducts(n) {
                     width="216" height="243" />
             </a>
             <div class="product-action-vertical">
-                ${Icon(item1, 'cart')}
+                ${Icon(item1.id, 'cart')}
                 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
                     title="Add to wishlist"></a>
                 <a href="#" class="btn-product-icon btn-quickview w-icon-search"
                     title="Quickview"></a>
-                    ${Icon(item1, 'compare')}
+                    ${Icon(item1.id, 'compare')}
                     
             </div>
             <div class="product-label-group">
@@ -427,12 +428,12 @@ function renderProducts(n) {
                     width="216" height="243" />
             </a>
             <div class="product-action-vertical">
-                ${Icon(item2, 'cart')}
+                ${Icon(item2.id, 'cart')}
                 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
                     title="Add to wishlist"></a>
                 <a href="#" class="btn-product-icon btn-quickview w-icon-search"
                     title="Quickview"></a>
-                    ${Icon(item2, 'compare')}
+                    ${Icon(item2.id, 'compare')}
             </div>
         </figure>
         <div class="product-details">
