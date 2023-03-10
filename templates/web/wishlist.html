@@ -51,166 +51,168 @@
 
 <body>
 <div class="page-wrapper">
-    <!-- Start of Header -->
-    <header class="header header-border">
-        <div class="header-top">
-            <div class="container">
-                <div class="header-left">
-                    <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
-                </div>
-                <div class="header-right">
-                    <div class="dropdown">
-                        <a href="#currency">USD</a>
-                        <div class="dropdown-box">
-                            <a href="#USD">USD</a>
-                            <a href="#EUR">EUR</a>
-                        </div>
+        <!-- Start of Header -->
+        <header class="header header-border">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-left">
+                        <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
                     </div>
-                    <!-- End of DropDown Menu -->
+                    <div class="header-right">
+                        <div class="dropdown">
+                            <a href="#currency">USD</a>
+                            <div class="dropdown-box">
+                                <a href="#USD">USD</a>
+                                <a href="#EUR">EUR</a>
+                            </div>
+                        </div>
+                        <!-- End of DropDown Menu -->
 
-                    <div class="dropdown">
-                        <a href="#language"><img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14"
-                                                 height="8" class="dropdown-image"/> ENG</a>
-                        <div class="dropdown-box">
-                            <a href="#ENG">
-                                <img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
-                                     class="dropdown-image"/>
-                                ENG
-                            </a>
-                            <a href="#FRA">
-                                <img src="/static/web/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
-                                     class="dropdown-image"/>
-                                FRA
-                            </a>
+                        <div class="dropdown">
+                            <a href="#language"><img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14"
+                                    height="8" class="dropdown-image" /> ENG</a>
+                            <div class="dropdown-box">
+                                <a href="#ENG">
+                                    <img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
+                                        class="dropdown-image" />
+                                    ENG
+                                </a>
+                                <a href="#FRA">
+                                    <img src="/static/web/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
+                                        class="dropdown-image" />
+                                    FRA
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <!-- End of Dropdown Menu -->
-                    <span class="divider d-lg-show"></span>
-                    <a href="contact-us.html" class="d-lg-show">Contact Us</a>
-                    <a href="/account" class="d-lg-none user-in">My Account</a>
-                    <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in user-out"><i
-                            class="w-icon-account"></i>Sign In</a>
-                    <span class="delimiter d-lg-show user-out">/</span>
-                    <a href="/static/web/ajax/login.html" class="ml-0 d-lg-show user-out login register">Register</a>
+                        <!-- End of Dropdown Menu -->
+
+                        <span class="divider d-lg-show"></span>
+                        <a href="contact-us.html" class="d-lg-show">Contact Us</a>
+                        <a href="/account" class="user-in d-lg-show">My Account</a>
+                        <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in user-out"><i
+                                class="w-icon-account "></i>Sign In</a>
+                        <span class="delimiter d-lg-show user-out">/</span>
+                        <a href="/static/web/ajax/login.html" class="user-out ml-0 d-lg-show login register">Register</a>
+                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End of Header Top -->
+            <!-- End of Header Top -->
 
-        <div class="header-middle">
-            <div class="container">
-                <div class="header-left mr-md-4">
-                    <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
-                    </a>
-                    <a href="{% url 'home' %}" class="logo ml-lg-0">
-                        <img src="/static/web/images/logo.png" alt="logo" width="144" height="45"/>
-                    </a>
-                    <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
-                        <div class="select-box">
-                            <select id="category" name="category">
-                                <option value="">All Categories</option>
-                                <option value="4">Fashion</option>
-                                <option value="5">Furniture</option>
-                                <option value="6">Shoes</option>
-                                <option value="7">Sports</option>
-                                <option value="8">Games</option>
-                                <option value="9">Computers</option>
-                                <option value="10">Electronics</option>
-                                <option value="11">Kitchen</option>
-                                <option value="12">Clothing</option>
-                            </select>
-                        </div>
-                        <input type="text" class="form-control" name="search" id="search"
-                               placeholder="Search in..." required/>
-                        <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="header-right ml-4">
-                    <div class="header-call d-xs-show d-lg-flex align-items-center">
-                        <a href="tel:#" class="w-icon-call"></a>
-                        <div class="call-info d-lg-show">
-                            <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
-                                <a href="mailto:#" class="text-capitalize">Live Chat</a> or :</h4>
-                            <a href="tel:#" class="phone-number font-weight-bolder ls-50">+234 810 638 2637</a>
-                        </div>
-                    </div>
-                    <a class="wishlist label-down link d-lg-none user-in" href="/account/wishlist">
-                        <i class="w-icon-heart"></i>
-                        <span class="wishlist-label">Wishlist</span>
-                    </a>
-                    <a class="compare label-down link d-xs-show" href="{% url 'compare' %}">
-                        <i class="w-icon-compare"></i>
-                        <span class="compare-label d-lg-show">Compare</span>
-                    </a>
-                    <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
-                        <div class="cart-overlay"></div>
-                        <a href="#" class="cart-toggle label-down link">
-                            <i class="w-icon-cart">
-                                <span class="cart-count"></span>
-                            </i>
-                            <span class="cart-label">Cart</span>
+            <div class="header-middle">
+                <div class="container">
+                    <div class="header-left mr-md-4">
+                        <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                         </a>
-                        <div class="dropdown-box mini-basket-dropdown" style="overflow: scroll;">
+                        <a href="{% url 'home' %}" class="logo ml-lg-0">
+                            <img src="/static/web/images/logo.png" alt="logo" width="144" height="45" />
+                        </a>
+                        <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
+                            <div class="select-box">
+                                <select id="category" name="category">
+                                    <option value="">All Categories</option>
+                                    <option value="4">Fashion</option>
+                                    <option value="5">Furniture</option>
+                                    <option value="6">Shoes</option>
+                                    <option value="7">Sports</option>
+                                    <option value="8">Games</option>
+                                    <option value="9">Computers</option>
+                                    <option value="10">Electronics</option>
+                                    <option value="11">Kitchen</option>
+                                    <option value="12">Clothing</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control" name="search" id="search"
+                                placeholder="Search in..." required />
+                            <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="header-right ml-4">
+                        <div class="header-call d-xs-show d-lg-flex align-items-center">
+                            <a href="tel:#" class="w-icon-call"></a>
+                            <div class="call-info d-lg-show">
+                                <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
+                                    <a href="mailto:#" class="text-capitalize">Live Chat</a> or :</h4>
+                                <a href="tel:#" class="phone-number font-weight-bolder ls-50">+234 810 638 2637</a>
+                            </div>
+                        </div>
+                        <a class="wishlist label-down link user-in" href="/account/wishlist">
+                            <i class="w-icon-heart"></i>
+                            <span class="wishlist-label">Wishlist</span>
+                        </a>
+                        <a class="compare label-down link d-xs-show" href="{% url 'compare' %}">
+                            <i class="w-icon-compare"></i>
+                            <span class="compare-label d-lg-show">Compare</span>
+                        </a>
+                        <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
+                            <div class="cart-overlay"></div>
+                            <a href="#" class="cart-toggle label-down link">
+                                <i class="w-icon-cart">
+                                    <span class="cart-count"></span>
+                                </i>
+                                <span class="cart-label">Cart</span>
+                            </a>
+                            <div class="dropdown-box mini-basket-dropdown" style="overflow: scroll;">
                             <div class="cart-header">
                                 <span>Shopping Cart</span>
                                 <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
                             </div>
                             <p class="woocommerce-mini-cart__empty-message empty-msg">No products in the cart.</p>
+
                             <div class=" cart-view">
+
                             </div>
                         </div>
-                        <!-- End of Dropdown Box -->
+                            <!-- End of Dropdown Box -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End of Header Middle -->
+            <!-- End of Header Middle -->
 
-        <div class="header-bottom sticky-content fix-top sticky-header">
-            <div class="container">
-                <div class="inner-wrap">
-                    <div class="header-left">
-                        <div class="dropdown category-dropdown has-border" data-visible="true">
-                            <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="true" data-display="static"
-                               title="Browse Categories">
-                                <i class="w-icon-category"></i>
-                                <span>Browse Categories</span>
-                            </a>
+            <div class="header-bottom sticky-content fix-top sticky-header">
+                <div class="container">
+                    <div class="inner-wrap">
+                        <div class="header-left">
+                            <div class="dropdown category-dropdown has-border" data-visible="true">
+                                <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true" data-display="static"
+                                    title="Browse Categories">
+                                    <i class="w-icon-category"></i>
+                                    <span>Browse Categories</span>
+                                </a>
 
-                            <div class="dropdown-box">
-                                <ul class="menu vertical-menu category-menu">
+                                <div class="dropdown-box">
+                                    <ul class="menu vertical-menu category-menu">
+                                    </ul>
+                                </div>
+                            </div>
+                            <nav class="main-nav">
+                                <ul class="menu active-underline">
+                                    <li>
+                                        <a href="{% url 'home' %}">Home</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="{% url 'shop' %}">Shop</a>
+
+
+                                    </li>
+                                    <li>
+                                        <a href="vendor-store.html">Vendor</a>
+
+                                    </li>
                                 </ul>
-                            </div>
+                            </nav>
                         </div>
-                        <nav class="main-nav">
-                            <ul class="menu active-underline">
-                                <li>
-                                    <a href="{% url 'home' %}">Home</a>
-                                </li>
-                                <li class="active">
-                                    <a href="{% url 'shop' %}">Shop</a>
-
-
-                                </li>
-                                <li>
-                                    <a href="vendor-store.html">Vendor</a>
-
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="header-right">
-                        <a href="#" class="d-lg-none user-in"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
-                        <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
+                        <div class="header-right">
+                            <a href="#" class="user-in"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
+                            <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <!-- End of Header -->
-
+        </header>
+        <!-- End of Header -->
     <!-- Start of Main -->
     <main class="main wishlist-page">
         <!-- Start of Page Header -->
@@ -236,7 +238,7 @@
         <div class="page-content">
             <div class="container">
                 <table class="shop_table cart wishlist_table wishlist_view traditional responsive" data-pagination="no"
-                       data-per-page="5" data-page="1" data-id="" data-token="">
+                       data-per-page="5" data-page="1" data-id="" data-token="" id="wishlist">
 
 
                     <thead class="d-none">
@@ -271,7 +273,7 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <a class="button" href="/shop">
+                            <a class="button" href="{% url 'shop' %}">
                                 GO SHOP </a>
                         </td>
                     </tr>
@@ -1049,54 +1051,72 @@
 </div>
 <!-- End of Mobile Menu -->
 
+
 <!-- Start of Quick View -->
 <div class="product product-single product-popup">
     <div class="row gutter-lg">
         <div class="col-md-6 mb-4 mb-md-0">
-            <div class="product-gallery product-gallery-sticky mb-0">
-                <div class="product-single-swiper swiper-container swiper-theme nav-inner row cols-1 gutter-no">
-                    <figure class="product-image">
-                        <img src="/static/web/images/products/popup/1-440x494.jpg"
-                             data-zoom-image="/static/web/images/products/popup/1-800x900.jpg"
-                             alt="Water Boil Black Utensil" width="800" height="900">
-                    </figure>
-                    <figure class="product-image">
-                        <img src="/static/web/images/products/popup/2-440x494.jpg"
-                             data-zoom-image="/static/web/images/products/popup/2-800x900.jpg"
-                             alt="Water Boil Black Utensil" width="800" height="900">
-                    </figure>
-                    <figure class="product-image">
-                        <img src="/static/web/images/products/popup/3-440x494.jpg"
-                             data-zoom-image="/static/web/images/products/popup/3-800x900.jpg"
-                             alt="Water Boil Black Utensil" width="800" height="900">
-                    </figure>
-                    <figure class="product-image">
-                        <img src="/static/web/images/products/popup/4-440x494.jpg"
-                             data-zoom-image="/static/web/images/products/popup/4-800x900.jpg"
-                             alt="Water Boil Black Utensil" width="800" height="900">
-                    </figure>
+            <div class="product-gallery product-gallery-sticky">
+                <div class="swiper-container product-single-swiper swiper-theme nav-inner">
+                    <div class="swiper-wrapper row cols-1 gutter-no popup-product">
+                        <div class="swiper-slide">
+                            <figure class="product-image">
+                                <img src="/static/web/images/products/popup/1-440x494.jpg"
+                                     data-zoom-image="/static/web/images/products/popup/1-800x900.jpg"
+                                     alt="Water Boil Black Utensil" width="800" height="900">
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="product-image">
+                                <img src="/static/web/images/products/popup/2-440x494.jpg"
+                                     data-zoom-image="/static/web/images/products/popup/2-800x900.jpg"
+                                     alt="Water Boil Black Utensil" width="800" height="900">
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="product-image">
+                                <img src="/static/web/images/products/popup/3-440x494.jpg"
+                                     data-zoom-image="/static/web/images/products/popup/3-800x900.jpg"
+                                     alt="Water Boil Black Utensil" width="800" height="900">
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="product-image">
+                                <img src="/static/web/images/products/popup/4-440x494.jpg"
+                                     data-zoom-image="/static/web/images/products/popup/4-800x900.jpg"
+                                     alt="Water Boil Black Utensil" width="800" height="900">
+                            </figure>
+                        </div>
+                    </div>
+                    <button class="swiper-button-next"></button>
+                    <button class="swiper-button-prev"></button>
                 </div>
-                <div class="product-thumbs-wrap">
-                    <div class="product-thumbs">
-                        <div class="product-thumb active">
+                <div class="product-thumbs-wrap swiper-container" data-swiper-options="{
+                        'navigation': {
+                            'nextEl': '.swiper-button-next',
+                            'prevEl': '.swiper-button-prev'
+                        }
+                    }">
+                    <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm popup-thumbnail">
+                        <div class="product-thumb swiper-slide">
                             <img src="/static/web/images/products/popup/1-103x116.jpg" alt="Product Thumb" width="103"
                                  height="116">
                         </div>
-                        <div class="product-thumb">
+                        <div class="product-thumb swiper-slide">
                             <img src="/static/web/images/products/popup/2-103x116.jpg" alt="Product Thumb" width="103"
                                  height="116">
                         </div>
-                        <div class="product-thumb">
+                        <div class="product-thumb swiper-slide">
                             <img src="/static/web/images/products/popup/3-103x116.jpg" alt="Product Thumb" width="103"
                                  height="116">
                         </div>
-                        <div class="product-thumb">
+                        <div class="product-thumb swiper-slide">
                             <img src="/static/web/images/products/popup/4-103x116.jpg" alt="Product Thumb" width="103"
                                  height="116">
                         </div>
                     </div>
-                    <button class="thumb-up disabled"><i class="w-icon-angle-left"></i></button>
-                    <button class="thumb-down disabled"><i class="w-icon-angle-right"></i></button>
+                    <button class="swiper-button-next"></button>
+                    <button class="swiper-button-prev"></button>
                 </div>
             </div>
         </div>
@@ -1140,9 +1160,9 @@
 
                 <hr class="product-divider">
 
-                <div class="product-form product-variation-form product-color-swatch product-variations">
+                <div class="product-form product-variation-form product-color-swatch">
                     <label>Color:</label>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center product-variations">
                         <a href="#" class="color" style="background-color: #ffcc01"></a>
                         <a href="#" class="color" style="background-color: #ca6d00;"></a>
                         <a href="#" class="color" style="background-color: #1c93cb;"></a>
@@ -1150,21 +1170,22 @@
                         <a href="#" class="color" style="background-color: #333;"></a>
                     </div>
                 </div>
-                <div class="product-form product-variation-form product-size-swatch product-variations">
-                    <label>Size:</label>
-                    <div class="flex-wrap d-flex align-items-center">
+                <div class="product-form product-variation-form product-size-swatch">
+                    <label class="mb-1">Size:</label>
+                    <div class="flex-wrap d-flex align-items-center product-variations">
                         <a href="#" class="size">Small</a>
                         <a href="#" class="size">Medium</a>
                         <a href="#" class="size">Large</a>
                         <a href="#" class="size">Extra Large</a>
                     </div>
+                    <a href="#" class="product-variation-clean">Clean All</a>
                 </div>
 
                 <div class="product-variation-price">
                     <span></span>
                 </div>
 
-                <div class="product-form">
+                <div class="product-form product-icon">
                     <div class="product-qty-form">
                         <div class="input-group">
                             <input class="quantity form-control" type="number" min="1" max="10000000">
@@ -1172,10 +1193,6 @@
                             <button class="quantity-minus w-icon-minus"></button>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-cart">
-                        <i class="w-icon-cart"></i>
-                        <span>Add to Cart</span>
-                    </button>
                 </div>
 
                 <div class="social-links-wrapper">
@@ -1183,9 +1200,9 @@
                         <div class="social-icons social-no-color border-thin">
                             <a href="#" class="social-icon social-facebook w-icon-facebook"></a>
                             <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
-                            <a href="#" class="social-icon social-instagram w-icon-instagram"></a>
-                            <a href="#" class="social-icon social-youtube w-icon-youtube"></a>
-                            <a href="#" class="social-icon social-pinterest w-icon-pinterest"></a>
+                            <a href="#" class="social-icon social-pinterest fab fa-pinterest-p"></a>
+                            <a href="#" class="social-icon social-whatsapp fab fa-whatsapp"></a>
+                            <a href="#" class="social-icon social-youtube fab fa-linkedin-in"></a>
                         </div>
                     </div>
                     <span class="divider d-xs-show"></span>
@@ -1200,6 +1217,7 @@
     </div>
 </div>
 <!-- End of Quick view -->
+
 
 <!-- Plugin JS File -->
 <script src="/static/web/vendor/jquery/jquery.min.js"></script>

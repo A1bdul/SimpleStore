@@ -90,7 +90,7 @@ class Vendor(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendor')
     logo = models.ImageField(blank=True, null=True)
     about = models.TextField(null=True, blank=True)
-    name = models.CharField(max_length=500)
+    name = models.CharField(max_length=500, unique=True)
 
     @admin.display(description="")
     def logo_display(self):
@@ -100,3 +100,7 @@ class Vendor(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+

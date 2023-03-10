@@ -198,7 +198,7 @@
                                        
                                     </li>
                                     <li>
-                                        <a href="vendor-store.html">Vendor</a>
+                                        <a href="{% url 'vendors' %}">Vendor</a>
                                         
                                     </li>
                                 </ul>
@@ -237,7 +237,7 @@
                     <div class="container banner-content">
                         <h4 class="banner-subtitle font-weight-bold">Accessories Collection</h4>
                         <h3 class="banner-title text-white text-uppercase font-weight-bolder ls-10">Smart Watches</h3>
-                        <a href="shop-banner-sidebar.html" class="btn btn-dark btn-rounded btn-icon-right">Discover
+                        <a href="{% url 'shop' %}" class="btn btn-dark btn-rounded btn-icon-right">Discover
                             Now<i class="w-icon-long-arrow-right"></i></a>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                             <div class="sidebar-content scrollable">
                                 <div class="filter-actions">
                                     <label>Filter :</label>
-                                    <a href="#" class="btn btn-dark btn-link filter-clean">Clean All</a>
+                                    <a href="{% url 'shop' %}" class="btn btn-dark btn-link filter-clean">Clean All</a>
                                 </div>
                                 <!-- Start of Collapsible widget -->
                                 <div class="widget widget-collapsible">
@@ -416,14 +416,14 @@
                               <div class="product-wrapper row cols-md-4 cols-sm-3 cols-2"  id="shop-grid">
                               </div>
 {#                            <div class="w-loading"><i></i></div>#}
-                            <div class="toolbox toolbox-pagination justify-content-between">
+                            <div class="toolbox toolbox-pagination justify-content-between" style="display: none">
                                 <p class="showing-info mb-2 mb-sm-0">
                                     Showing<span>1-12 of 60</span>Products
                                 </p>
                                 <ul class="pagination">
                                     <li class="prev disabled">
                                         <a href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                                            <i class="w-icon-long-arrow-left"></i>Prev
+                                            <i class="w-icon-angle-left"></i>Prev
                                         </a>
                                     </li>
                                     <li class="page-item active">
@@ -434,7 +434,7 @@
                                     </li>
                                     <li class="next">
                                         <a href="#" aria-label="Next">
-                                            Next<i class="w-icon-long-arrow-right"></i>
+                                            Next<i class="w-icon-angle-right"></i>
                                         </a>
                                     </li>
                                 </ul>
@@ -507,7 +507,7 @@
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="widget">
-                                <h3 class="widget-title">Company</h3>1
+                                <h3 class="widget-title">Company</h3>
                                 <ul class="widget-body">
                                     <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="#">Team Member</a></li>
@@ -682,7 +682,7 @@
                 <i class="w-icon-search"></i>
                 <p>Search</p>
             </a>
-            <form action="#" class="input-wrapper">
+            <form action="#" class="input-wrapper search-form">
                 <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"
                     required />
                 <button class="btn btn-search" type="submit">
@@ -729,10 +729,10 @@
                     <ul class="mobile-menu">
                         <li><a href="{% url 'home' %}">Home</a></li>
                         <li>
-                            <a href="shop.html">Shop</a>
+                            <a href="#">Shop</a>
                         </li>
                         <li>
-                            <a href="vendor-list.html">Vendor</a>
+                            <a href="{% url 'vendors' %}">Vendor</a>
                         </li>
                     </ul>
                 </div>

@@ -1,35 +1,36 @@
-let category = '', price = [0, 1000000000000000000],
-    compare = Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : [];
+let params = Wolmart.getURLParams(), category = params.category ? params.category : '',
+    max_num = params['max_num'] ? params['max_num'] : Number.MAX_SAFE_INTEGER,
+    min_num = params['min_num'] ? params['min_num'] : 0
+
+compare = Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : [];
 
 async function renderData(data, site) {
-    let shopgrid = ""
-        , shoplist = ""
-        , categoriesmenu = ''
-        , categorymobile = ''
-        , categoried = "", n = 0, x = '', wishlist = '';
+    let shopgrid = "", shoplist = "", no_product = `<li class="no-product">
+<p class="alert alert-light alert-info woocommerce-info">No products were found matching your selection.</p>
+</li>`, n = 0, x = '', wishlist = '';
     $.each(data, function (index, item) {
         if (item.price) item.price = OSREC.CurrencyFormatter.format(item.price, currency);
         if (item.discount_price) item.discount_price = OSREC.CurrencyFormatter.format(item.discount_price, currency);
         if (site == 'shop') {
             // Shop list & grid Display
-            shoplist += ` <div class="product product-list" id="${item.id}"> <figure class="product-media"> <a href="/product/${item.id}"> <img src="${item.image[0]}" alt="Product" width="330" height="338" /> <img src="${item.image[1]}" alt="Product" width="330" height="338" /> </a> <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> ${productCountDown(item)}</figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h4 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h4> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(3 Reviews)</a> </div>`
-            shoplist += item.discount_price ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
+            shoplist += ` <div class="product product-list" id="${item.id}"> <figure class="product-media"> <a href="/product/${item.id}"> <img src="${item.image[0]}" alt="Product" width="330" height="338" /> <img src="${item.image[1]}" alt="Product" width="330" height="338" /> </a> <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> ${productCountDown(item)}</figure> <div class="product-details"> <div class="product-cat"> <a href="/products/shop">${item.category}</a> </div> <h4 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h4> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: ${item.review_percentage}%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(${item.review_count} Reviews)</a> </div>`
+            shoplist += item.discount_price && item['discount_duration'] >= new Date() ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
             shoplist += `<div class="product-desc">
             Ultrices eros in cursus turpis massa cursus mattis. Volutpat ac tincidunt
             vitae semper quis lectus. Aliquam id diam maecenas ultricies…
-        </div> <div class="product-action">${Icon(item.id, 'cart', true)}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>${Icon(item.id, 'compare')}</div> </div> </div>`
+        </div> <div class="product-action">${Icon(item.id, 'cart', true)} <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a>${Icon(item.id, 'compare')}</div> </div> </div>`
             shopgrid += `<div class="product-wrap" ><div class="product text-center" id="${item.id}"><figure class="product-media"><a href="/product/${item.id}"> 
         <img src="${item.image[0]}" alt="Product" width="300" height="338" /> </a> ${productCountDown(item)}<div class="product-action-horizontal"> 
-        ${Icon(item.id, 'cart')}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a> ${Icon(item.id, 'compare')}<a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> </figure> <div class="product-details"> <div class="product-cat"> <a href="{% url 'shop' %}">${item.category}</a> </div> <h3 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h3> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: 100%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(3 reviews)</a> </div> <div class="product-pa-wrapper">`
+        ${Icon(item.id, 'cart')}<a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a> ${Icon(item.id, 'compare')}<a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a> </div> </figure> <div class="product-details"> <div class="product-cat"> <a href="/products/shop">${item.category}</a> </div> <h3 class="product-name"> <a href="/product/${item.id}">${item.name}</a> </h3> <div class="ratings-container"> <div class="ratings-full"> <span class="ratings" style="width: ${item.review_percentage}%;"></span> <span class="tooltiptext tooltip-top"></span> </div> <a href="/product/${item.id}" class="rating-reviews">(${item.review_count} reviews)</a> </div> <div class="product-pa-wrapper">`
             shopgrid += item.discount_price ? `<div class="product-price"> <ins class="new-price">${item.discount_price}</ins><del class="old-price">${item.price}</del> </div> ` : `<div class="product-price">${item.price}</div>`
             shopgrid += `</div> </div> </div> </div>`;
         }
         if (site == 'wishlist') {
             wishlist += `
-            <tr>
-                <td class="product-thumbnail" id="${item.id}">
+            <tr id="${item.id}">
+                <td class="product-thumbnail" >
                     <div class="p-relative">
-                        <a href="/product/${item.id}">
+                        <a href="/product/${item.id}" class="product-image">
                             <figure>
                                 <img src="${item.image[0]}" alt="product" width="300"
                                     height="338">
@@ -60,65 +61,13 @@ async function renderData(data, site) {
             </tr>`
         }
         // Browse Categories Tree Display
-        if (site == 'category') {
-            categoried += ` <li><a href="#" class="category-filter">${item.title}</a></li>`;
-            categorymobile += item.category_list ? `<li>
-                <a href="{% url 'shop' %}">
-                    <i class="${item.icon}"></i>${item.title}
-                </a>
-                <ul>
-                    <li>
-                        <a href="#">Women</a>
-                        <ul>
-                            <li><a href="{% url 'shop' %}">New Arrivals</a>
-                            </li>
-                            <li><a href="{% url 'shop' %}">Best Sellers</a>
-                            </li>
-                            <li><a href="{% url 'shop' %}">Trending</a></li>
-                            <li><a href="{% url 'shop' %}">Clothing</a></li>
-                            <li><a href="{% url 'shop' %}">Shoes</a></li>
-                            <li><a href="{% url 'shop' %}">Bags</a></li>
-                            <li><a href="{% url 'shop' %}">Accessories</a>
-                            </li>
-                            <li><a href="{% url 'shop' %}">Jewlery &
-                                    Watches</a></li>
-                            <li><a href="{% url 'shop' %}">Sale</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Men</a>
-                        <ul>
-                            <li><a href="{% url 'shop' %}">New Arrivals</a>
-                            </li>
-                            <li><a href="{% url 'shop' %}">Best Sellers</a>
-                            </li>
-                            <li><a href="{% url 'shop' %}">Trending</a></li>
-                            <li><a href="{% url 'shop' %}">Clothing</a></li>
-                            <li><a href="{% url 'shop' %}">Shoes</a></li>
-                            <li><a href="{% url 'shop' %}">Bags</a></li>
-                            <li><a href="{% url 'shop' %}">Accessories</a>
-                            </li>
-                            <li><a href="{% url 'shop' %}">Jewlery &
-                                    Watches</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>` : `<li>
-            <a href="{% url 'shop' %}">
-                <i class="${item.icon}"></i>${item.title}
-            </a>
-        </li>`
-            categoriesmenu += item.category_list ? `<li><a href="{% url 'shop' %}"><i class="${item.icon}"></i>${item.title}</a>
-                    <ul class="megamenu">${categroytree(item.category_list)}</ul></li>` :
-                `<li><a href="{% url 'shop' %}"><i class="${item.icon}"></i>${item.title}</a></li>`
-        }
 
         if (site == 'index') {
             if (n == 3) return false
             x += ` <div class="product-wrapper-1 scroll-product mb-7">
             <div class="title-link-wrapper pb-1 mb-4">
                 <h2 class="title ls-normal mb-0">${index}</h2>
-                <a href="{% url 'shop' %}" class="font-size-normal font-weight-bold ls-25 mb-0">More
+                <a href="/products/shop" class="font-size-normal font-weight-bold ls-25 mb-0">More
                     Products<i class="w-icon-long-arrow-right"></i></a>
             </div>
             <div class="row">
@@ -132,7 +81,7 @@ async function renderData(data, site) {
                                 Trending <br> <span class="font-weight-normal text-capitalize">House
                                     Utensil</span>
                             </h3>
-                            <a href="{% url 'shop' %}"
+                            <a href="/products/shop"
                                 class="btn btn-dark btn-outline btn-rounded btn-sm">shop now</a>
                         </div>
                     </div>
@@ -166,209 +115,40 @@ async function renderData(data, site) {
 
     })
     if (site == 'shop') {
-        $('#shop-grid').html(shopgrid)
+        shopgrid = shopgrid !== "" ? shopgrid : no_product
+        shoplist = shoplist !== "" ? shoplist : no_product
 
-        if (document.getElementById('shop-list')) document.getElementById('shop-list').innerHTML = shoplist
-        // $('#shop-list').append(shoplist);
-        Wolmart.countDown($('.product').find('.product-countdown'))
-    }
-    if (site == 'category') {
-        $('.filter-category').prepend(categoried)
-        $('.category-menu').html(categoriesmenu)
-        $('#categorymobile').prepend(categorymobile)
+        $('#shop-grid').html(shopgrid) && $('#shop-list').html(shoplist);
+
+        document.querySelector('.product-countdown-container') && Wolmart.countDown($('.product').find('.product-countdown'));
+        getUser()
     } else {
         $('#category-index').append(x);
         $('#wish-list').append(wishlist);
+        if (wishlist != "") {
+            $('.wishlist_view').attr('class', 'shop-table wishlist-table')
+            let i = $('.wishlist-table').find('thead').removeClass('d-none');
+            $('.wishlist-items-wrapper').html(wishlist).removeClass('wishlist-empty').removeClass('wishlist-items-wrapper')
+        }
         Wolmart.slider(".swiper-container");
     }
 }
 
-$(document).on('click', '.category-filter', function (params) {
-    $('.cateogry-filter').each(function (e) {
-        console.log($(e))
-    })
-    params.preventDefault();
-    $('.main-content').append('<div class="w-loading"><i></i></div>')
-    let i = params.currentTarget;
-    $(i).addClass('current-cat')
-    category = i.innerText;
-    fetch(`/api/product/list`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            "X-CSRFToken": Wolmart.getCookie('csrftoken')
-
-        },
-        body: JSON.stringify({
-            category: category,
-            range: price
-        })
-    })
-        .then(r => r.json())
-        .then(data => {
-            setTimeout(function () {
-                $('.w-loading').remove();
-                renderData(data.result, 'shop')
-                paginate(data)
-            }, 5000)
-        })
-
-})
-$('.go').click(function (params) {
-    params.preventDefault();
-    $('.main-content').append('<div class="w-loading"><i></i></div>')
-    max = Number($(this).closest('.price-range').find('.max_price').val()) != 0 ? Number($(this).closest('.price-range').find('.max_price').val()) : 10000000000000000000000000000000000000000000;
-    min = Number($(this).closest('.price-range').find('.min_price').val());
-    price = [min, max]
-
-    $(this).addClass("load-more-overlay loading")
-    fetch(`/api/product/list`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            "X-CSRFToken": Wolmart.getCookie('csrftoken')
-        },
-        body: JSON.stringify({
-            category: category,
-            range: price
-        })
-    })
-        .then(r => r.json())
-        .then(data => {
-            setTimeout(function () {
-                $(this).removeClass("load-more-overlay loading")
-                document.querySelector('.w-loading').remove();
-                renderData(data.result, 'shop')
-                paginate(data)
-            }, 5000)
-
-        })
-})
-
-function Icon(product, type, shop) {
-    let thorugh = type == 'cart' ? JSON.parse(localStorage.getItem('cart')) : Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : []
-        ,
-        x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>` : `<a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>`;
-    if (shop) x = ' <a href="#" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Add To Cart</a>'
-    $.each(thorugh, function (index, value) {
-        let p = value['id']
-        console.log(p, product, typeof p, typeof product)
-        if (product === p) {
-            x = type == 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-minus added" title="remove frm cart"></a>` : `<a href="compare" class="btn-product-icon btn-compare w-icon-check-solid added" title="Compare"></a>`
-            if (shop) x = '<a href="/product/${item.id}" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Select Options</a>';
-        }
-    })
-    return x
-}
-
-function categroytree(n) {
-    let x = ""
-    for (let i = 0; n.length != 0; i++) {
-        let j = 0;
-        while (j < n.length) {
-            if (i >= n[j].length) {
-                n.splice(j, 1)
-            } else {
-                let y = n[j][i]
-                    , z = n[j + 1] ? n[j + 1][i] : ""
-                x += `<li>
-                <h4 class="menu-title">${y}</h4>
-                <hr class="divider">
-                <ul>
-                    <li><a href="shop.html">Beds, Frames &
-                            Bases</a></li>
-                    <li><a href="shop.html">Dressers</a></li>
-                    <li><a href="shop.html">Nightstands</a>
-                    </li>
-                    <li><a href="shop.html">Kid's Beds &
-                            Headboards</a></li>
-                    <li><a href="shop.html">Armoires</a></li>
-                </ul>`
-                x += z ? `<h4 class="menu-title">${z}</h4>
-             <hr class="divider">
-             <ul>
-                 <li><a href="shop.html">Beds, Frames &
-                         Bases</a></li>
-                 <li><a href="shop.html">Dressers</a></li>
-                 <li><a href="shop.html">Nightstands</a>
-                 </li>
-                 <li><a href="shop.html">Kid's Beds &
-                         Headboards</a></li>
-                 <li><a href="shop.html">Armoires</a></li>
-             </ul>` : '';
-                x += `</li>`;
-                j += 2
-            }
-
-        }
-    }
-
-    return x
-}
-
-fetch(`/api/product/list`,).then(res => {
-    return res.json()
-}).then(data => {
-    renderData(data.result, 'shop')
-    paginate(data)
-})
-
-
-fetch('/api/category').then(res => res.json()).then(data => {
-    renderData(data, 'category')
-})
-
-$(document).on('click', '.pagination-link', function (e) {
-    document.querySelector('.main-content').innerHTML += (`
-                            <div class="w-loading"><i></i></div>
-    `)
-    e.preventDefault();
-    let i = $(e.currentTarget),
-        url = $(i)[0].getAttribute('ttr')
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": Wolmart.getCookie('csrftoken')
-        },
-        body: JSON.stringify({
-            category: category,
-            range: price
-        })
-    })
-        .then(r => r.json())
-        .then(data => {
-            setTimeout(function () {
-                $('.w-loading').remove()
-
-                renderData(data.result, 'shop')
-                paginate(data)
-            }, 5000)
-
-        })
-}).on('selected', '.pagination-link', function (e) {
-    console.log(e)
-})
-
-fetch(`/api/catgory/products`)
-    .then(r => r.json())
-    .then(data => {
-        renderData(data, 'index')
-    })
-
 function paginate(data) {
+    if (data.next || data.previous) $('.toolbox-pagination').show()
+
+
     function active(n) {
         if (n == data.current_page) return 'active'
     }
 
     $('.showing').text(`${((Number(data.size) * Number(data.current_page)) - (Number(data.current_page) + 1))} - ${data.size} of ${data.count}`)
     let x = ''
-    x += data.previous ? `<li class="prev"><a ttr="${data.previous}" href='#' class="pagination-link" aria-label="Previous" tabindex="-1" aria-disabled="true"> <i class="w-icon-long-arrow-left"></i> </a></li>` : ''
+    x += data.previous ? `<li class="prev"><a ttr="${data.previous}" href='#' class="pagination-link" aria-label="Previous" tabindex="-1" aria-disabled="true"> <i class="w-icon-angle-left"></i> </a></li>` : ''
     for (let i = 1; i <= data.pages; i++) {
         x += (data.current_page - 2) <= i && i <= (data.current_page + 2) ? `<li class="page-item ${active(i)}"><a ttr="/api/product/list?p=${i}" class="page-link pagination-link" href="#">${i}</a></li>` : ''
     }
-    x += data.next ? `<li class="next"><a ttr="${data.next}" href='#' class="pagination-link" aria-label="Next"> <i class="w-icon-long-arrow-right"></i></a></li>` : ''
+    x += data.next ? `<li class="next"><a ttr="${data.next}" href='#' class="pagination-link" aria-label="Next"> <i class="w-icon-angle-right"></i></a></li>` : ''
     $('.pagination').html(x)
 }
 
@@ -396,7 +176,7 @@ function renderProducts(n) {
                     title="Add to wishlist"></a>
                 <a href="#" class="btn-product-icon btn-quickview w-icon-search"
                     title="Quickview"></a>
-                    ${Icon(item1.id, 'compare')}
+                   <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
                     
             </div>
             <div class="product-label-group">
@@ -408,7 +188,7 @@ function renderProducts(n) {
             </h4>
             <div class="ratings-container">
                 <div class="ratings-full">
-                    <span class="ratings" style="width: 100%;"></span>
+                    <span class="ratings" style="width: ${item1.review_percentage}%;"></span>
                     <span class="tooltiptext tooltip-top"></span>
                 </div>
                 <a href="/product/${item1.id}" class="rating-reviews">(5
@@ -429,18 +209,17 @@ function renderProducts(n) {
             </a>
             <div class="product-action-vertical">
                 ${Icon(item2.id, 'cart')}
-                <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                    title="Add to wishlist"></a>
+                <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist">
                 <a href="#" class="btn-product-icon btn-quickview w-icon-search"
                     title="Quickview"></a>
-                    ${Icon(item2.id, 'compare')}
+                    <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
             </div>
         </figure>
         <div class="product-details">
             <h4 class="product-name"><a href="/product/${item2.id}">${item2.name}</a></h4>
             <div class="ratings-container">
                 <div class="ratings-full">
-                    <span class="ratings" style="width: 60%;"></span>
+                    <span class="ratings" style="width: ${item2.review_percentage}%;"></span>
                     <span class="tooltiptext tooltip-top"></span>
                 </div>
                 <a href="/product/${item2.id}" class="rating-reviews">(3
@@ -457,3 +236,121 @@ function renderProducts(n) {
 }
 
 
+$(document).on('click', '.category-filter', function (params) {
+    let l = $('.category-filter')
+    $.each(l, function (i, ele) {
+        $(ele).removeClass('current-cat')
+    })
+    params.preventDefault();
+    $('.toolbox-pagination').hide()
+    $('.main-content').append('<div class="w-loading"><i></i></div>')
+    let i = params.currentTarget;
+    $(i).addClass('current-cat')
+    let category = i.innerText;
+
+    fetch(`/api/product/product-category/${category}`, {
+        method: 'POST', headers: {
+            'Content-Type': 'application/json', "X-CSRFToken": Wolmart.getCookie('csrftoken')
+        }, body: JSON.stringify({
+            max_price: max_num, min_price: min_num
+        })
+    })
+        .then(r => r.json())
+        .then(data => {
+            setTimeout(function () {
+                $('.w-loading').remove();
+                history.pushState({}, `${category}`, `/product/product-category/${category}`)
+                renderData(data.result, 'shop')
+                document.getElementById('shop-grid') && document.getElementById('shop-grid').scrollIntoView(true)
+                document.getElementById('shop-list') && document.getElementById('shop-list').scrollIntoView(true)
+                data.count && paginate(data)
+
+            }, 5000)
+        })
+
+})
+
+$('.go').click(function (e) {
+    e.preventDefault();
+    $('.main-content').append('<div class="w-loading"><i></i></div>')
+    let max_num = Number($(this).closest('.price-range').find('.max_price').val()) !== 0 ? Number($(this).closest('.price-range').find('.max_price').val()) : Number.MAX_SAFE_INTEGER,
+        min_num = Number($(this).closest('.price-range').find('.min_price').val()), i = $(this)
+
+    i.addClass("load-more-overlay loading")
+    fetch(`/api${window.location.pathname}`, {
+        method: 'POST', headers: {
+            'Content-Type': 'application/json', "X-CSRFToken": Wolmart.getCookie('csrftoken')
+        }, body: JSON.stringify({
+            max_price: max_num, min_price: min_num
+        })
+    })
+        .then(r => r.json())
+        .then(data => {
+            setTimeout(function () {
+                i.removeClass("load-more-overlay loading")
+                document.querySelector('.w-loading').remove();
+                renderData(data.result, 'shop')
+
+                paginate(data)
+            }, 5000)
+
+        })
+})
+
+function Icon(product, type, shop) {
+    let through = type === 'cart' ? JSON.parse(localStorage.getItem('cart')) : Wolmart.getCookie('compare') ? JSON.parse(Wolmart.getCookie('compare')) : [],
+        x = type === 'cart' ? '<a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>' : '<a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>';
+
+    if (shop) x = ' <a href="#" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Add To Cart</a>'
+    $.each(through, function (index, value) {
+        let p = value['id']
+        if (product === p) {
+            x = type === 'cart' ? `<a href="#" class="btn-product-icon btn-cart w-icon-minus added" title="remove frm cart"></a>` : `<a href="/compare" class="btn-product-icon btn-compare w-icon-check-solid added" title="Compare"></a>`
+            if (shop) x = '<a href="/product/' + value.id + '" class="btn-product btn-cart" title="Add to Cart"><i class="w-icon-cart"></i>Select Options</a>';
+        }
+    })
+    return x
+}
+
+fetch(`/api${window.location.pathname}`)
+    .then(res => {
+        return res.json()
+    }).then(data => {
+    renderData(data.result, 'shop');
+    paginate(data);
+})
+
+
+$(document).on('click', '.pagination-link', function (e) {
+    document.querySelector('.main-content').innerHTML += (`
+                            <div class="w-loading"><i></i></div>
+    `)
+    e.preventDefault();
+    let i = $(e.currentTarget), url = $(i)[0].getAttribute('ttr')
+
+    fetch(url, {
+        method: 'POST', headers: {
+            "Content-Type": "application/json", "X-CSRFToken": Wolmart.getCookie('csrftoken')
+        }, body: JSON.stringify({
+            category: category, range: price
+        })
+    })
+        .then(r => r.json())
+        .then(data => {
+            setTimeout(function () {
+                $('.w-loading').remove()
+                renderData(data.result, 'shop')
+                paginate(data)
+
+            }, 5000)
+        })
+}).on('selected', '.pagination-link', function (e) {
+    console.log(e)
+})
+
+
+fetch(`/api/catgory/products`)
+    .then(r => r.json())
+    .then(data => {
+        renderData(data, 'index')
+    })

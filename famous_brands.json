@@ -1,0 +1,663 @@
+[
+  {
+    "id": "Tesla [TSLA]",
+    "logo": "https://companieslogo.com//img/128/TSLA-003fc2b3.png?t=1633074393",
+    "description": "Innovative world leading company in electric car manufacturing"
+  },
+  {
+    "id": "TSMC [TSM]",
+    "logo": "https://companieslogo.com//img/128/TSM-d11fba99.png?t=1633210451"
+  },
+  {
+    "id": "Samsung [005930.KS]",
+    "logo": "https://companieslogo.com//img/128/005930.KS-d4f3d70c.png?t=1647967269"
+  },
+  {
+    "id": "Toyota [TM]",
+    "logo": "https://companieslogo.com//img/128/TM-c26d16c5.png?t=1633210028"
+  },
+  {
+    "id": "Caterpillar [CAT]",
+    "logo": "https://companieslogo.com//img/128/CAT-9eb5486b.png?t=1634013656"
+  },
+  {
+    "id": "Boeing [BA]",
+    "logo": "https://companieslogo.com//img/128/BA-d65c8090.png?t=1633224568"
+  },
+  {
+    "id": "Deere & Company [DE]",
+    "logo": "https://companieslogo.com//img/128/DE-cc6eb36d.png?t=1660586001"
+  },
+  {
+    "id": "Lockheed Martin [LMT]",
+    "logo": "https://companieslogo.com//img/128/LMT-fa8cce3d.png?t=1647951659"
+  },
+  {
+    "id": "Porsche [P911.DE]",
+    "logo": "https://companieslogo.com//img/128/P911.DE-743d2644.png?t=1664249386"
+  },
+  {
+    "id": "Intel [INTC]",
+    "logo": "https://companieslogo.com//img/128/INTC-b4f05dd2.png?t=1633221777"
+  },
+  {
+    "id": "Airbus [AIR.PA]",
+    "logo": "https://companieslogo.com//img/128/AIR.PA-0e5e44b7.png?t=1633337949"
+  },
+  {
+    "id": "BYD [002594.SZ]",
+    "logo": "https://companieslogo.com//img/128/002594.SZ-20d68cd6.png?t=1648028417"
+  },
+  {
+    "id": "Analog Devices [ADI]",
+    "logo": "https://companieslogo.com//img/128/ADI-1c7cc5bc.png?t=1633350529"
+  },
+  {
+    "id": "Volkswagen [VOW3.DE]",
+    "logo": "https://companieslogo.com//img/128/VOW3.DE-d814a59e.png?t=1633224349"
+  },
+  {
+    "id": "Mercedes-Benz [MBG.DE]",
+    "logo": "https://companieslogo.com//img/128/MBG.DE-52d05055.png?t=1644327287"
+  },
+  {
+    "id": "Daimler [DAI.DE]",
+    "logo": "https://companieslogo.com//img/128/DAI.DE-15d968d6.png?t=1597354531"
+  },
+  {
+    "id": "Illinois Tool Works  [ITW]",
+    "logo": "https://companieslogo.com//img/128/ITW-15de0845.png?t=1634115482"
+  },
+  {
+    "id": "BMW [BMW.DE]",
+    "logo": "https://companieslogo.com//img/128/BMW.DE-4e1b3543.png?t=1634200178"
+  },
+  {
+    "id": "Stellantis [STLA]",
+    "logo": "https://companieslogo.com//img/128/STLA-1ca160ee.png?t=1634834340"
+  },
+  {
+    "id": "General Motors [GM]",
+    "logo": "https://companieslogo.com//img/128/GM-90e8b14f.png?t=1634009946"
+  },
+  {
+    "id": "Mindray [300760.SZ]",
+    "logo": "https://companieslogo.com//img/128/300760.SZ-42317309.png?t=1651814071"
+  },
+  {
+    "id": "Midea [000333.SZ]",
+    "logo": "https://companieslogo.com//img/128/000333.SZ-511160b4.png?t=1634109586"
+  },
+  {
+    "id": "Atlas Copco\n [ATCO-B.ST]",
+    "logo": "https://companieslogo.com//img/128/ATCO-B.ST-be4e2232.png?t=1593298173"
+  },
+  {
+    "id": "Daikin [6367.T]",
+    "logo": "https://companieslogo.com//img/128/6367.T-ccc96e4a.png?t=1669877699"
+  },
+  {
+    "id": "United Heavy Machinery\n [OMZZP.ME]",
+    "logo": "https://companieslogo.com//img/128/OMZZP.ME-2769c4b6.png?t=1633033645"
+  },
+  {
+    "id": "Ford [F]",
+    "logo": "https://companieslogo.com//img/128/F-555219e1.png?t=1647436107"
+  },
+  {
+    "id": "Ferrari [RACE]",
+    "logo": "https://companieslogo.com//img/128/RACE-5aa25c7d.png?t=1660640315"
+  },
+  {
+    "id": "Emerson [EMR]",
+    "logo": "https://companieslogo.com//img/128/EMR-9bcb6575.png?t=1654489947"
+  },
+  {
+    "id": "Foxconn (Hon Hai Precision Industry) [2317.TW]",
+    "logo": "https://companieslogo.com//img/128/2317.TW-b956dcb4.png?t=1596836982"
+  },
+  {
+    "id": "Samsung Biologics\n [207940.KS]",
+    "logo": "https://companieslogo.com//img/128/207940.KS-d7f9c623.png?t=1597516096"
+  },
+  {
+    "id": "Honda [HMC]",
+    "logo": "https://companieslogo.com//img/128/HMC-66b7bd91.png?t=1634834709"
+  },
+  {
+    "id": "STMicroelectronics [STM]",
+    "logo": "https://companieslogo.com//img/128/STM-092324bc.png?t=1650191522"
+  },
+  {
+    "id": "Denso [6902.T]",
+    "logo": "https://companieslogo.com//img/128/6902.T-3c647a8e.png?t=1594301648"
+  },
+  {
+    "id": "Kimberly-Clark [KMB]",
+    "logo": "https://companieslogo.com//img/128/KMB-ed33f283.png?t=1634121121"
+  },
+  {
+    "id": "Agilent Technologies [A]",
+    "logo": "https://companieslogo.com//img/128/A-87dcc2d3.png?t=1592705882"
+  },
+  {
+    "id": "Volvo Group [VOLVF]",
+    "logo": "https://companieslogo.com//img/128/VOLVF-85309018.png?t=1671857607"
+  },
+  {
+    "id": "Hoya [7741.T]",
+    "logo": "https://companieslogo.com//img/128/7741.T-865efc49.png?t=1593740871"
+  },
+  {
+    "id": "Marvell Technology Group [MRVL]",
+    "logo": "https://companieslogo.com//img/128/MRVL-e1621bcf.png?t=1647852317"
+  },
+  {
+    "id": "Cummins\n [CMI]",
+    "logo": "https://companieslogo.com//img/128/CMI-e144081f.png?t=1652273110"
+  },
+  {
+    "id": "Fanuc [6954.T]",
+    "logo": "https://companieslogo.com//img/128/6954.T-9d8286b9.png?t=1593740933"
+  },
+  {
+    "id": "Great Wall Motors\n [601633.SS]",
+    "logo": "https://companieslogo.com//img/128/601633.SS-7fb7d4a8.png?t=1601921090"
+  },
+  {
+    "id": "Illumina [ILMN]",
+    "logo": "https://companieslogo.com//img/128/ILMN-69d99864.png?t=1634123516"
+  },
+  {
+    "id": "GE HealthCare Technologies [GEHC]",
+    "logo": "https://companieslogo.com//img/128/GEHC-4833a425.png?t=1677291776"
+  },
+  {
+    "id": "Ametek [AME]",
+    "logo": "https://companieslogo.com//img/128/AME-1865ad4f.png?t=1652274461"
+  },
+  {
+    "id": "Maruti Suzuki India\n [MARUTI.NS]",
+    "logo": "https://companieslogo.com//img/128/MARUTI.NS-6371af18.png?t=1593961147"
+  },
+  {
+    "id": "Hyundai [HYMTF]",
+    "logo": "https://companieslogo.com//img/128/HYMTF-da7258de.png?t=1634834834"
+  },
+  {
+    "id": "Gree Electric Appliances\n [000651.SZ]",
+    "logo": "https://companieslogo.com//img/128/000651.SZ-3fcbf31c.png?t=1593485480"
+  },
+  {
+    "id": "Nidec [6594.T]",
+    "logo": "https://companieslogo.com//img/128/6594.T-4f4fd738.png?t=1593742093"
+  },
+  {
+    "id": "Daimler Truck [DTG.F]",
+    "logo": "https://companieslogo.com//img/128/DTG.F-1b12fcb0.png?t=1640193954"
+  },
+  {
+    "id": "Sandvik [SAND.ST]",
+    "logo": "https://companieslogo.com//img/128/SAND.ST-2ee096c3.png?t=1593957991"
+  },
+  {
+    "id": "SAIC Motor\n [600104.SS]",
+    "logo": "https://companieslogo.com//img/128/600104.SS-4b75c88c.png?t=1594056738"
+  },
+  {
+    "id": "Mitsubishi Electric [6503.T]",
+    "logo": "https://companieslogo.com//img/128/6503.T-143955fa.png?t=1594301449"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/abarth1.png",
+    "id": "Abarth"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ac-cars.png",
+    "id": "AC"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/acura.png",
+    "id": "Acura"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/aixam.png",
+    "id": "Aixam"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/alfa_romeo.png",
+    "id": "Alfa Romeo"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ariel.png",
+    "id": "Ariel"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/10/arrinera-logo.png",
+    "id": "Arrinera"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/aston_martin.png",
+    "id": "Aston Martin"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/audi.png",
+    "id": "Audi"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/bentley.png",
+    "id": "Bentley"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/bmw.png",
+    "id": "BMW"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/bugatti.png",
+    "id": "Bugatti"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/buick.png",
+    "id": "Buick"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/cadillac.png",
+    "id": "Cadillac"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/caterham.png",
+    "id": "Caterham"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/chevrolet.png",
+    "id": "Chevrolet"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/chrysler.png",
+    "id": "Chrysler"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/citroen.png",
+    "id": "Citroën"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/corvette.png",
+    "id": "Corvette"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/dacia.png",
+    "id": "Dacia"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/daf.png",
+    "id": "Daf"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/daihat.png",
+    "id": "Daihatsu"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/dodge.png",
+    "id": "Dodge"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/10/drmotor.png",
+    "id": "DR Motor"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/elfin.png",
+    "id": "Elfin"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ferrari.png",
+    "id": "Ferrari"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/fiat.png",
+    "id": "Fiat"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ford.png",
+    "id": "Ford"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/gaz.png",
+    "id": "Gaz"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/geely.png",
+    "id": "Geely"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/gillet.png",
+    "id": "Gillet"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ginetta.png",
+    "id": "Ginetta"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/gm.png",
+    "id": "General Motors"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/gmc.png",
+    "id": "GMC"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2013/10/Great-Wall.png",
+    "id": "Great Wall"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/gumpert.png",
+    "id": "Gumpert"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/10/hennessey.png",
+    "id": "Hennessey logo"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/10/holden.png",
+    "id": "Holden"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/honda.png",
+    "id": "Honda"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/hummer.png",
+    "id": "Hummer"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/hyundai.png",
+    "id": "Hyundai"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/inf.png",
+    "id": "Infiniti"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/isuzu.png",
+    "id": "Isuzu"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/jagu.png",
+    "id": "Jaguar"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/jeep.png",
+    "id": "Jeep"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/joss.png",
+    "id": "Joss"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/kia.png",
+    "id": "Kia"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/koenigsegg.png",
+    "id": "Koenigsegg"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/lada.png",
+    "id": "Lada"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/lamb.png",
+    "id": "Lamborghini"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/lancia.png",
+    "id": "Lancia"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/land-rover.png",
+    "id": "Land Rover"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/lexus.png",
+    "id": "Lexus"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/linc.png",
+    "id": "Lincoln"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/lotus.png",
+    "id": "Lotus"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/11/luxgen-logo.png",
+    "id": "Luxgen"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/11/mahindra.png",
+    "id": "Mahindra"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/12/Maruti_Suzuki.png",
+    "id": "Maruti Suzuki"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mase.png",
+    "id": "Maserati"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/maybach.png",
+    "id": "Maybach"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mazda.png",
+    "id": "Mazda"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mclaren.png",
+    "id": "Mclaren"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/marchedrs.png",
+    "id": "Mercedes"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mg.png",
+    "id": "MG"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mini.png",
+    "id": "Mini"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mitub.png",
+    "id": "Mitsubishi"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/morgan.png",
+    "id": "Morgan Motor"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/mustang.png",
+    "id": "Mustang logo"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/nissan.png",
+    "id": "Nissan"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/noble.png",
+    "id": "Noble"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/opel.png",
+    "id": "Opel"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/pagani.png",
+    "id": "Pagani"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/panoz.png",
+    "id": "Panoz"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/perodua.png",
+    "id": "Perodua"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/peug.png",
+    "id": "Peugeot"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/piaggio.png",
+    "id": "Piaggio"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/pininfarina.png",
+    "id": "Pininfarina"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/porsche.png",
+    "id": "Porsche"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/proton.png",
+    "id": "Proton"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/renault.png",
+    "id": "Renault"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/reva.png",
+    "id": "Reva"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2012/01/rimac-150x150.png",
+    "id": "Rimac"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/rolls-royce.png",
+    "id": "Rolls Royce"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ruf.png",
+    "id": "Ruf logo"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/saab.png",
+    "id": "Saab"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/scania.png",
+    "id": "Scania"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/scion.png",
+    "id": "Scion"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/seat.png",
+    "id": "Seat"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/10/shelby.png",
+    "id": "Shelby"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/skoda.png",
+    "id": "Skoda"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/smart.png",
+    "id": "Smart"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/spyker.png",
+    "id": "Spyker"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/ssangyong.png",
+    "id": "Ssangyong"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/10/ssc.png",
+    "id": "SSC"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/subaru.png",
+    "id": "Subaru"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/suzuki.png",
+    "id": "Suzuki"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/tata.png",
+    "id": "Tata"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/tatra.png",
+    "id": "Tatra"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/toyota.png",
+    "id": "Toyota"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/1176359_187686584745478_1792749640_n.jpg",
+    "id": "Tramontana"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/troller.png",
+    "id": "Troller"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/tvr.png",
+    "id": "TVR"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/uaz.png",
+    "id": "UAZ"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/vandenbrink_design.png",
+    "id": "Vandenbrink"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/vauxhall.png",
+    "id": "Vauxhall"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/vector_motors.png",
+    "id": "Vector Motors"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/venturi.png",
+    "id": "Venturi"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/volkswagen.png",
+    "id": "Volkswagen"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/volvo.png",
+    "id": "Volvo"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/wiesmann.png",
+    "id": "Wiesmann"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/zagato.png",
+    "id": "Zagato"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/zaz.png",
+    "id": "Zaz"
+  },
+  {
+    "logo": "https://www.car-logos.org/wp/wp-content/uploads/2011/09/zil.png",
+    "id": "Zil"
+  }
+]

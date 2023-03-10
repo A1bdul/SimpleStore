@@ -216,6 +216,16 @@ input, .btn {
 .woocommerce .alert {
     margin-bottom: 2rem;
 }
+li.no-product {
+    list-style-type: none;
+    text-align: center;
+    max-width: 100%;
+    flex: 100%;
+}
+.alert-light.alert-info {
+    background-color: #d7e8f8;
+    border-color: #d7e8f8;
+}
 .btn.btn-link {
     padding: 0;
 }

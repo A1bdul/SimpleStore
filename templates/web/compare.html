@@ -392,7 +392,7 @@
                          <i class="w-icon-compare empty-icon"></i>
                          <p class="cart-empty woocommerce-info">No products added to the compare</p>
 		<p class="return-to-shop">
-			<a class="button" href="/shop">
+			<a class="button" href="{% url 'shop' %}">
                                 GO SHOP </a>
 		</p>
 	</div>
@@ -675,7 +675,7 @@
                     <ul class="mobile-menu">
                         <li><a href="/">Home</a></li>
                         <li>
-                            <a href="/shop">Shop</a>
+                            <a href="{% url 'shop' %}">Shop</a>
                             </li>
                         <li>
                             <a href="vendor-list.html">Vendor</a>

@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import View
-from store.models import Product
+
+from admins.models import Vendor
+from store.models import Product, Review
+from store.serializer import ProductInfoSerializer, VendorSerializer
 
 
 # Create your views here.
@@ -65,8 +68,23 @@ class ProductDetail(View):
     template_name = 'web/product-swatch.html'
 
     def get(self, request, pk):
-        product = get_object_or_404(Product, id=pk)
-        return render(request, self.template_name)
+        item = Product.objects.get(pk=pk)
+        owner = VendorSerializer(item.owner).data
+        product = ProductInfoSerializer(item).data
+        reviews = Review.objects.filter(post=item)
+        owner_items = Product.objects.filter(owner=item.owner).exclude(id=pk)[:5]
+        owner_products = ProductInfoSerializer(owner_items, many=True).data
+        related_items = Product.objects.filter(category=item.category).exclude(owner=item.owner)[:5]
+        related_products = ProductInfoSerializer(related_items, many=True).data
+        other_products = ProductInfoSerializer(Product.objects.all()[item.id:], many=True).data
+        return render(request, self.template_name, context={
+            'product': product,
+            'owner': owner,
+            'reviews': reviews,
+            'other_products': other_products,
+            'owner_products': owner_products,
+            'related_products': related_products
+        })
 
 
 class LoginView(View):
@@ -74,6 +92,30 @@ class LoginView(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
+
+class VendorListView(View):
+    template_name = 'web/vendor-list.html'
+    context = {
+        'vendors': Vendor.objects.all()
+    }
+
+    def get(self, request):
+        return render(request, self.template_name, self.context)
+
+
+class VendorView(View):
+    template_name = 'web/vendor-store.html'
+
+    def get(self, request, name):
+        vendor = Vendor.objects.get(name=name)
+        reviews = Review.objects.filter(vendor=vendor)
+        context = {
+            'vendor': vendor,
+            'reviews': reviews,
+            'products': ProductInfoSerializer(Product.objects.filter(owner=vendor), many=True).data
+        }
+        return render(request, self.template_name, context)
 
 
 class LogoutView(View):
@@ -86,3 +128,11 @@ class LogoutView(View):
 
 def error_404_view(request, exception):
     return render(request, 'admin/404.html')
+
+
+class CategoryShopView(View):
+    def get(self, request, category):
+        products = Product.objects.filter(category__title=category)
+        return render(request, 'web/shop.html', context={
+            'products': products
+        })

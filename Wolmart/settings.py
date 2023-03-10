@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
@@ -167,8 +168,8 @@ UPLOADCARE = {
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'silver',
     # 'skin':'dark',
-    'height': 550,
-    'width': 950,
+    'height': 250,
+    'width': '100%',
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
@@ -180,14 +181,11 @@ TINYMCE_DEFAULT_CONFIG = {
     anchor pagebreak imagetools template save searchreplace help directionality 
     ''',
     'toolbar1': '''
-   fullscreen preview bold italic underline | fontselect,
+   fullscreen  bold italic underline | fontselect,
    fontsizeselect | forecolor backcolor | alignleft alignright |
    aligncenter alignjustify | indent outdent | bullist numlist table |
-   | link image media | codesample | template| quickbars| tabfocus | fullpage | toc
-   ''',
-    'toolbar2': '''
-   visualblocks visualchars | save| help|
-   charmap hr pagebreak nonbreaking anchor | code |
+   | link image media | quickbars| tabfocus | fullpage | toc | visualblocks visualchars | help|
+   charmap hr anchor 
    ''',
     'contextmenu': 'formats | link image',
     'menubar': True,
@@ -197,6 +195,8 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = True
 
 EMAIL_BACKEND = 'anymail.backends.mailjet.EmailBackend'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ANYMAIL = {
     'MAILJET_API_KEY': str(os.getenv('MYAPP_MAILJET_API_KEY')),

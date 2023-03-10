@@ -49,11 +49,17 @@ class Consumer(models.Model):
         return self.user.email
 
 
+class Images(models.Model):
+    from cloudinary.models import CloudinaryField
+
+    image = CloudinaryField()
+
+
 class Product(PolymorphicModel):
     name = models.CharField(max_length=200)
-    from pyuploadcare.dj.models import ImageGroupField
+
+    images = models.ManyToManyField(Images, related_name='images', blank=True)
     description = tinymce_models.HTMLField(validators=[validate_description])
-    image = ImageGroupField(blank=True)
     available = models.IntegerField(null=True, blank=True)
     price = models.FloatField(validators=[validate_price])
     discount = models.FloatField(blank=True, null=True)
@@ -64,13 +70,11 @@ class Product(PolymorphicModel):
     owner = models.ForeignKey(Vendor, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('-id',)
 
     def save(
             self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
-        if 'iphone' not in self.name.casefold():
-            self.name = self.name.title()
         super().save()
 
     def __str__(self):
@@ -78,22 +82,49 @@ class Product(PolymorphicModel):
 
     @admin.display(description="")
     def image_display(self):
+
         v_image = images_list[(self.id % 21)]
-        if not self.image:
+        if not self.images.all():
             v_image = f'/static/web/images/shop/{v_image}'
         else:
             try:
-                v_image = self.image[0].cdn_url
+                image = self.images.last()
+                v_image = image.image.url
+                print(image.image)
             except httpx.ConnectError:
                 v_image = f'/static/web/images/shop/{v_image}'
         return format_html(
-            '<img src="{}" width="30">', v_image
+            '<img src="{}" width="30" alt="{}"> ', v_image, self.name
         )
 
     @admin.display(description="Price")
     def price_display(self):
         return '$' + str(self.price)
 
+    def product_discount(self):
+        if self.discount:
+            return self.price - ((self.discount / 100) * self.price)
+
+    def review_percentage(self):
+        rating = 0
+        reviews = Review.objects.filter(post=self)
+        if reviews:
+            for review in reviews:
+                rating += review.rating
+            return (rating / (Review.objects.filter(post=self).count() * 5)) * 100
+        return 0
+
+    def review_average(self):
+        rating = 0
+        reviews = Review.objects.filter(post=self)
+        if reviews:
+            for review in reviews:
+                rating += review.rating
+            return rating / (Review.objects.filter(post=self).count())
+        return 0
+
+    def review_count(self):
+        return Review.objects.filter(post=self).count()
 
 
 class Attribute(models.Model):
@@ -199,6 +230,19 @@ class Cart(models.Model):
     processing = models.BooleanField(default=False)
     notes = models.TextField(blank=True)
 
+    def vendor_cart(self, vendor):
+        cart = {
+            'consumer': self.consumer,
+            'id': '%s' % self.transaction_id,
+            'date_ordered': self.date_ordered
+        }
+        price = 0
+        for item in self.items.all():
+            if item.item.owner == vendor:
+                price += item.item.price
+        cart['price'] = price
+        return cart
+
     def cart_total(self):
         total = sum([price.ordered_item_total() for price in self.items.all()])
         return total
@@ -213,9 +257,13 @@ def validate_rating(value):
 
 
 class Review(models.Model):
-    post = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE, blank=True, null=True)
+    vendor = models.ForeignKey(Vendor, related_name='review', on_delete=models.CASCADE, blank=True, null=True)
     reply = models.ForeignKey('Review', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     content = models.TextField(max_length=200)
     timestamp = models.DateTimeField(auto_now_add=True)
     rating = models.FloatField(validators=[validate_rating], null=True)
+
+    def review_percent(self):
+        return (self.rating / 5) * 100

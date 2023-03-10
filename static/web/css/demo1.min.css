@@ -6004,7 +6004,8 @@ blockquote {
   content: "";
 }
 
-.w-icon-cart:before {
+.w-icon
+-cart:before {
   content: "";
 }
 
@@ -11629,7 +11630,8 @@ body .product-popup {
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
-  z-index: 2400;
+  z-index: 112400;
+  opacity: 500;
 }
 .compare-popup .container {
   display: -webkit-box;

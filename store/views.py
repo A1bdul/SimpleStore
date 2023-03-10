@@ -1,17 +1,31 @@
+import json
+import os
+
+import httpx
+import rest_framework.authentication
 import rest_framework_simplejwt.authentication
+from django.conf import settings
 from django.db.models import Q
+from django.template.loader import render_to_string
+from dotenv import load_dotenv
+from pyuploadcare import Uploadcare
 from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from admins.models import User
-from .models import Product, Category, Consumer, Cart, OrderedItem, Review
+from admins.models import User, Vendor
+from .models import Product, Category, Consumer, Cart, OrderedItem, Review, Images
 from .pagination import CustomPagination
 from .permissions import CustomPermission
 from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer, \
-    VendorSerializer, ReviewDetailSerializer
-from .utils import get_tokens_for_user
+    ProductSerializer
+from .utils import get_tokens_for_user, upload_image
+
+load_dotenv()
+
+uploadcare = Uploadcare(public_key=str(os.getenv('public_key')), secret_key=str(os.getenv('secret')))
 
 
 # Create your views here.
@@ -50,7 +64,13 @@ class UserAPIView(APIView):
                     cart.items.add(updated)
 
             instance = ConsumerInfoSerializer(Consumer.objects.get(user=self.request.user)).data
-
+        if action == 'wishlist':
+            product = Product.objects.get(pk=pk)
+            if product in consumer.wish_list.all():
+                consumer.wish_list.remove(product)
+            else:
+                consumer.wish_list.add(product)
+                instance = True
         return Response(instance)
 
 
@@ -68,10 +88,11 @@ class ProductAPIView(ListAPIView):
         return queryset
 
     def post(self, request):
+        print(self.request.query_params)
         # get search input from request
-        category = request.data.get('category', "")
         name = request.data.get('name', "")
-        price = request.data.get('range', (0, float('inf')))
+        category = request.data.get('category', "")
+        price = [request.data.get('min_price'), request.data.get('max_price')]
         paginator = CustomPagination()
 
         # filter queryset for matching products to search
@@ -82,7 +103,32 @@ class ProductAPIView(ListAPIView):
         return paginator.get_paginated_response(serializer.data)
 
 
-class ProductCategoryAPIView(APIView):
+class CategoryProductAPIView(ListAPIView):
+    serializer_class = ProductInfoSerializer
+    pagination_class = CustomPagination
+
+    def get_queryset(self):
+        queryset = [product for product in Product.objects.all() if
+                    product.category.head() == self.kwargs.get('category')]
+        return queryset
+
+    def post(self, request, category):
+        # get search input from request
+        name = request.data.get('name', "")
+        price = range(request.data.get('min_price'), request.data.get('max_price'))
+        paginator = CustomPagination()
+        # filter queryset for matching products to search
+        queryset = [product for product in Product.objects.filter(name__icontains=name) if (
+                product.product_discount() in price or product.price in price)
+                    and product.category.head() == self.kwargs.get(
+            'category')]
+
+        result_page = paginator.paginate_queryset(queryset, request)
+        serializer = ProductInfoSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+
+
+class CategoryItemAPIView(APIView):
     def get(self, request):
         products = {}
         for category in Category.objects.all():
@@ -94,16 +140,33 @@ class ProductCategoryAPIView(APIView):
         return Response(products)
 
 
-class ReviewAPIView(ListCreateAPIView):
+class ReviewAPIView(APIView):
     authentication_classes = [rest_framework_simplejwt.authentication.JWTAuthentication]
     permission_classes = [CustomPermission]
-    lookup_url_kwarg = 'pk'
-    serializer_class = ReviewDetailSerializer
 
-    def get_queryset(self):
-        uid = self.kwargs.get(self.lookup_url_kwarg)
-        query_set = Review.objects.filter(post=Product.objects.get(id=uid))
-        return query_set
+    def post(self, request):
+        rating = request.data.get('rating')
+        content = request.data.get('content')
+        if request.data.get('post'):
+            item = Product.objects.get(pk=request.data.get('post'))
+            Review.objects.create(post=Product.objects.get(id=request.data.get('post')), user=request.user,
+                                  rating=rating,
+                                  content=content)
+            product = ProductInfoSerializer(item).data
+            reviews = Review.objects.filter(post=item)
+            context = {
+                'reviews': reviews,
+                'product': product
+            }
+            form = render_to_string('partials/comment-section.html', context, request=request)
+            return Response({'form': form, 'product': True})
+        else:
+            owner = Vendor.objects.get(name=request.data.get('vendor'))
+            review = Review.objects.create(vendor=owner, content=content, rating=rating, user=request.user)
+            data = {
+                'vendor': True
+            }
+            return Response(data)
 
 
 class ProductDetailAPIView(RetrieveAPIView):
@@ -129,21 +192,52 @@ class RegistrationView(APIView):
         # return Response('true')
 
 
-class ProductClassAPIView(APIView):
-    authentication_classes = [rest_framework_simplejwt.authentication.JWTAuthentication]
+@api_view(['GET'])
+def famous_category(request):
+    query = request.GET.get('q')
+    with open('famous_brands.json') as file:
+        data = json.load(file)
+        result = []
+        for item in data:
+            if query in item['id']:
+                result.append(item)
+        return Response(result)
 
-    def get(self, request, pk):
-        data = {}
-        item = Product.objects.get(pk=pk)
-        product = ProductInfoSerializer(item).data
-        owner = VendorSerializer(item.owner).data
-        owner_items = Product.objects.filter(owner=item.owner).exclude(id=pk)[:5]
-        owner_products = ProductInfoSerializer(owner_items, many=True).data
-        related_items = Product.objects.filter(category=item.category).exclude(owner=item.owner)[:5]
-        related_products = ProductInfoSerializer(related_items, many=True).data
 
-        data['owner'] = owner
-        data['product'] = product
-        data['vendor_products'] = owner_products
-        data['related_products'] = related_products
-        return Response(data)
+class ProductCreateEditAPIView(APIView):
+
+    def get(self, request, pk=None):
+        images_dir = os.path.join(settings.BASE_DIR, 'static/web/images/shop')
+        images_list = os.listdir(images_dir)
+        if pk is not None:
+            item = Product.objects.get(id=pk)
+            v_image = images_list[(item.id % 21)]
+            if not item.images.all():
+                return Response([f'/static/web/images/shop/{v_image}'])
+            else:
+                try:
+                    return Response(x.image.url for x in item.images.all())
+                except httpx.ConnectError:
+                    return Response([f'/static/web/images/shop/{v_image}'])
+
+    def post(self, request, pk=None):
+        serializer = ProductSerializer(data=request.data)
+        if pk is not None:
+            item = Product.objects.get(id=pk)
+            serializer = ProductSerializer(data=request.data, instance=item)
+        if request.data.get('file') and pk is not None:
+            file = request.data.get('file')
+            image = upload_image(file)
+            image = Images.objects.create(image=image)
+            item.images.add(image)
+            return Response(True)
+        else:
+            if serializer.is_valid():
+                if pk is None:
+                    serializer.validated_data['owner'] = Vendor.objects.get(owner=request.user)
+                serializer.save()
+                return Response(True)
+            return Response(serializer.errors)
+
+
+product_update = ProductCreateEditAPIView()
