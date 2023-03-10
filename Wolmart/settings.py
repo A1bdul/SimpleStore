@@ -27,8 +27,9 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://simplestore-production.up.railway.app','simplestore-production.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://simplestore-production.up.railway.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
