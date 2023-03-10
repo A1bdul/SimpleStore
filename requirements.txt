@@ -12,3 +12,4 @@ whitenoise
 textblob
 cloudinary
 django-tinymce
+psycopg2
