@@ -11,3 +11,4 @@ httpx
 whitenoise
 textblob
 cloudinary
+django-tinymce
