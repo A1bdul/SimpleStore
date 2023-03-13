@@ -8,7 +8,6 @@ from django.conf import settings
 from django.db.models import Q
 from django.template.loader import render_to_string
 from dotenv import load_dotenv
-from pyuploadcare import Uploadcare
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveAPIView
@@ -24,8 +23,6 @@ from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoS
 from .utils import get_tokens_for_user, upload_image
 
 load_dotenv()
-
-uploadcare = Uploadcare(public_key=str(os.getenv('public_key')), secret_key=str(os.getenv('secret')))
 
 
 # Create your views here.

@@ -2,7 +2,6 @@ Django
 django-polymorphic
 djangorestframework
 djangorestframework-simplejwt
-pyuploadcare
 Pillow
 django-anymail
 python-dotenv
