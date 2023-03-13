@@ -13,3 +13,4 @@ textblob
 cloudinary
 django-tinymce
 psycopg2-binary
+cloudinary_storage

@@ -160,7 +160,7 @@ AUTH_USER_MODEL = 'admins.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = str(os.getenv('STATIC_ROOT'))
 
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
