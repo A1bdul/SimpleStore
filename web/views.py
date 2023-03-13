@@ -127,7 +127,11 @@ class LogoutView(View):
 
 
 def error_404_view(request, exception):
-    return render(request, 'admin/404.html')
+    return render(request, 'web/error-404.html')
+
+
+def error_500_view(request):
+    return render(request, 'web/error-404.html')
 
 
 class CategoryShopView(View):

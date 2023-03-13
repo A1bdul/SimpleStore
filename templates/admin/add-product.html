@@ -1,3 +1,6 @@
+{{ form.media }}
+
+{% load static %}
 {% load humanize %}
 <!doctype html>
 <html lang="en">
@@ -10,30 +13,29 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/static/admin/images/favicon.ico">
-    <link href="/static/admin/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/static/admin/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet"
+    <link rel="shortcut icon" href="{% static "admin/images/favicon.ico" %}>
+    <link href="{% static "admin/libs/select2/css/select2.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href="{% static "admin/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet"
           type="text/css">
-    <link href="/static/admin/libs/spectrum-colorpicker2/spectrum.min.css" rel="stylesheet" type="text/css">
-    <link href="/static/admin/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet"
+    <link href="{% static 'admin/libs/spectrum-colorpicker2/spectrum.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static "admin/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css" %}" rel="stylesheet"
           type="text/css">
-    <link href="/static/admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+    <link href="{% static "admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" %}" rel="stylesheet"
           type="text/css"/>
-    <link rel="stylesheet" href="/static/admin/libs/@chenfengyuan/datepicker/datepicker.min.css">
+    <link rel="stylesheet" href="{% static "admin/libs/@chenfengyuan/datepicker/datepicker.min.css" %}">
 
     <!-- select2 css -->
-    <link href="/static/admin/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static "admin/libs/select2/css/select2.min.css" %}" rel="stylesheet" type="text/css"/>
 
     <!-- dropzone css -->
-    <link href="/static/admin/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static "admin/libs/dropzone/min/dropzone.min.css" %}" rel="stylesheet" type="text/css"/>
 
     <!-- Bootstrap Css -->
-    <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static "admin/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="/static/admin/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'admin/css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="/static/admin/css/app.min.css" rel="stylesheet" type="text/css"/>
-    {{ form.media }}
+    <link href="{% static 'admin/css/app.min.css' %}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body data-sidebar="dark" data-layout-mode="light">
@@ -296,7 +298,8 @@
 
                                             </div>
                                             <label class="form-label">Discount</label>
-                                            <input data-toggle="touchspin" value="{{ item.discount|floatformat:2 }}" type="integer"
+                                            <input data-toggle="touchspin" value="{{ item.discount|floatformat:2 }}"
+                                                   type="integer"
                                                    id="discount" name="discount" data-step="10.0"
                                                    data-decimals="2" data-bts-postfix="%">
                                         </div>
@@ -436,7 +439,7 @@
 
         <div class="p-4">
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
+                <img src="{% static "admin/images/layouts/layout-1.jpg" %}" class="img-thumbnail" alt="layout images">
             </div>
 
             <div class="form-check form-switch mb-3">
@@ -445,7 +448,7 @@
             </div>
 
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
+                <img src="{% static "admin/images/layouts/layout-2.jpg" %}" class="img-thumbnail" alt="layout images">
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
@@ -453,7 +456,7 @@
             </div>
 
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
+                <img src="{% static "admin/images/layouts/layout-3.jpg" %}" class="img-thumbnail" alt="layout images">
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
@@ -461,7 +464,7 @@
             </div>
 
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
+                <img src="{% static "admin/images/layouts/layout-4.jpg" %}" class="img-thumbnail" alt="layout images">
             </div>
             <div class="form-check form-switch mb-5">
                 <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
@@ -480,43 +483,43 @@
 
 <!-- JAVASCRIPT -->
 - JAVASCRIPT -->
-<script src="/static/admin/libs/jquery/jquery.min.js"></script>
-<script src="/static/admin/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/static/admin/libs/metismenu/metisMenu.min.js"></script>
-<script src="/static/admin/libs/simplebar/simplebar.min.js"></script>
-<script src="/static/admin/libs/node-waves/waves.min.js"></script>
+<script src="{% static "admin/libs/jquery/jquery.min.js" %}"></script>
+<script src="{% static "admin/libs/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+<script src="{% static "admin/libs/metismenu/metisMenu.min.js" %}"></script>
+<script src="{% static "admin/libs/simplebar/simplebar.min.js" %}"></script>
+<script src="{% static "admin/libs/node-waves/waves.min.js" %}"></script>
 
-<script src="/static/admin/libs/select2/js/select2.min.js"></script>
-<script src="/static/admin/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="/static/admin/libs/spectrum-colorpicker2/spectrum.min.js"></script>
-<script src="/static/admin/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-<script src="/static/admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-<script src="/static/admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+<script src="{% static "admin/libs/select2/js/select2.min.js" %}"></script>
+<script src="{% static "admin/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+<script src="{% static "admin/libs/spectrum-colorpicker2/spectrum.min.js" %}"></script>
+<script src="{% static "admin/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js" %}"></script>
+<script src="{% static "admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js" %}"></script>
+<script src="{% static "admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
 
-<script src="/static/admin/libs/@chenfengyuan/datepicker/datepicker.min.js"></script>
+<script src="{% static "admin/libs/@chenfengyuan/datepicker/datepicker.min.js" %}"></script>
 <!-- dropzone plugin -->
-<script src="/static/admin/libs/dropzone/min/dropzone.min.js"></script>
+<script src="{% static "admin/libs/dropzone/min/dropzone.min.js" %}"></script>
 
 <!-- form repeater js -->
-<script src="/static/admin/libs/jquery.repeater/jquery.repeater.min.js"></script>
+<script src="{% static "admin/libs/jquery.repeater/jquery.repeater.min.js" %}"></script>
 
-<script src="/static/admin/js/pages/form-repeater.int.js"></script>
+<script src="{% static "admin/js/pages/form-repeater.int.js" %}"></script>
 
 <!-- init js -->
 
 <!-- form mask -->
-<script src="/static/admin/libs/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="{% static "admin/libs/inputmask/min/jquery.inputmask.bundle.min.js" %}"></script>
 
 <!-- form mask init -->
-<script src="/static/admin/js/pages/form-mask.init.js"></script>
-<script src="/static/admin/js/pages/ecommerce-select2.init.js"></script>
+<script src="{% static "admin/js/pages/form-mask.init.js" %}"></script>
+<script src="{% static "admin/js/pages/ecommerce-select2.init.js" %}"></script>
 
-<script src="/static/admin/libs/parsleyjs/parsley.min.js"></script>
+<script src="{% static "admin/libs/parsleyjs/parsley.min.js" %}"></script>
 
-<script src="/static/admin/js/pages/form-validation.init.js"></script>
-<script src="/static/admin/js/pages/form-advanced.init.js"></script>
+<script src="{% static "admin/js/pages/form-validation.init.js" %}"></script>
+<script src="{% static "admin/js/pages/form-advanced.init.js" %}"></script>
 
 <!-- App js -->
-<script src="/static/admin/js/app.js"></script>
+<script src="{% static 'admin/js/app.js' %}"></script>
 </body>
 </html>

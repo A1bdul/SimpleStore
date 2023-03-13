@@ -1,3 +1,4 @@
+{% load static %}
 {% load humanize %}
 <!doctype html>
 <html lang="en">
@@ -13,11 +14,11 @@
     <link rel="shortcut icon" href="/static/admin/images/favicon.ico">
 
     <!-- Bootstrap Css -->
-    <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'admin/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="/static/admin/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'admin/css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="/static/admin/css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'admin/css/app.min.css' %}" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -100,8 +101,9 @@
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user" src="/static/admin/images/users/avatar-1.jpg"
-                             alt="Header Avatar">
+                        <img class="rounded-circle header-profile-user"
+                             src="{% static 'admin/images/users/avatar-1.jpg %}"
+                             alt=" Header Avatar">
                         <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ request.user }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
@@ -183,7 +185,7 @@
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
-                                        <img src="/static/admin/images/profile-img.png" alt="" class="img-fluid">
+                                        <img src="{% static 'admin/images/profile-img.png' %}" alt="" class="img-fluid">
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +193,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="avatar-md profile-user-wid mb-4">
-                                            <img src="/static/admin/images/users/avatar-1.jpg" alt=""
+                                            <img src="{% static 'admin/images/users/avatar-1.jpg' %}" alt=""
                                                  class="img-thumbnail rounded-circle">
                                         </div>
                                         <h5 class="font-size-15 text-truncate">{{ request.user }}</h5>
@@ -573,7 +575,7 @@
                                 <tr>
                                     <th scope="row">
                                         <div>
-                                            <img src="/static/admin/images/product/img-4.png" alt="" class="avatar-sm">
+                                            <img src="" alt="" class="avatar-sm">
                                         </div>
                                     </th>
                                     <td>
@@ -659,7 +661,7 @@
 
         <div class="p-4">
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
+                <img src="{% static 'admin/images/layouts/layout-1.jpg' %}" class="img-thumbnail" alt="layout images">
             </div>
 
             <div class="form-check form-switch mb-3">
@@ -668,7 +670,7 @@
             </div>
 
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
+                <img src="{% static 'admin/images/layouts/layout-2.jpg' %}" class="img-thumbnail" alt="layout images">
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
@@ -676,7 +678,7 @@
             </div>
 
             <div class="mb-2">
-                <img src="/static/admin/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
+                <img src='{% static 'admin/images/layouts/layout-3.jpg' %}' class="img-thumbnail" alt="layout images">
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
@@ -712,10 +714,10 @@
 <script src="/static/admin/libs/apexcharts/apexcharts.min.js"></script>
 
 <!-- dashboard init -->
-<script src="/static/admin/js/pages/dashboard.init.js"></script>
+<script src="{% static 'admin/js/pages/dashboard.init.js' %}"></script>
 
 <!-- App js -->
-<script src="/static/admin/js/app.js"></script>
+<script src="{% static 'admin/js/app.js' %}"></script>
 </body>
 
 </html>

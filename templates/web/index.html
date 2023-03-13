@@ -1,17 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>K-Mart eCommmerce Marketplace</title>
 
-    <title>Wolmart - Marketplace HTML5 Template</title>
-
-    <meta name="keywords" content="Marketplace ecommerce responsive HTML5 Template"/>
+    <meta name="keywords" content="Marketplace K-Mart ecommerce buyer seller"/>
     <meta name="description"
-          content="Wolmart is powerful marketplace &amp; ecommerce responsive Html5 Template.">
-    <meta name="author" content="D-THEMES">
-
+          content="K-Mart is powerful World-wide marketplace &amp; ecommerce store to reach thousands of consumers and sellers anywhere">
+    <meta name="author" content="Abdul">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/static/web/images/icons/favicon.png">
 
@@ -50,7 +49,7 @@
     <link rel="stylesheet" href="/static/web/vendor/swiper/swiper-bundle.min.css">
 
     <!-- Default CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/web/css/demo1.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/demo1.min.css' %}">
 
 </head>
 
@@ -3194,8 +3193,15 @@
 <!-- End of Quick view -->
 
 <!-- Plugin JS File -->
-<script src="/static/web/vendor/jquery/jquery.min.js"></script>
-<script src="/static/web/vendor/currency/currencyFormatter.js"></script>
+<script src="{% static 'web/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'web/vendor/currency/currencyFormatter.js' %}"></script>
+<script src="{% static 'web/vendor/jquery.plugin/jquery.plugin.min.js' %}"></script>
+<script src="{% static 'web/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'web/vendor/nouislider/nouislider.min.js' %}"></script>
+<script src="{% static 'web/vendor/jquery.countdown/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'web/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'web/vendor/zoom/jquery.zoom.js' %}"></script>
+
 <script src="/static/web/vendor/jquery.plugin/jquery.plugin.min.js"></script>
 <script src="/static/web/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/static/web/vendor/zoom/jquery.zoom.js"></script>

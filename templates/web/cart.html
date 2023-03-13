@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,32 +22,35 @@
         };
         (function (d) {
             var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = '/static/web/js/webfont.js';
+            wf.src = '{% static 'web/js/webfont.js' %}';
+
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
+    <link rel="preload" href="{% static 'web/vendor/fontawesome-free/webfonts/fa-regular-400.woff2' %}" as="font"
+          type="font/woff2"
+          crossorigin="anonymous">
+    <link rel="preload" href="{% static 'web/vendor/fontawesome-free/webfonts/fa-solid-900.woff2' %}" as="font"
+          type="font/woff2"
+          crossorigin="anonymous">
+    <link rel="preload" href="{% static 'web/vendor/fontawesome-free/webfonts/fa-brands-400.woff2' %}" as="font"
+          type="font/woff2"
+          crossorigin="anonymous">
+    <link rel="preload" href="{% static 'web/fonts/wolmart.woff?png09e' %}" as="font" type="font/woff"
+          crossorigin="anonymous">
 
-    <link rel="preload" href="/static/web/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" as="font"
-          type="font/woff2"
-          crossorigin="anonymous">
-    <link rel="preload" href="/static/web/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font"
-          type="font/woff2"
-          crossorigin="anonymous">
-    <link rel="preload" href="/static/web/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font"
-          type="font/woff2"
-          crossorigin="anonymous">
-    <link rel="preload" href="/static/web/fonts/wolmart.woff?png09e" as="font" type="font/woff" crossorigin="anonymous">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/web/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/vendor/fontawesome-free/css/all.min.css' %}">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/web/vendor/magnific-popup/magnific-popup.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/vendor/magnific-popup/magnific-popup.min.css' %}">
 
     <!-- Default CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/web/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/style.min.css' %}">
 </head>
+
 
 <body>
 <div class="page-wrapper">
@@ -69,17 +73,17 @@
                     <!-- End of DropDown Menu -->
 
                     <div class="dropdown">
-                        <a href="#language"><img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14"
+                        <a href="#language"><img src="{% static 'web/images/flags/eng.png' %}" alt="ENG Flag" width="14"
                                                  height="8" class="dropdown-image"/> ENG</a>
                         <div class="dropdown-box">
                             <a href="#ENG">
-                                <img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
-                                     class="dropdown-image"/>
+                                <img src="{% static 'web/images/flags/eng.png %}" alt="ENG Flag" width="14" height="8"
+                                     class=" dropdown-image"/>
                                 ENG
                             </a>
                             <a href="#FRA">
-                                <img src="/static/web/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
-                                     class="dropdown-image"/>
+                                <img src="{% static 'web/images/flags/fra.png %}" alt="FRA Flag" width="14" height="8"
+                                     class=" dropdown-image"/>
                                 FRA
                             </a>
                         </div>
@@ -692,13 +696,16 @@
 <!-- End of Mobile Menu -->
 
 <!-- Plugin JS File -->
-<script src="/static/web/vendor/jquery/jquery.min.js"></script>
-<script src="/static/web/vendor/sticky/sticky.js"></script>
-<script src="/static/web/vendor/magnific-popup/jquery.magnific-popup.min.js">
-</script>
-<script src="/static/web/vendor/currency/currencyFormatter.js"></script>
-<script src="/static/web/js/main.min.js"></script>
-<script src="/static/web/vendor/display/index.js"></script>
+<script src="{% static 'web/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'web/vendor/sticky/sticky.js' %}"></script>
+
+<script src="{% static 'web/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+<script src="{% static 'web/vendor/currency/currencyFormatter.js' %}"></script>
+
+<script src="{% static 'web/js/main.min.js' %}"></script>
+<script src="{% static 'web/vendor/display/index.js' %}"></script>
+
 
 </body>
 

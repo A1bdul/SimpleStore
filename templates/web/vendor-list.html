@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +22,7 @@
         };
         (function (d) {
             var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = '/static/web/js/webfont.js';
+            wf.src = '{% static 'web/js/webfont.js' %}';
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);
