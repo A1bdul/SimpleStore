@@ -107,7 +107,6 @@
                     <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                     </a>
                     <a href="{% url 'home' %}" class="logo ml-lg-0">
-                        <img src="/static/web/images/logo.png" alt="logo" width="144" height="45"/>
                     </a>
                     <form method="get" action="#"
                           class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
@@ -306,8 +305,10 @@
                                     <h1 class="product-title">{{ product.name }}</h1>
                                     <div class="product-bm-wrapper">
                                         <figure class="brand">
+                                            {% if owner.logo %}
                                             <img src="{{ owner.logo }}" alt="Brand"
                                                  width="85" height="48"/>
+                                            {% endif %}
                                         </figure>
                                         <div class="product-meta">
                                             <div class="product-categories">
@@ -496,8 +497,10 @@
                                             <div class="vendor-user">
                                                 <figure class="vendor-logo mr-4">
                                                     <a href="#">
-                                                        <img src="/static/web/images/products/vendor-logo.jpg"
-                                                             alt="Vendor Logo" width="80" height="80"/>
+                                                        {% if owner.logo %}
+                                                            <img src="{{ owner.logo }}"
+                                                                 alt="Vendor Logo" width="80" height="80"/>
+                                                        {% endif %}
                                                     </a>
                                                 </figure>
                                                 <div>
@@ -923,8 +926,7 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="widget widget-about">
                             <a href="demo1.html" class="logo-footer">
-                                <img src="/static/web/images/logo_footer.png" alt="logo-footer" width="144"
-                                     height="45"/>
+
                             </a>
                             <div class="widget-body">
                                 <p class="widget-about-title">Got Question? Call us 24/7</p>
@@ -1079,11 +1081,11 @@
 
 <!-- Start of Sticky Footer -->
 <div class="sticky-footer sticky-content fix-bottom">
-    <a href="{% url 'home' %}" class="sticky-link active">
+    <a href="{% url 'home' %}" class="sticky-link">
         <i class="w-icon-home"></i>
         <p>Home</p>
     </a>
-    <a href="#" class="sticky-link">
+    <a href="{% url 'shop' %}" class="sticky-link active">
         <i class="w-icon-category"></i>
         <p>Shop</p>
     </a>
@@ -1163,10 +1165,10 @@
                 <ul class="mobile-menu">
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li>
-                        <a href="shop.html">Shop</a>
+                        <a href="{% url 'shop' %}">Shop</a>
                     </li>
                     <li>
-                        <a href="vendor-list.html">Vendor</a>
+                        <a href="{% url 'vendors' %}">Vendor</a>
                     </li>
                 </ul>
             </div>

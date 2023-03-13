@@ -104,7 +104,6 @@
                         <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                         </a>
                         <a href="{% url 'home' %}" class="logo ml-lg-0">
-                            <img src="/static/web/images/logo.png" alt="logo" width="144" height="45" />
                         </a>
                         <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                             <div class="select-box">
@@ -485,8 +484,7 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="widget widget-about">
                                 <a href="{% url 'home' %}" class="logo-footer">
-                                    <img src="/static/web/images/logo_footer.png" alt="logo-footer" width="144"
-                                        height="45" />
+
                                 </a>
                                 <div class="widget-body">
                                     <p class="widget-about-title">Got Question? Call us 24/7</p>
@@ -519,7 +517,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="widget user-in">
+                            <div class="widget">
                                 <h4 class="widget-title">My Account</h4>
                                 <ul class="widget-body">
                                     <li><a href="#">Track My Order</a></li>
@@ -527,15 +525,6 @@
                                     <li><a href="login.html">Sign In</a></li>
                                     <li><a href="#">Help</a></li>
                                     <li><a href="/account/wishlist">My Wishlist</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                </ul>
-                            </div>
-                            <div class="widget user-out">
-                                <h4 class="widget-title">My Account</h4>
-                                <ul class="widget-body">
-                                    <li><a href="{% url 'cart' %}">View Cart</a></li>
-                                    <li><a href="login.html">Sign In</a></li>
-                                    <li><a href="#">Help</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
                                 </ul>
                             </div>
@@ -650,11 +639,11 @@
 
     <!-- Start of Sticky Footer -->
     <div class="sticky-footer sticky-content fix-bottom">
-        <a href="{% url 'home' %}" class="sticky-link active">
+        <a href="{% url 'home' %}" class="sticky-link">
             <i class="w-icon-home"></i>
             <p>Home</p>
         </a>
-        <a href="#" class="sticky-link">
+        <a href="#" class="sticky-link active">
             <i class="w-icon-category"></i>
             <p>Shop</p>
         </a>

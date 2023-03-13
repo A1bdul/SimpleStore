@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
 import datetime
+import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://simplestore-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://simplestore-production.up.railway.app', 'http://localhost:8000/']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.humanize',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'rest_framework',
     'tinymce',
@@ -82,12 +84,12 @@ WSGI_APPLICATION = 'Wolmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #       'NAME': BASE_DIR / 'db.sqlite3',
 #   }
-#}
+# }
 
 DATABASES = {
     'default': {
@@ -106,19 +108,19 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME':
-        'django.contrib.auth.password_validation.MinimumLengthValidator',
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
         'NAME':
-        'django.contrib.auth.password_validation.CommonPasswordValidator',
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME':
-        'django.contrib.auth.password_validation.NumericPasswordValidator',
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -128,13 +130,19 @@ REST_FRAMEWORK = {
     #     'rest_framework.permissions.IsAuthenticated'
     # ],
     'DEFAULT_AUTHENTICATION_CLASSES':
-    ['rest_framework_simplejwt.authentication.JWTAuthentication']
+        ['rest_framework_simplejwt.authentication.JWTAuthentication']
 }
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ['Bearer'],
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=2),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=3)
+}
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('cloud_name'),
+    'API_KEY': os.getenv('api_key'),
+    'API_SECRET': os.getenv('api_secret')
 }
 
 # Internationalization
@@ -152,28 +160,18 @@ AUTH_USER_MODEL = 'admins.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-UPLOADCARE = {
-    'pub_key': str(os.getenv('pub_key')),
-    'secret': str(os.getenv('secret')),
-}
 
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'silver',

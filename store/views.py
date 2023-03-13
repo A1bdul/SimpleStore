@@ -1,8 +1,8 @@
 import json
 import os
 
+import cloudinary
 import httpx
-import rest_framework.authentication
 import rest_framework_simplejwt.authentication
 from django.conf import settings
 from django.db.models import Q
@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from admins.models import User, Vendor
-from .models import Product, Category, Consumer, Cart, OrderedItem, Review, Images
+from .models import Product, Category, Consumer, Cart, OrderedItem, Review
 from .pagination import CustomPagination
 from .permissions import CustomPermission
 from .serializer import CategorySerializer, ProductInfoSerializer, ConsumerInfoSerializer, RegistrationSerializer, \
@@ -216,7 +216,10 @@ class ProductCreateEditAPIView(APIView):
                 return Response([f'/static/web/images/shop/{v_image}'])
             else:
                 try:
-                    return Response(x.image.url for x in item.images.all())
+                    return Response(
+                        cloudinary.CloudinaryImage(x.image.public_id).build_url(height=120, width=110, crop='fill') for
+                        x in
+                        item.images.all())
                 except httpx.ConnectError:
                     return Response([f'/static/web/images/shop/{v_image}'])
 
@@ -227,9 +230,10 @@ class ProductCreateEditAPIView(APIView):
             serializer = ProductSerializer(data=request.data, instance=item)
         if request.data.get('file') and pk is not None:
             file = request.data.get('file')
-            image = upload_image(file)
-            image = Images.objects.create(image=image)
-            item.images.add(image)
+            photo = upload_image(file)
+
+            if item:
+                item.images.add(photo)
             return Response(True)
         else:
             if serializer.is_valid():

@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 
+import cloudinary
 import httpx
 from django.conf import settings
 from rest_framework import serializers
@@ -108,7 +109,12 @@ class ProductInfoSerializer(serializers.ModelSerializer):
             return [f'/static/web/images/shop/{v_image}'] * 2
         else:
             try:
-                return [x.image.url for x in obj.images.all()]
+
+                return [cloudinary.CloudinaryImage(x.image.public_id).build_url(width=800,
+                                                                                height=900,
+                                                                                crop='fill',
+                                                                                responsive=True) for x in
+                        obj.images.all()]
             except httpx.ConnectError:
                 return [f'/static/web/images/shop/{v_image}'] * 2
 

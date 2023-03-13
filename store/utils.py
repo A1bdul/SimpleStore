@@ -4,6 +4,8 @@ import cloudinary
 from dotenv import load_dotenv
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from store.models import Images
+
 load_dotenv()
 
 cloudinary.config(
@@ -23,15 +25,12 @@ def upload_image(data):
 
     # Upload the image.
     # Set the asset's public ID and allow overwriting the asset with new versions
-    uploader.upload(data, public_id="quickstart_butterfly", unique_filename=False, overwrite=True)
+    photo = uploader.upload(data, overwrite=True)
 
     # Build the URL for the image and save it in the variable 'srcURL'
-    src_url = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
+    src_url = cloudinary.CloudinaryImage(photo['public_id'])
 
-    # Log the image URL to the console.
-    # Copy this URL in a browser tab to generate the image on the fly.
-    print("****2. Upload an image****\nDelivery URL: ", src_url, "\n")
-    return cloudinary.CloudinaryImage('quickstart_butter_fly')
+    return Images.objects.create(image=src_url)
 
 
 def delete_image(data):
