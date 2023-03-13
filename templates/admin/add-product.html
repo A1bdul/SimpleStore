@@ -1,8 +1,5 @@
-
-
 {% load static %}
 {% load humanize %}
-<style href="{% static 'tinymce/tinymce.min.js' %}"></style>
 <!doctype html>
 <html lang="en">
 
@@ -14,7 +11,9 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author"/>
     <!-- App favicon -->
+    <script src="{% static 'js/tiny_mce/tiny_mce.js' %}"></script>
     <link rel="shortcut icon" href="{% static "admin/images/favicon.ico" %}>
+
     <link href="{% static "admin/libs/select2/css/select2.min.css" %} rel="stylesheet" type="text/css"/>
     <link href="{% static "admin/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet"
           type="text/css">
