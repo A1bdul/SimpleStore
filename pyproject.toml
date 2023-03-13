@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "simplestore"
+version = "0.1.0"
+description = ""
+authors = ["Replit user <<>>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "4.1.7"
+django-tinymce = "3.5.0"
+django-polymorphic = "^3.1.0"
+djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "^5.2.2"
+httpx = "^0.23.3"
+python-dotenv = "^1.0.0"
+pyuploadcare = "^4.0.0"
+textblob = "^0.17.1"
+cloudinary = "^1.32.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
