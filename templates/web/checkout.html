@@ -1,5 +1,4 @@
 {% load static %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,14 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Wolmart eCommmerce Marketplace HTML Template</title>
+    <title>K-Mart eCommmerce Marketplace </title>
 
-    <meta name="keywords" content="Marketplace ecommerce responsive HTML5 Template"/>
-    <meta name="description" content="Wolmart is powerful marketplace &amp; ecommerce responsive Html5 Template.">
-    <meta name="author" content="D-THEMES">
+    <meta name="keywords" content="Marketplace ecommerce responsive buyers seller"/>
+    <meta name="description" content="K-Mart is powerful  world-wide Marketplace &amp; eCommerce Store.">
+    <meta name="author" content="Abdul">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/static/web/images/icons/favicon.png">
+    <link rel="icon" type="image/png" href="{% static 'web/images/icons/favicon.png' %}">
 
     <!-- WebFont.js -->
     <script>
@@ -24,6 +23,7 @@
         (function (d) {
             var wf = d.createElement('script'), s = d.scripts[0];
             wf.src = '{% static 'web/js/webfont.js' %}';
+
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);
@@ -44,7 +44,7 @@
     <!-- Vendor CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'web/vendor/fontawesome-free/css/all.min.css' %}">
     <!-- Plugin CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/web/vendor/magnific-popup/magnific-popup.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/vendor/magnific-popup/magnific-popup.min.css' %}">
 
     <!-- Default CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'web/css/style.min.css' %}">
@@ -52,13 +52,14 @@
 
 <body>
 <div class="page-wrapper">
-    <h1 class="d-none">Wolmart - Responsive Marketplace HTML Template</h1>
+    <h1 class="d-none">K-Mart - Responsive Marketplace HTML Template</h1>
+    <!-- Start of Header -->
     <!-- Start of Header -->
     <header class="header header-border">
         <div class="header-top">
             <div class="container">
                 <div class="header-left">
-                    <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                    <p class="welcome-msg">Welcome to K-Mart Store message or remove it!</p>
                 </div>
                 <div class="header-right">
                     <div class="dropdown">
@@ -71,16 +72,17 @@
                     <!-- End of DropDown Menu -->
 
                     <div class="dropdown">
-                        <a href="#language"><img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14"
+                        <a href="#language"><img src="{% static 'web/images/flags/eng.png' %}" alt=" ENG Flag"
+                                                 width="14"
                                                  height="8" class="dropdown-image"/> ENG</a>
                         <div class="dropdown-box">
                             <a href="#ENG">
-                                <img src="/static/web/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
+                                <img src="{% static 'web/images/flags/eng.png' %}" alt="ENG Flag" width="14" height="8"
                                      class="dropdown-image"/>
                                 ENG
                             </a>
                             <a href="#FRA">
-                                <img src="/static/web/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
+                                <img src="{% static 'web/images/flags/fra.png' %}" alt="FRA Flag" width="14" height="8"
                                      class="dropdown-image"/>
                                 FRA
                             </a>
@@ -90,10 +92,11 @@
                     <span class="divider d-lg-show"></span>
                     <a href="contact-us.html" class="d-lg-show">Contact Us</a>
                     <a href="/account" class="user-in d-lg-show">My Account</a>
-                    <a href="/static/web/ajax/login.html" class="d-lg-show login sign-in user-out"><i
+                    <a href="{% static 'web/ajax/login.html' %}" class="d-lg-show login sign-in user-out"><i
                             class="w-icon-account "></i>Sign In</a>
                     <span class="delimiter d-lg-show user-out">/</span>
-                    <a href="/static/web/ajax/login.html" class="user-out ml-0 d-lg-show login register">Register</a>
+                    <a href="{% static 'web/ajax/login.html' %}"
+                       class="user-out ml-0 d-lg-show login register">Register</a>
                 </div>
             </div>
         </div>
@@ -105,7 +108,6 @@
                     <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                     </a>
                     <a href="{% url 'home' %}" class="logo ml-lg-0">
-                        <img src="/static/web/images/logo.png" alt="logo" width="144" height="45"/>
                     </a>
                     <form method="get" action="#"
                           class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
@@ -140,7 +142,7 @@
                     </div>
                     <a class="wishlist label-down link d-lg-none user-in" href="/account/wishlist">
                         <i class="w-icon-heart"></i>
-                        <span class="wishlist-label">Wishlist</span>
+                        <span class="wishlist-label d-lg-show">Wishlist</span>
                     </a>
                     <a class="compare label-down link d-xs-show" href="{% url 'compare' %}">
                         <i class="w-icon-compare"></i>
@@ -200,7 +202,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="vendor-store.html">Vendor</a>
+                                    <a href="{% url 'vendors' %}">Vendor</a>
 
                                 </li>
                             </ul>
@@ -214,6 +216,10 @@
             </div>
         </div>
     </header>
+    <!-- End of Header -->
+    <!-- End of Header Top -->
+
+
     <!-- End of Header -->
 
     <!-- Start of Main -->
@@ -624,12 +630,10 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="widget widget-about">
                             <a href="index.html" class="logo-footer">
-                                <img src="/static/web/images/logo_footer.png" alt="logo-footer" width="144"
-                                     height="45"/>
                             </a>
                             <div class="widget-body">
                                 <p class="widget-about-title">Got Question? Call us 24/7</p>
-                                <a href="tel:18005707777" class="widget-about-call">1-800-570-7777</a>
+                                <a href="tel:18005707777" class="widget-about-call">+234 701 284 114 5</a>
                                 <p class="widget-about-desc">Register now to get updates on pronot get up icons
                                     & coupons ster now toon.
                                 </p>
@@ -763,12 +767,12 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-left">
-                    <p class="copyright">Copyright © 2021 Wolmart Store. All Rights Reserved.</p>
+                    <p class="copyright">Copyright © 2021 K-Mart Store. All Rights Reserved.</p>
                 </div>
                 <div class="footer-right">
                     <span class="payment-label mr-lg-8">We're using safe payment for</span>
                     <figure class="payment">
-                        <img src="/static/web/images/payment.png" alt="payment" width="159" height="25"/>
+                        <img src="{% static 'web/images/payment.png' %}" alt="payment" width="159" height="25"/>
                     </figure>
                 </div>
             </div>
@@ -788,7 +792,7 @@
         <i class="w-icon-category"></i>
         <p>Shop</p>
     </a>
-    <a href="/static/web/ajax/login.html" class="user-ino sign-in sticky-link">
+    <a href="{% static 'web/ajax/login.html' %}" class="user-ino sign-in sticky-link">
         <i class="w-icon-account"></i>
         <p>Account</p>
     </a>
@@ -1292,12 +1296,15 @@
 <!-- End of Mobile Menu -->
 
 <!-- Plugin JS File -->
-<script src="/static/web/vendor/jquery/jquery.min.js"></script>
-<script src="/static/web/vendor/sticky/sticky.js"></script>
-<script src="/static/web/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="/static/web/vendor/currency/currencyFormatter.js"></script>
-<script src="/static/web/js/main.min.js"></script>
-<script src="/static/web/vendor/display/index.js"></script>
+<script src="{% static 'web/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'web/vendor/sticky/sticky.js' %}"></script>
+
+<script src="{% static 'web/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+<script src="{% static 'web/vendor/currency/currencyFormatter.js' %}"></script>
+
+<script src="{% static 'web/js/main.min.js' %}"></script>
+<script src="{% static 'web/vendor/display/index.js' %}"></script>
 
 </body>
 

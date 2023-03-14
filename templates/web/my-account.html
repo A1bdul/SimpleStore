@@ -13,7 +13,7 @@
     <meta name="author" content="Abdul">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/static/web/images/icons/favicon.png">
+    <link rel="icon" type="image/png" href="{% static 'web/images/icons/favicon.png' %}">
 
     <!-- WebFont.js -->
     <script>
@@ -142,7 +142,7 @@
                     </div>
                     <a class="wishlist label-down link user-in" href="/account/wishlist">
                         <i class="w-icon-heart"></i>
-                        <span class="wishlist-label">Wishlist</span>
+                        <span class="wishlist-label d-lg-show">Wishlist</span>
                     </a>
                     <a class="compare label-down link d-xs-show" href="{% url 'compare' %}">
                         <i class="w-icon-compare"></i>
@@ -244,14 +244,16 @@
             <div class="container">
                 <div class="tab tab-vertical row gutter-lg">
                     <ul class="nav nav-tabs mb-6" role="tablist">
+                        {% if request.user.is_superuser %}
+                            <li class="link-item">
+                                <a href="{% url 'admin-index' %}">Dashboard</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
-                            <a href="#account-dashboard" class="nav-link active">Dashboard</a>
+                            <a href="#account-dashboard" class="nav-link active">Account</a>
                         </li>
                         <li class="nav-item">
                             <a href="#account-orders" class="nav-link">Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#account-downloads" class="nav-link">Downloads</a>
                         </li>
                         <li class="nav-item">
                             <a href="#account-addresses" class="nav-link">Addresses</a>
@@ -375,69 +377,43 @@
                             </div>
 
                             <table class="shop-table account-orders-table mb-6">
-                                <thead>
-                                <tr>
-                                    <th class="order-id">Order</th>
-                                    <th class="order-date">Date</th>
-                                    <th class="order-status">Status</th>
-                                    <th class="order-total">Total</th>
-                                    <th class="order-actions">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="order-id">#2321</td>
-                                    <td class="order-date">August 20, 2021</td>
-                                    <td class="order-status">Processing</td>
-                                    <td class="order-total">
-                                        <span class="order-price">$121.00</span> for
-                                        <span class="order-quantity"> 1</span> item
-                                    </td>
-                                    <td class="order-action">
-                                        <a href="#"
-                                           class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="order-id">#2321</td>
-                                    <td class="order-date">August 20, 2021</td>
-                                    <td class="order-status">Processing</td>
-                                    <td class="order-total">
-                                        <span class="order-price">$150.00</span> for
-                                        <span class="order-quantity"> 1</span> item
-                                    </td>
-                                    <td class="order-action">
-                                        <a href="#"
-                                           class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="order-id">#2319</td>
-                                    <td class="order-date">August 20, 2021</td>
-                                    <td class="order-status">Processing</td>
-                                    <td class="order-total">
-                                        <span class="order-price">$201.00</span> for
-                                        <span class="order-quantity"> 1</span> item
-                                    </td>
-                                    <td class="order-action">
-                                        <a href="#"
-                                           class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="order-id">#2318</td>
-                                    <td class="order-date">August 20, 2021</td>
-                                    <td class="order-status">Processing</td>
-                                    <td class="order-total">
-                                        <span class="order-price">$321.00</span> for
-                                        <span class="order-quantity"> 1</span> item
-                                    </td>
-                                    <td class="order-action">
-                                        <a href="#"
-                                           class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                    </td>
-                                </tr>
-                                </tbody>
+                                {% if orders %}
+                                    <thead>
+                                    <tr>
+                                        <th class="order-id">Order</th>
+                                        <th class="order-date">Date</th>
+                                        <th class="order-status">Status</th>
+                                        <th class="order-total">Total</th>
+                                        <th class="order-actions">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for order in orders %}
+                                        <tr>
+                                            <td class="order-id">#2321</td>
+                                            <td class="order-date">{{ order.date_ordered|date:'M d, Y' }}August 20,
+                                                2021
+                                            </td>
+                                            <td class="order-status">{% if order.processing == True %}
+                                                Processing{% else %}Completed{% endif %}</td>
+                                            <td class="order-total">
+                                                <span class="order-price">{{ order.cart_total }}</span> for
+                                                <span class="order-quantity"> {{ order.quantity_total }}</span>
+                                                item{{ order.quantity_total|pluralize }}
+                                            </td>
+                                            <td class="order-action">
+                                                <a href="{% url 'order' %}"
+                                                   class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                {% else %}
+                                    <li class="no-product">
+                                        <p class="alert alert-light alert-info woocommerce-info">No products were found
+                                            matching your selection.</p>
+                                    </li>
+                                {% endif %}
                             </table>
 
                             <a href="shop-banner-sidebar.html" class="btn btn-dark btn-rounded btn-icon-right">Go

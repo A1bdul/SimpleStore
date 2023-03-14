@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
 from admins.models import Vendor
-from store.models import Product, Review
+from store.models import Product, Review, Cart, Consumer, Category
 from store.serializer import ProductInfoSerializer, VendorSerializer
 
 
@@ -19,7 +19,10 @@ class ShopView(View):
     template_name = 'web/shop.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        context = {
+            "categories": Category.objects.filter(parent=None)
+        }
+        return render(request, self.template_name, context)
 
 
 class CheckOutView(View):
@@ -61,7 +64,12 @@ class AccountView(View):
     template_name = 'web/my-account.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        consumer = Consumer.objects.get(user=request.user)
+        orders = Cart.objects.filter(consumer=consumer)
+        context = {
+            'orders': orders
+        }
+        return render(request, self.template_name, context)
 
 
 class ProductDetail(View):
@@ -76,6 +84,7 @@ class ProductDetail(View):
         owner_products = ProductInfoSerializer(owner_items, many=True).data
         related_items = Product.objects.filter(category=item.category).exclude(owner=item.owner)[:5]
         related_products = ProductInfoSerializer(related_items, many=True).data
+
         other_products = ProductInfoSerializer(Product.objects.all()[item.id:], many=True).data
         return render(request, self.template_name, context={
             'product': product,
@@ -83,7 +92,8 @@ class ProductDetail(View):
             'reviews': reviews,
             'other_products': other_products,
             'owner_products': owner_products,
-            'related_products': related_products
+            'related_products': related_products,
+            "categories": Category.objects.filter(parent=None)
         })
 
 
