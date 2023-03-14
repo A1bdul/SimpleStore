@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Wolmart eCommmerce Marketplace HTML Template</title>
+    <title>K-Mart eCommmerce Marketplace HTML Template</title>
 
-    <meta name="keywords" content="Marketplace ecommerce responsive HTML5 Template"/>
-    <meta name="description" content="Wolmart is powerful marketplace &amp; ecommerce responsive Html5 Template.">
-    <meta name="author" content="D-THEMES">
+    <meta name="keywords" content="Marketplace ecommerce K-Mart buyers seler"/>
+    <meta name="description" content="Wolmart is powerful world-wide Marketplace &amp; eCommerce.">
+    <meta name="author" content="Abdul">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/static/web/images/icons/favicon.png">
@@ -55,13 +55,13 @@
 <body>
 <!-- Start of Page Wrapper -->
 <div class="page-wrapper">
-    <h1 class="d-none">Wolmart - Responsive Marketplace HTML Template</h1>
+    <h1 class="d-none">K-Mart - Marketplace </h1>
     <!-- Start of Header -->
     <header class="header header-border">
         <div class="header-top">
             <div class="container">
                 <div class="header-left">
-                    <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                    <p class="welcome-msg">Welcome to K-Mart Marketplace!</p>
                 </div>
                 <div class="header-right">
                     <div class="dropdown">
@@ -198,7 +198,7 @@
                                 <li>
                                     <a href="{% url 'home' %}">Home</a>
                                 </li>
-                                <li >
+                                <li>
                                     <a href="{% url 'shop' %}">Shop</a>
 
 
@@ -276,43 +276,47 @@
                 </div>
                 <!-- End of Vendor Search Wrapper -->
                 {% for vendor in vendors %}
-                <div class="store store-list mt-4">
-                    <div class="store-header">
-                        <a href="{% url 'vendor-store' vendor.name %}">
-                            <figure class="store-banner">
-                                <img src="/static/web/images/vendor/dokan/1.jpg" alt="Vendor"
-                                     width="400" height="188" style="background-color: #40475E"/>
-                            </figure>
-                        </a>
-                        <label class="featured-label">Featured</label>
-                    </div>
-                    <!-- End of Store Header -->
-                    <div class="store-content">
-                        <figure class="seller-brand">
-                            <img src="/media/{{ vendor.logo }}" alt="Brand" width="80" height="80"/>
-                        </figure>
-                        <div class="seller-date">
-                            <h4 class="store-title">
-                                <a href="{% url 'vendor-store' vendor.name %}">{{ vendor.name }}</a>
-                            </h4>
-                            <div class="ratings-container">
-                                <div class="ratings-full">
-                                    <span class="ratings" style="width: 100%;"></span>
-                                    <span class="tooltiptext tooltip-top"></span>
-                                </div>
-                            </div>
-                            <div class="store-address">
-                                Steven Street, El Carjon
-                                California, United States (US)
-                            </div>
-                            <a href="{% url 'vendor-store' vendor.name %}"
-                               class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
-                                Visit Store<i class="w-icon-long-arrow-right"></i></a>
+                    <div class="store store-list mt-4">
+                        <div class="store-header">
+                            <a href="{% url 'vendor-store' vendor.name %}">
+                                <figure class="store-banner">
+                                    <img src="/static/web/images/vendor/dokan/1.jpg" alt="Vendor"
+                                         width="400" height="188" style="background-color: #40475E"/>
+                                </figure>
+                            </a>
+                            <label class="featured-label">Featured</label>
                         </div>
+                        <!-- End of Store Header -->
+                        <div class="store-content">
+                            {% if vendor.logo %}
+                                <figure class="seller-brand">
+
+                                    <img src="/media/{{ vendor.logo }}" alt="Brand" width="80" height="80"/>
+                                </figure>
+                            {% endif %}
+
+                            <div class="seller-date">
+                                <h4 class="store-title">
+                                    <a href="{% url 'vendor-store' vendor.name %}">{{ vendor.name }}</a>
+                                </h4>
+                                <div class="ratings-container">
+                                    <div class="ratings-full">
+                                        <span class="ratings" style="width: 100%;"></span>
+                                        <span class="tooltiptext tooltip-top"></span>
+                                    </div>
+                                </div>
+                                <div class="store-address">
+                                    Steven Street, El Carjon
+                                    California, United States (US)
+                                </div>
+                                <a href="{% url 'vendor-store' vendor.name %}"
+                                   class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
+                                    Visit Store<i class="w-icon-long-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- End of Store Content -->
                     </div>
-                    <!-- End of Store Content -->
-                </div>
-                <!-- End of Store List -->
+                    <!-- End of Store List -->
                 {% endfor %}
             </div>
         </div>
@@ -495,7 +499,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-left">
-                    <p class="copyright">Copyright © 2021 Wolmart Store. All Rights Reserved.</p>
+                    <p class="copyright">Copyright © 2021 K-Mart Store. All Rights Reserved.</p>
                 </div>
                 <div class="footer-right">
                     <span class="payment-label mr-lg-8">We're using safe payment for</span>
